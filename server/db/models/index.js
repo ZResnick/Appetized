@@ -1,21 +1,17 @@
 const User = require('./user')
 const db = require('../db')
+const Recipe = require('./recipe')
+const Ingredient = require('./ingredient')
 
-/**
- * If we had any associations to make, this would be a great place to put them!
- * https://sequelize-guides.netlify.com/association-types/
- * ex. if we had another model called BlogPost, we might say:
-//
-// Puppy.belongsTo(Owner)
-// BlogPost.belongsTo(User)
+User.belongsToMany(Recipe, {through: 'user-recipe'})
+Recipe.belongsToMany(User, {through: 'user-recipe'})
 
-/**
- * We'll export all of our models here, so that any time a module needs a model,
- * we can just require it from 'db/models'
- * for example, we can say: const {User} = require('../db/models')
- * instead of: const User = require('../db/models/user')
- */
+Recipe.belongsToMany(Ingredient, {through: 'recipe-ingredient'})
+Ingredient.belongsToMany(Recipe, {through: 'recipe-ingredient'})
+
 module.exports = {
   User,
+  Recipe,
+  Ingredient,
   db
 }
