@@ -3,7 +3,7 @@ const db = require('../db')
 
 const Ingredient = db.define('ingredients', {
   text: {
-    type: Sequelize.TEXT,
+    type: Sequelize.STRING,
     allowNull: false
   }
 })

@@ -24,9 +24,9 @@ const Recipe = db.define('recipes', {
       notEmpty: true
     }
   },
-  // author: {
-  //   type: Sequelize.STRING
-  // },
+  author: {
+    type: Sequelize.STRING
+  },
   instructions: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
     allowNull: false,
