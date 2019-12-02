@@ -10,15 +10,21 @@ export class SingleRecipe extends Component {
   render() {
     let recipe
     if (this.props.recipe.length) recipe = this.props.recipe[0]
-    return !recipe ? (
-      <div>
-        <h1>Loading</h1>
-      </div>
-    ) : (
-      <div>
-        <h1>{recipe.title}</h1>
-      </div>
-    )
+
+    if (!recipe) {
+      return (
+        <div>
+          <h1>Loading</h1>
+        </div>
+      )
+    } else {
+      const {title, instructions, ingredients, url, site, author} = recipe
+      return (
+        <div>
+          <h1>{title}</h1>
+        </div>
+      )
+    }
   }
 }
 
