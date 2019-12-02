@@ -22,6 +22,16 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/allRecipes', async (req, res, next) => {
+  try {
+    const recipes = await Recipe.findAll()
+    if (recipes) res.send(recipes)
+    else res.send(404)
+  } catch (err) {
+    next(err)
+  }
+})
+
 //Examples below
 
 /*
