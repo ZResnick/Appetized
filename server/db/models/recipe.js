@@ -34,9 +34,21 @@ const Recipe = db.define('recipes', {
       notEmpty: true
     }
   },
+  ingredients: {
+    type: Sequelize.ARRAY(Sequelize.TEXT),
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
   imageUrl: {
     type: Sequelize.TEXT,
-    defaultValue: 'https://mamadips.com/wp-content/uploads/2016/11/defimage.gif'
+    defaultValue:
+      'https://mamadips.com/wp-content/uploads/2016/11/defimage.gif',
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   }
   // tags: {
   //   type: Sequelize.ARRAY(Sequelize.STRING)
