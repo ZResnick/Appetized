@@ -1,22 +1,61 @@
 // apiRoutes/example.js
 const router = require('express').Router()
-const {CHANGETHISModelToUse} = require('../../db/models')
+const {Recipe, User} = require('../../db/models')
 
+router.all('*', async (req, res, next) => {
+  if (!req.user) {
+    res.sendStatus(401)
+  } else {
+    next()
+  }
+})
+
+router.get('/', async (req, res, next) => {
+  try {
+    const userRecipes = await User.findByPk(req.user.id, {
+      include: [{model: Recipe}]
+    })
+    if (userRecipes.recipes) res.send(userRecipes.recipes)
+    else res.send(404)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//Examples below
+
+/*
 // matches GET requests to /api/example/
-router.get('/', function(req, res, next) {
-  /* etc */
+router.get('/', async (req, res, next) => {
+  try {
+  } catch (err) {
+    next(err)
+  }
 })
+
 // matches POST requests to /api/example/
-router.post('/', function(req, res, next) {
-  /* etc */
+router.post('/', async (req, res, next) => {
+  try {
+  } catch (err) {
+    next(err)
+  }
 })
+
 // matches PUT requests to /api/example/:exampleId
-router.put('/:exampleId', function(req, res, next) {
-  /* etc */
+router.put('/:exampleId', async (req, res, next) => {
+  try {
+  } catch (err) {
+    next(err)
+  }
 })
+
 // matches DELETE requests to /api/example/:exampleId
-router.delete('/:exampleId', function(req, res, next) {
-  /* etc */
+router.delete('/:exampleId', async (req, res, next) => {
+  try {
+  } catch (err) {
+    next(err)
+  }
 })
+*/
 
 module.exports = router
