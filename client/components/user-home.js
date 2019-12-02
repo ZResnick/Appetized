@@ -1,34 +1,51 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {getRecipes} from '../store/recipes'
+import {Card, Image} from 'semantic-ui-react'
 
-/**
- * COMPONENT
- */
-export const UserHome = props => {
-  const {email} = props
+class UserHome extends React.Component {
+  componentDidMount() {
+    this.props.getRecipes()
+  }
 
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-    </div>
-  )
-}
+  render() {
+    const {recipes} = this.props
+    recipes.length && console.log(recipes)
 
-/**
- * CONTAINER
- */
-const mapState = state => {
-  return {
-    email: state.user.email
+    return (
+      <div>
+        {!recipes.length ? (
+          <h1>Loading</h1>
+        ) : (
+          <div>
+            <Card.Group>
+              {recipes.map(recipe => (
+                <Card key={recipe.id}>
+                  <Card.Content>
+                    <Image floated="right" size="mini" src={recipe.imageUrl} />
+                    <Card.Header>{recipe.title}</Card.Header>
+                    <Card.Meta>
+                      {recipe.author} from {recipe.site}
+                    </Card.Meta>
+                  </Card.Content>
+                </Card>
+              ))}
+            </Card.Group>
+          </div>
+        )}
+      </div>
+    )
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapStateToProps = state => ({
+  recipes: state.recipes
+})
 
-/**
- * PROP TYPES
- */
-UserHome.propTypes = {
-  email: PropTypes.string
-}
+const mapDispatchToProps = dispatch => ({
+  getRecipes: () => {
+    dispatch(getRecipes())
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserHome)
