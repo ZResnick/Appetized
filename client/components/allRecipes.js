@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {getRecipes} from '../store/recipes'
 import {Card, Image} from 'semantic-ui-react'
 
-class UserHome extends React.Component {
+class AllRecipes extends React.Component {
   componentDidMount() {
     this.props.getRecipes()
   }
@@ -39,7 +39,7 @@ class UserHome extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  recipes: state.recipes
+  recipes: state.recipes.all
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -48,4 +48,4 @@ const mapDispatchToProps = dispatch => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserHome)
+export default connect(mapStateToProps, mapDispatchToProps)(AllRecipes)

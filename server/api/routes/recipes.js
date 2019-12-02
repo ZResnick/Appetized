@@ -22,6 +22,25 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:id', async (req, res, next) => {
+  try {
+    const userRecipes = await User.findByPk(req.user.id, {
+      include: [
+        {
+          model: Recipe,
+          where: {
+            id: req.params.id
+          }
+        }
+      ]
+    })
+    if (userRecipes.recipes) res.send(userRecipes.recipes)
+    else res.send(404)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.get('/allRecipes', async (req, res, next) => {
   try {
     const recipes = await Recipe.findAll()
