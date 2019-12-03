@@ -1,14 +1,15 @@
 // apiRoutes/example.js
 const router = require('express').Router()
 const {Recipe, User} = require('../../db/models')
+const scrapers = require('../../scrapers')
 
-router.all('*', async (req, res, next) => {
-  if (!req.user) {
-    res.sendStatus(401)
-  } else {
-    next()
-  }
-})
+// router.all('*', async (req, res, next) => {
+//   if (!req.user) {
+//     res.sendStatus(401)
+//   } else {
+//     next()
+//   }
+// })
 
 router.get('/', async (req, res, next) => {
   try {
@@ -16,6 +17,16 @@ router.get('/', async (req, res, next) => {
       include: [{model: Recipe}]
     })
     if (userRecipes.recipes) res.send(userRecipes.recipes)
+    else res.send(404)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/allRecipes', async (req, res, next) => {
+  try {
+    const recipes = await Recipe.findAll()
+    if (recipes) res.send(recipes)
     else res.send(404)
   } catch (err) {
     next(err)
@@ -41,11 +52,40 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.get('/allRecipes', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
-    const recipes = await Recipe.findAll()
-    if (recipes) res.send(recipes)
-    else res.send(404)
+    console.log(req.body)
+    let url = req.body.url
+    let tail = url.split('www.')[1]
+    let base = tail.split('.com')[0]
+    let {
+      title,
+      author,
+      ingredients,
+      instructions,
+      imageUrl,
+      misc,
+      site
+    } = await scrapers[base](url)
+    let newRecipe = await Recipe.findOne({
+      where: {
+        url
+      }
+    })
+    if (!newRecipe) {
+      newRecipe = await Recipe.create({
+        url,
+        title,
+        author,
+        ingredients,
+        instructions,
+        imageUrl,
+        misc,
+        site
+      })
+    }
+    newRecipe.addUser(1)
+    res.send(newRecipe)
   } catch (err) {
     next(err)
   }

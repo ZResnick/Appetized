@@ -49,13 +49,13 @@ const Recipe = db.define('recipes', {
     validate: {
       notEmpty: true
     }
-  }
+  },
   // tags: {
   //   type: Sequelize.ARRAY(Sequelize.STRING)
   // },
-  // misc: {
-  //   type: Sequelize.ARRAY(Sequelize.STRING)
-  // }
+  misc: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
+  }
 })
 
 // Recipe.beforeValidate(article => {
