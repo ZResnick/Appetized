@@ -42,6 +42,16 @@ export const getSingleRecipe = id => async dispatch => {
   }
 }
 
+export const addNewRecipe = url => async dispatch => {
+  try {
+    const {data} = await axios.post(`/api/recipes/`, {url})
+    dispatch(gotSingleRecipe(data))
+    history.push(`/singleRecipe/${data.id}`)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 /**
  * REDUCER
  */

@@ -58,15 +58,9 @@ router.post('/', async (req, res, next) => {
     let url = req.body.url
     let tail = url.split('www.')[1]
     let base = tail.split('.com')[0]
-    let {
-      title,
-      author,
-      ingredients,
-      instructions,
-      imageUrl,
-      misc,
-      site
-    } = await scrapers[base](url)
+    let data = await scrapers[base](url)
+    console.log('HELLO', data)
+    let {title, author, ingredients, instructions, imageUrl, misc, site} = data
     let newRecipe = await Recipe.findOne({
       where: {
         url
@@ -84,7 +78,7 @@ router.post('/', async (req, res, next) => {
         site
       })
     }
-    newRecipe.addUser(1)
+    newRecipe.addUser(req.user.id)
     res.send(newRecipe)
   } catch (err) {
     next(err)

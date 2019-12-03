@@ -58,9 +58,9 @@ const epicuriousScraper = url => {
 
 module.exports = epicuriousScraper
 
-// const test = async url => {
-//   let article = await epicuriousScraper(url)
-//   console.log(article)
-// }
+const test = async url => {
+  let article = await epicuriousScraper(url)
+  console.log(article)
+}
 
-// test(url)
+test(url)
