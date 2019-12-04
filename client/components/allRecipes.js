@@ -38,23 +38,23 @@ class AllRecipes extends React.Component {
 
     return (
       <div>
+        <form className="forms" onSubmit={this.handleSubmit}>
+          <label htmlFor="url">URL: </label>
+          <input
+            placeholder="Recipe URL"
+            type="text"
+            name="url"
+            value={this.state.url}
+            onChange={this.handleChange}
+          />
+          <button type="submit" disabled={!this.state.url}>
+            Submit
+          </button>
+        </form>
         {!recipes.length ? (
-          <h1>Loading</h1>
+          <h1>It doesn't look like you have any recipes.</h1>
         ) : (
           <div>
-            <form className="forms" onSubmit={this.handleSubmit}>
-              <label htmlFor="url">URL: </label>
-              <input
-                placeholder="Recipe URL"
-                type="text"
-                name="url"
-                value={this.state.url}
-                onChange={this.handleChange}
-              />
-              <button type="submit" disabled={!this.state.url}>
-                Submit
-              </button>
-            </form>
             <Card.Group>
               {recipes.map(recipe => (
                 <Card key={recipe.id}>
