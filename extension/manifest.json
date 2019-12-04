@@ -9,7 +9,7 @@
     "default_icon": "disabled.png"
   },
   "background": {
-    "page": "background.html"
+    "scripts": ["background.js"]
   },
   "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
   "permissions": ["activeTab", "tabs"]
