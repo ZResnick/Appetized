@@ -41,9 +41,9 @@ const loginErrorMessage = document.getElementById('login-error-message')
 
 loginForm.addEventListener('submit', function(event) {
   event.preventDefault()
-  fetch('localhost:7693/auth/login', {
+  fetch('http://localhost:7693/auth/login', {
     method: 'POST',
-    mode: 'cors',
+    mode: 'no-cors',
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json'
@@ -69,9 +69,10 @@ loginForm.addEventListener('submit', function(event) {
 const loginInfo = document.getElementById('login-info')
 
 function checkLoginStatus() {
-  fetch('localhost:7693/auth/me', {
+  console.log('HIiiiiiiiiiiiii')
+  fetch('http://localhost:7693/auth/me', {
     method: 'GET',
-    mode: 'cors',
+    mode: 'no-cors',
     credentials: 'include'
   })
     .then(response => {
@@ -79,12 +80,12 @@ function checkLoginStatus() {
         response.json().then(data => {
           const logoutButton = document.createElement('button')
           logoutButton.innerText = 'logout'
-          if (url && scraper[site]) savePageButton.disabled = false
+          //if (url && scraper[site]) savePageButton.disabled = false
           logoutButton.onclick = function() {
             savePageButton.disabled = true
-            fetch('localhost:7693/auth/logout', {
+            fetch('http://localhost:7693/auth/logout', {
               method: 'POST',
-              mode: 'cors',
+              mode: 'no-cors',
               credentials: 'include'
             })
               .then(() => {
