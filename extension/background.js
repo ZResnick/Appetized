@@ -7,18 +7,15 @@ const sites = {
 }
 
 chrome.tabs.onUpdated.addListener(toggleIcon)
-chrome.tabs.onUpdated.addListener(() => {
-  console.log('HIIIIII')
-})
 chrome.tabs.onActivated.addListener(toggleIcon)
 
 function toggleIcon() {
   chrome.tabs.query({active: true, currentWindow: true}, tabs => {
-    let url = tabs[0].url,
-      site = ''
+    let url = tabs[0].url
+    let urlBase = ''
     const urlTail = url.split('www.')[1]
-    if (urlTail) site = urlTail.split('.com')[0]
-    if (url && sites[site]) {
+    if (urlTail) urlBase = urlTail.split('.com')[0]
+    if (url && sites[urlBase]) {
       chrome.browserAction.setIcon({path: 'enabled.png'})
     } else {
       chrome.browserAction.setIcon({path: 'disabled.png'})
