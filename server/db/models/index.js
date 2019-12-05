@@ -6,8 +6,8 @@ const Folder = require('./folder')
 User.belongsToMany(Recipe, {through: 'user-recipe'})
 Recipe.belongsToMany(User, {through: 'user-recipe'})
 
-Folder.belongsToMany(Recipe, {through: 'folder-recipe'})
-Recipe.belongsToMany(Folder, {through: 'folder-recipe'})
+Folder.belongsToMany(Recipe, {through: 'folder-recipe', unique: false})
+Recipe.belongsToMany(Folder, {through: 'folder-recipe', unique: false})
 
 Folder.belongsTo(User)
 

@@ -1,7 +1,7 @@
 const rp = require('request-promise')
 const $ = require('cheerio')
-const url =
-  'https://www.epicurious.com/recipes/food/views/our-favorite-spaghetti-and-meatballs-56389489'
+// const url =
+//   'https://www.epicurious.com/recipes/food/views/our-favorite-spaghetti-and-meatballs-56389489'
 
 const epicuriousScraper = url => {
   return rp(url)
@@ -58,9 +58,9 @@ const epicuriousScraper = url => {
 
 module.exports = epicuriousScraper
 
-const test = async url => {
-  let article = await epicuriousScraper(url)
-  console.log(article)
-}
+// const test = async url => {
+//   let article = await epicuriousScraper(url)
+//   console.log(article)
+// }
 
-test(url)
+// test(url)

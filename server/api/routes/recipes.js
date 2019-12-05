@@ -3,6 +3,7 @@ const router = require('express').Router()
 const {Recipe, User, Folder} = require('../../db/models')
 const scrapers = require('../../scrapers')
 
+//gets all the recipes in the DB
 router.get('/allRecipes', async (req, res, next) => {
   try {
     const recipes = await Recipe.findAll()
@@ -13,7 +14,8 @@ router.get('/allRecipes', async (req, res, next) => {
   }
 })
 
-router.all('*', async (req, res, next) => {
+//blocks access to all other requests if not logged in
+router.all('*', (req, res, next) => {
   if (!req.user) {
     res.sendStatus(401)
   } else {
@@ -21,6 +23,7 @@ router.all('*', async (req, res, next) => {
   }
 })
 
+//gets all the recipes of a specific user
 router.get('/', async (req, res, next) => {
   try {
     const userRecipes = await User.findByPk(req.user.id, {
@@ -48,6 +51,39 @@ router.get('/folders', async (req, res, next) => {
   }
 })
 
+//adds a folder for a specific user
+router.post('/folders', async (req, res, next) => {
+  try {
+    const {title} = req.body
+    console.log(req.body)
+    let folder = await Folder.create({
+      title,
+      userId: req.user.id
+    })
+    res.send(folder)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//assign a recipe a to a specific folder
+router.post('/folders/:folderId/recipe/:recipeId', async (req, res, next) => {
+  try {
+    console.log('PARAMS --->', req.params)
+    let folder = await Folder.findOne({
+      where: {
+        id: req.params.folderId
+      }
+    })
+    if (folder) {
+      await folder.addRecipe(req.params.recipeId)
+    }
+    res.send(200)
+  } catch (err) {
+    next(err)
+  }
+})
+
 //get all the recipes from a specific folder
 router.get('/folders/:id', async (req, res, next) => {
   try {
@@ -65,6 +101,7 @@ router.get('/folders/:id', async (req, res, next) => {
   }
 })
 
+//gets a specific recipe
 router.get('/:id', async (req, res, next) => {
   try {
     const userRecipes = await User.findByPk(req.user.id, {
@@ -84,14 +121,13 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+//adds a recipe via the url
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req.body)
     let url = req.body.url
     let tail = url.split('www.')[1]
     let base = tail.split('.com')[0]
     let data = await scrapers[base](url)
-    console.log('HELLO', data)
     let {title, author, ingredients, instructions, imageUrl, misc, site} = data
     let newRecipe = await Recipe.findOne({
       where: {
@@ -110,7 +146,7 @@ router.post('/', async (req, res, next) => {
         site
       })
     }
-    newRecipe.addUser(req.user.id)
+    await newRecipe.addUser(req.user.id)
     res.send(newRecipe)
   } catch (err) {
     next(err)

@@ -24,3 +24,22 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+/* Hero */
+.hero-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 9%;
+  padding-right: 9%;
+  padding-top: 3em;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 9%;
+  padding-right: 9%;
+  padding-top: 3em;
+}
