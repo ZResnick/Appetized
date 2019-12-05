@@ -8,6 +8,20 @@ const User = db.define('user', {
     unique: true,
     allowNull: false
   },
+  firstName: {
+    type: Sequelize.STRING,
+    unique: false,
+    allowNull: false
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    unique: false,
+    allowNull: false
+  },
+  imgUrl: {
+    type: Sequelize.STRING,
+    unique: true
+  },
   password: {
     type: Sequelize.STRING,
     // Making `.password` act like a func hides it when serializing to JSON.

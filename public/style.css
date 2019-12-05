@@ -31,15 +31,228 @@ form div {
   flex-direction: row;
   justify-content: space-between;
   padding-left: 9%;
-  padding-right: 9%;
-  padding-top: 3em;
+  padding-right: 8%;
+  padding-top: 2em;
 }
 
 .hero-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   padding-left: 9%;
   padding-right: 9%;
-  padding-top: 3em;
+  padding-top: 8%;
+}
+
+.hero-content-text {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 40px;
+}
+
+.hero-caption {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 20px;
+}
+
+#hero {
+  background: linear-gradient(
+      rgba(228, 228, 228, 0.1),
+      rgba(255, 255, 255, 0.1)
+    ),
+    url('./images/dumplings.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 25%;
+}
+
+.hero-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: black;
+  font-size: 100px;
+  text-shadow: 3px 6px 8px #00000059;
+}
+
+.start-cooking-button {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+}
+
+.hero-login-button {
+  margin-top: 2.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: solid 2px grey;
+  border-radius: 5px;
+  color: grey;
+  letter-spacing: 0.05em;
+}
+
+.hero-login-text {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: inherit;
+}
+
+.hero-login-button:hover {
+  margin-top: 2.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: solid 2px teal;
+  border-radius: 5px;
+  letter-spacing: 0.05em;
+  color: teal;
+  background: rgba(128, 128, 128, 0.315);
+}
+
+.hero-login-text:hover {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: inherit;
+}
+
+/*Auth forms*/
+#auth-form-body {
+  background: linear-gradient(
+      rgba(228, 228, 228, 0.3),
+      rgba(255, 255, 255, 0.3)
+    ),
+    url('./images/dishes.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 25%;
+}
+
+#auth-form {
+  max-width: 40%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 25px;
+}
+
+.form-header {
+  margin: auto;
+  margin-top: 10%;
+  margin-bottom: 7%;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.auth-major-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: black;
+  font-size: 40px;
+  text-shadow: 3px 6px 8px #00000059;
+  padding-left: 5%;
+  padding-top: 25px;
+  color: rgb(0, 0, 0);
+}
+
+.auth-input-fields {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.auth-submit {
+  margin: auto;
+  margin-top: 5%;
+  min-width: 100%;
+}
+
+.auth-submit-button {
+  min-width: 100%;
+  /* border: solid 5px; */
+  cursor: pointer;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: black;
+  font-size: 1.3em;
+  font-weight: 600;
+  border-radius: 20px;
+  color: white;
+  background: rgb(4, 173, 173);
+  letter-spacing: 0.05em;
+}
+
+.auth-submit-button:hover {
+  min-width: 100%;
+  /* border: solid 5px; */
+  cursor: pointer;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: black;
+  font-size: 1.3em;
+  font-weight: 600;
+  border-radius: 20px;
+  color: white;
+  background: rgb(5, 134, 134);
+  letter-spacing: 0.05em;
+}
+
+.signup-director {
+  margin: auto;
+  margin-bottom: 5%;
+}
+
+.signup-director-google {
+  margin: auto;
+  margin-top: 7%;
+}
+
+.signup-director-text {
+  color: black;
+  font-family: 'Nunito', sans-serif;
+  font-weight: black;
+  font-size: 1em;
+  letter-spacing: 0.03em;
+}
+
+.signup-director-text-google {
+  color: black;
+  font-family: 'Nunito', sans-serif;
+  font-weight: black;
+  font-size: 1.5em;
+  letter-spacing: 0.03em;
+
+  color: rgb(62, 134, 243);
+}
+
+.signup-director-text-google:hover {
+  color: black;
+  font-family: 'Nunito', sans-serif;
+  font-weight: black;
+  font-size: 1.5em;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: rgb(30, 91, 182);
+}
+
+.auth-error {
+  margin: auto;
+  margin-top: 15px;
+  color: rgb(136, 18, 18);
+}
+
+.auth-minor-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: black;
+  font-size: 25px;
+  text-shadow: 3px 6px 8px #00000059;
+  padding-left: 5%;
+  color: rgb(0, 0, 0);
 }

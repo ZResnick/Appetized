@@ -1,26 +1,39 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {Button} from 'semantic-ui-react'
 
 export default function Hero() {
   return (
-    <div>
+    <div id="hero">
       <div className="hero-head">
-        <h1>Appetized</h1>
-        <Link to="/login">
-          <h3>Login Here</h3>
-        </Link>
+        <div>
+          <h1 className="hero-title">Appetized</h1>
+        </div>
+        <div>
+          <Link to="/login">
+            <div className="hero-login-button">
+              <h3 className="hero-login-text">LOGIN HERE</h3>
+            </div>
+          </Link>
+        </div>
       </div>
       <div className="hero-content">
-        <h1> Easy to use</h1>
-        <h1> Easy to personlize</h1>
-        <h1> Get recipes, get cookin'</h1>
-        <p>Appetized, recipes without the nonsense</p>
+        <p className="hero-content-text">
+          {' '}
+          Easy to use <br></br> Fast to organize <br></br> Get recipes, get
+          cookin' <br></br>{' '}
+          <span className="hero-caption">
+            <span style={{fontWeight: 'bold'}}>Appetized...</span> recipes
+            without the nonsense
+          </span>
+        </p>
+        <Button color="teal">
+          <Link to="/login">
+            <h3 className="start-cooking-button">START COOKING NOW</h3>
+          </Link>
+        </Button>
       </div>
-      <div>
-        <Link to="/login">
-          <h3>START COOKING NOW</h3>
-        </Link>
-      </div>
+      <div></div>
     </div>
   )
 }

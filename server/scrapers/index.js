@@ -7,14 +7,15 @@ const scrapers = {
   /*
   food
   bonappetit
-  chwhound
+  chowhound
   allrecipes
   simplyrecipes
   tasty
   yummly
   chow
   myrecipes
-
+  seriouseats
+  foodlab
   */
 }
 
