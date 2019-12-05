@@ -1,15 +1,25 @@
 // apiRoutes/example.js
 const router = require('express').Router()
-const {Recipe, User} = require('../../db/models')
+const {Recipe, User, Folder} = require('../../db/models')
 const scrapers = require('../../scrapers')
 
-// router.all('*', async (req, res, next) => {
-//   if (!req.user) {
-//     res.sendStatus(401)
-//   } else {
-//     next()
-//   }
-// })
+router.get('/allRecipes', async (req, res, next) => {
+  try {
+    const recipes = await Recipe.findAll()
+    if (recipes) res.send(recipes)
+    else res.send(404)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.all('*', async (req, res, next) => {
+  if (!req.user) {
+    res.sendStatus(401)
+  } else {
+    next()
+  }
+})
 
 router.get('/', async (req, res, next) => {
   try {
@@ -23,10 +33,32 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/allRecipes', async (req, res, next) => {
+// gets all the folders for a specific user
+router.get('/folders', async (req, res, next) => {
   try {
-    const recipes = await Recipe.findAll()
-    if (recipes) res.send(recipes)
+    const userFolders = await Folder.findAll({
+      where: {
+        userId: req.user.id
+      }
+    })
+    if (userFolders) res.send(userFolders)
+    else res.send(404)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//get all the recipes from a specific folder
+router.get('/folders/:id', async (req, res, next) => {
+  try {
+    const userFolders = await Folder.findAll({
+      where: {
+        userId: req.user.id,
+        id: req.params.id
+      },
+      include: [{model: Recipe}]
+    })
+    if (userFolders) res.send(userFolders)
     else res.send(404)
   } catch (err) {
     next(err)

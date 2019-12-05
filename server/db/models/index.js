@@ -1,15 +1,20 @@
 const db = require('../db')
 const User = require('./user')
 const Recipe = require('./recipe')
+const Folder = require('./folder')
 
 User.belongsToMany(Recipe, {through: 'user-recipe'})
 Recipe.belongsToMany(User, {through: 'user-recipe'})
 
+Folder.belongsToMany(Recipe, {through: 'folder-recipe'})
+Recipe.belongsToMany(Folder, {through: 'folder-recipe'})
+
+Folder.belongsTo(User)
+
 module.exports = {
   User,
   Recipe,
-  // Ingredient,
-  //RecipeIngredient,
+  Folder,
   db
 }
 

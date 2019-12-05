@@ -5,5 +5,6 @@
  */
 export {default as Navbar} from './navbar'
 export {default as AllRecipes} from './allRecipes'
+export {default as Hero} from './hero'
 export {default as SingleRecipe} from './singleRecipe'
 export {Login, Signup} from './auth-form'
