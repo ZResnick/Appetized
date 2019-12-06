@@ -20,7 +20,8 @@ const User = db.define('user', {
   },
   imgUrl: {
     type: Sequelize.STRING,
-    unique: true
+    defaultValue:
+      'https://www.seekclipart.com/clipng/middle/105-1058558_bulldog-default-avatar-icon-clipart.png'
   },
   password: {
     type: Sequelize.STRING,
