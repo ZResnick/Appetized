@@ -294,7 +294,6 @@ form div {
 .search-recipe-nav-form {
   margin-left: 8%;
   padding-left: 5%;
-  min-width: 100%;
   padding-top: 4.13%;
 }
 
@@ -327,4 +326,78 @@ form div {
   text-align: center;
   padding-top: 6%;
   padding-bottom: 6%;
+}
+
+/*FOOTER*/
+
+#main-footer {
+  background-color: rgb(62, 137, 143);
+  color: white;
+}
+
+.footer-lists {
+  display: flex;
+  flex-direction: row;
+  max-width: 80%;
+  padding-top: 3%;
+  margin-left: 5.2%;
+}
+
+.footer-list {
+  margin-right: 5%;
+}
+
+.footer-list a {
+  line-height: 1.8em;
+  color: white;
+  text-decoration: underline;
+}
+
+.footer-list a:hover {
+  line-height: 1.8em;
+  color: rgb(150, 150, 150);
+}
+
+.footer-list span {
+  line-height: 1.8em;
+  color: white;
+  text-decoration: underline;
+}
+
+.footer-list span:hover {
+  line-height: 1.8em;
+  color: rgb(150, 150, 150);
+  text-decoration: none;
+}
+
+.footer-list h3 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 1.6em;
+}
+
+.stay-connected {
+  margin-left: 5.2%;
+  padding-top: 30px;
+}
+
+.stay-connected h3 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 1.6em;
+}
+
+.social-links a {
+  margin-left: 2em;
+  color: white;
+}
+
+.social-links {
+  margin-top: 1.6em;
+}
+
+.copyrights {
+  margin-left: 5.2%;
+  padding-top: 40px;
+  padding-bottom: 30px;
 }

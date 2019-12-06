@@ -80,7 +80,7 @@ class Navbar extends React.Component {
             </Form>
           </div>
         </div>
-        <div>
+        <div className="middle-of-navbar">
           <div className="search-recipe-nav-form">
             <Form onSubmit={this.handleSubmitSearch}>
               <Form.Field>

@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getRecipes} from '../store/recipes'
 import {Card, Image} from 'semantic-ui-react'
+import {RecipeCard} from './index'
 
 class AllRecipes extends React.Component {
   componentDidMount() {
@@ -22,20 +23,7 @@ class AllRecipes extends React.Component {
           <div>
             <Card.Group>
               {recipes.map(recipe => (
-                <Card key={recipe.id}>
-                  <Card.Content>
-                    <Image floated="right" size="mini" src={recipe.imageUrl} />
-                    <Card.Header>
-                      <Link to={`/singleRecipe/${recipe.id}`}>
-                        {recipe.title}
-                      </Link>
-                    </Card.Header>
-
-                    <Card.Meta>
-                      {recipe.author} from {recipe.site}
-                    </Card.Meta>
-                  </Card.Content>
-                </Card>
+                <RecipeCard key={recipe.id} {...recipe} />
               ))}
             </Card.Group>
           </div>

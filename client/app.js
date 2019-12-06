@@ -16,7 +16,7 @@
 
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Navbar} from './components'
+import {Navbar, Footer} from './components'
 import Routes from './routes'
 
 export class App extends Component {
@@ -24,11 +24,13 @@ export class App extends Component {
     return !this.props.isLoggedIn ? (
       <div>
         <Routes />
+        <Footer />
       </div>
     ) : (
       <div>
         <Navbar />
         <Routes />
+        <Footer />
       </div>
     )
   }
