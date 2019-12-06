@@ -1,6 +1,6 @@
 // apiRoutes/example.js
 const router = require('express').Router()
-const {Recipe, User, Folder} = require('../../db/models')
+const {Recipe, User} = require('../../db/models')
 const scrapers = require('../../scrapers')
 
 //gets all the recipes in the DB
@@ -30,71 +30,6 @@ router.get('/', async (req, res, next) => {
       include: [{model: Recipe}]
     })
     if (userRecipes.recipes) res.send(userRecipes.recipes)
-    else res.send(404)
-  } catch (err) {
-    next(err)
-  }
-})
-
-// gets all the folders for a specific user
-router.get('/folders', async (req, res, next) => {
-  try {
-    const userFolders = await Folder.findAll({
-      where: {
-        userId: req.user.id
-      }
-    })
-    if (userFolders) res.send(userFolders)
-    else res.send(404)
-  } catch (err) {
-    next(err)
-  }
-})
-
-//adds a folder for a specific user
-router.post('/folders', async (req, res, next) => {
-  try {
-    const {title} = req.body
-    console.log(req.body)
-    let folder = await Folder.create({
-      title,
-      userId: req.user.id
-    })
-    res.send(folder)
-  } catch (err) {
-    next(err)
-  }
-})
-
-//assign a recipe a to a specific folder
-router.post('/folders/:folderId/recipe/:recipeId', async (req, res, next) => {
-  try {
-    console.log('PARAMS --->', req.params)
-    let folder = await Folder.findOne({
-      where: {
-        id: req.params.folderId
-      }
-    })
-    if (folder) {
-      await folder.addRecipe(req.params.recipeId)
-    }
-    res.send(200)
-  } catch (err) {
-    next(err)
-  }
-})
-
-//get all the recipes from a specific folder
-router.get('/folders/:id', async (req, res, next) => {
-  try {
-    const userFolders = await Folder.findAll({
-      where: {
-        userId: req.user.id,
-        id: req.params.id
-      },
-      include: [{model: Recipe}]
-    })
-    if (userFolders) res.send(userFolders)
     else res.send(404)
   } catch (err) {
     next(err)

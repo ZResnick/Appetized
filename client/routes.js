@@ -21,7 +21,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route exact path="/" component={Hero} />
+        <Route exact path="/" component={isLoggedIn ? AllRecipes : Hero} />
 
         {isLoggedIn && (
           <Switch>
@@ -31,7 +31,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Hero component as a fallback */}
-        <Route component={Hero} />
+        <Route component={isLoggedIn ? AllRecipes : Hero} />
       </Switch>
     )
   }
