@@ -4,7 +4,9 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {addNewRecipe} from '../store/recipes'
-import {Form, Dropdown, Menu, Image} from 'semantic-ui-react'
+import {Form, Menu, Image} from 'semantic-ui-react'
+// import {Form, Dropdown, Menu, Image} from 'semantic-ui-react'
+import {Dropdown} from './index'
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -65,28 +67,7 @@ class Navbar extends React.Component {
         </div>
         <div>
           <div className="main-nav-dropdown">
-            <Menu>
-              <Dropdown
-                size="massive"
-                trigger={trigger}
-                pointing
-                className="link item"
-              >
-                <Dropdown.Menu>
-                  <Dropdown.Header>Categories</Dropdown.Header>
-                  <Dropdown.Item>Home Goods</Dropdown.Item>
-                  <Dropdown.Item>Bedroom</Dropdown.Item>
-                  <Dropdown.Divider />
-                  <Dropdown.Header>Order</Dropdown.Header>
-                  <Dropdown.Item>Status</Dropdown.Item>
-                  <Dropdown.Item>
-                    <a href="#" onClick={handleClick}>
-                      Logout
-                    </a>
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Menu>
+            <Dropdown />
           </div>
         </div>
       </div>
