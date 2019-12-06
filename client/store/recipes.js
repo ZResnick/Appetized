@@ -6,19 +6,21 @@ import history from '../history'
  */
 const GOT_RECIPES = 'GOT_RECIPES'
 const GOT_SINGLE_RECIPE = 'GOT_SINGLE_RECIPE'
+const GOT_SEARCHED_BY_TITLE = 'GOT_SEARCHED_BY_TITLE'
 
 //const REMOVED_RECIPE = 'REMOVED_RECIPE'
 
 /**
  * INITIAL STATE
  */
-const initialState = {all: [], single: {}}
+const initialState = {all: [], searchedByTitle: [], single: {}}
 
 /**
  * ACTION CREATORS
  */
 const gotRecipes = recipes => ({type: GOT_RECIPES, recipes})
 const gotSingleRecipe = recipe => ({type: GOT_SINGLE_RECIPE, recipe})
+const gotSearchedByTitle = recipes => ({type: GOT_SEARCHED_BY_TITLE, recipes})
 //const removedRecipe = id => ({type: REMOVED_RECIPE, id})
 
 /**
@@ -42,10 +44,22 @@ export const getSingleRecipe = id => async dispatch => {
   }
 }
 
+export const getSearchedByTitle = search => async dispatch => {
+  try {
+    const {data} = await axios.get(
+      `/api/recipes/search-by-title?search=${search}`
+    )
+    dispatch(gotSearchedByTitle(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const addNewRecipe = url => async dispatch => {
   try {
     const {data} = await axios.post(`/api/recipes/`, {url})
     dispatch(gotSingleRecipe(data))
+    history.push(`/allRecipes`)
     history.push(`/singleRecipe/${data.id}`)
   } catch (err) {
     console.error(err)
@@ -63,6 +77,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         single: action.recipe
+      }
+    case GOT_SEARCHED_BY_TITLE:
+      return {
+        ...state,
+        searchedByTitle: action.recipes
       }
     // case REMOVE_USER:
     //   return defaultUser
