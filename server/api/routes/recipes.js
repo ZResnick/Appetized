@@ -2,6 +2,7 @@
 const router = require('express').Router()
 const {Recipe, User} = require('../../db/models')
 const scrapers = require('../../scrapers')
+const {Op} = require('sequelize')
 
 //gets all the recipes in the DB
 router.get('/allRecipes', async (req, res, next) => {
@@ -15,39 +16,19 @@ router.get('/allRecipes', async (req, res, next) => {
 })
 
 //blocks access to all other requests if not logged in
-router.all('*', (req, res, next) => {
-  if (!req.user) {
-    res.sendStatus(401)
-  } else {
-    next()
-  }
-})
+// router.all('*', (req, res, next) => {
+//   if (!req.user) {
+//     res.sendStatus(401)
+//   } else {
+//     next()
+//   }
+// })
 
 //gets all the recipes of a specific user
 router.get('/', async (req, res, next) => {
   try {
     const userRecipes = await User.findByPk(req.user.id, {
       include: [{model: Recipe}]
-    })
-    if (userRecipes.recipes) res.send(userRecipes.recipes)
-    else res.send(404)
-  } catch (err) {
-    next(err)
-  }
-})
-
-//gets a specific recipe
-router.get('/:id', async (req, res, next) => {
-  try {
-    const userRecipes = await User.findByPk(req.user.id, {
-      include: [
-        {
-          model: Recipe,
-          where: {
-            id: req.params.id
-          }
-        }
-      ]
     })
     if (userRecipes.recipes) res.send(userRecipes.recipes)
     else res.send(404)
@@ -83,6 +64,48 @@ router.post('/', async (req, res, next) => {
     }
     await newRecipe.addUser(req.user.id)
     res.send(newRecipe)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//search by title route
+router.get('/search-by-title', async (req, res, next) => {
+  try {
+    let search = req.body.search
+    let words = search.split(' ')
+    let searchArray = words.map(word => `%${word}%`)
+    console.log(searchArray)
+    let searchedRecipes = await Recipe.findAll({
+      limit: 25,
+      where: {
+        title: {
+          [Op.iLike]: {[Op.any]: searchArray}
+          // [Op.iLike]: `%fish%` || `%brisket%`
+        }
+      }
+    })
+    res.send(searchedRecipes)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//gets a specific recipe
+router.get('/:id', async (req, res, next) => {
+  try {
+    const userRecipes = await User.findByPk(req.user.id, {
+      include: [
+        {
+          model: Recipe,
+          where: {
+            id: req.params.id
+          }
+        }
+      ]
+    })
+    if (userRecipes.recipes) res.send(userRecipes.recipes)
+    else res.send(404)
   } catch (err) {
     next(err)
   }
