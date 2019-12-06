@@ -268,6 +268,7 @@ form div {
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 0.3em;
+  min-height: 65px;
 }
 
 .navbar-main-title {
@@ -279,6 +280,7 @@ form div {
   color: rgb(0, 0, 0);
   margin-top: 1em;
   min-width: 30%;
+  padding-top: 3%;
 }
 
 .add-recipe-nav-form {
@@ -286,6 +288,14 @@ form div {
   padding-left: 5%;
   min-width: 100%;
   border-left: solid rgb(202, 202, 202) 1px;
+  padding-top: 2%;
+}
+
+.search-recipe-nav-form {
+  margin-left: 8%;
+  padding-left: 5%;
+  min-width: 100%;
+  padding-top: 4.13%;
 }
 
 .left-side-of-navbar {
@@ -295,4 +305,26 @@ form div {
 
 .main-nav-dropdown {
   margin-right: 40px;
+}
+
+/*Single Recipe*/
+
+.single-recipe-image {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 30%;
+}
+
+.recipe-title-div {
+  background-color: rgba(240, 255, 255, 0.651);
+  max-width: 60%;
+  margin: auto;
+  align-items: baseline;
+}
+
+.recipe-title {
+  text-align: center;
+  padding-top: 6%;
+  padding-bottom: 6%;
 }

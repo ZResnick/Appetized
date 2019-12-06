@@ -17,11 +17,18 @@ export class SingleRecipe extends Component {
       <div>
         {!recipe ? (
           <div>
-            <h1>Loading</h1>
+            <h1>There doesn't seem to be anything here...</h1>
           </div>
         ) : (
           <div>
-            <h1>{recipe.title}</h1>
+            <div
+              className="single-recipe-image"
+              style={{backgroundImage: `url(${recipe.imageUrl})`}}
+            >
+              <div className="recipe-title-div">
+                <h1 className="recipe-title">{recipe.title}</h1>
+              </div>
+            </div>
           </div>
         )}
       </div>
