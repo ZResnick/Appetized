@@ -8,23 +8,24 @@ export class SingleRecipe extends Component {
   }
 
   render() {
-    let recipe
-    if (this.props.recipe.length) recipe = this.props.recipe[0]
-
-    if (!recipe) {
-      return (
-        <div>
-          <h1>Loading</h1>
-        </div>
-      )
-    } else {
-      const {title, instructions, ingredients, url, site, author} = recipe
-      return (
-        <div>
-          <h1>{title}</h1>
-        </div>
-      )
+    let recipe = undefined
+    if (this.props.recipe) {
+      if (this.props.recipe.length) recipe = this.props.recipe[0]
     }
+
+    return (
+      <div>
+        {!recipe ? (
+          <div>
+            <h1>Loading</h1>
+          </div>
+        ) : (
+          <div>
+            <h1>{recipe.title}</h1>
+          </div>
+        )}
+      </div>
+    )
   }
 }
 

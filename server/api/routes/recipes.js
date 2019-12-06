@@ -24,6 +24,27 @@ router.get('/allRecipes', async (req, res, next) => {
 //   }
 // })
 
+// //search by title route
+// router.get('/search-by-title', async (req, res, next) => {
+//   try {
+//     let search = req.query.search
+//     let words = search.split(' ')
+//     let searchArray = words.map(word => `%${word}%`)
+//     let searchedRecipes = await Recipe.findAll({
+//       limit: 25,
+//       where: {
+//         title: {
+//           [Op.iLike]: {[Op.any]: searchArray}
+//           // [Op.iLike]: `%fish%` || `%brisket%`
+//         }
+//       }
+//     })
+//     res.send(searchedRecipes)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+
 //gets all the recipes of a specific user
 router.get('/', async (req, res, next) => {
   try {
@@ -40,6 +61,7 @@ router.get('/', async (req, res, next) => {
 //adds a recipe via the url
 router.post('/', async (req, res, next) => {
   try {
+    console.log(req.body.url)
     let url = req.body.url
     let tail = url.split('www.')[1]
     let base = tail.split('.com')[0]
@@ -64,28 +86,6 @@ router.post('/', async (req, res, next) => {
     }
     await newRecipe.addUser(req.user.id)
     res.send(newRecipe)
-  } catch (err) {
-    next(err)
-  }
-})
-
-//search by title route
-router.get('/search-by-title', async (req, res, next) => {
-  try {
-    let search = req.body.search
-    let words = search.split(' ')
-    let searchArray = words.map(word => `%${word}%`)
-    console.log(searchArray)
-    let searchedRecipes = await Recipe.findAll({
-      limit: 25,
-      where: {
-        title: {
-          [Op.iLike]: {[Op.any]: searchArray}
-          // [Op.iLike]: `%fish%` || `%brisket%`
-        }
-      }
-    })
-    res.send(searchedRecipes)
   } catch (err) {
     next(err)
   }

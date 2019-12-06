@@ -3,17 +3,19 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {addNewRecipe} from '../store/recipes'
+import {addNewRecipe, getSearchedByTitle} from '../store/recipes'
 import {Form, Dropdown, Menu, Image} from 'semantic-ui-react'
 
 class Navbar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      url: ''
+      url: '',
+      searchQuery: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmitSearch = this.handleSubmitSearch.bind(this)
   }
 
   handleChange() {
@@ -29,8 +31,23 @@ class Navbar extends React.Component {
     this.props.addNewRecipe(temp)
   }
 
+  handleSubmitSearch() {
+    event.preventDefault()
+    let temp = this.state.searchQuery
+    this.setState({
+      searchQuery: ''
+    })
+    this.props.getSearchedByTitle(temp)
+  }
+
   render() {
-    const {isLoggedIn, handleClick, firstName, lastName, imageUrl} = this.props
+    const {
+      isLoggedIn,
+      handleClick,
+      firstName,
+      imageUrl,
+      searchedByTitle
+    } = this.props
 
     const trigger = (
       <span>
@@ -57,6 +74,22 @@ class Navbar extends React.Component {
                   type="text"
                   name="url"
                   value={this.state.url}
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+            </Form>
+          </div>
+        </div>
+        <div>
+          <div className="search-recipe-nav-form">
+            <Form onSubmit={this.handleSubmitSearch}>
+              <Form.Field>
+                <label htmlFor="searchQuery"></label>
+                <input
+                  placeholder="Search recipes by title here"
+                  type="text"
+                  name="searchQuery"
+                  value={this.state.searchQuery}
                   onChange={this.handleChange}
                 />
               </Form.Field>
@@ -102,7 +135,8 @@ const mapState = state => {
     isLoggedIn: !!state.user.id,
     firstName: state.user.firstName,
     lastName: state.user.lastName,
-    imageUrl: state.user.imgUrl
+    imageUrl: state.user.imgUrl,
+    searchedByTitle: state.recipes.searchedByTitle
   }
 }
 
@@ -113,6 +147,9 @@ const mapDispatch = dispatch => {
     },
     addNewRecipe: url => {
       dispatch(addNewRecipe(url))
+    },
+    getSearchedByTitle: searchQuery => {
+      dispatch(getSearchedByTitle(searchQuery))
     }
   }
 }
