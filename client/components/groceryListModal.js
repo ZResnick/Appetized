@@ -13,7 +13,7 @@ const GroceryModal = props => (
           </div>
         ) : (
           props.ingredients.map(ing => {
-            return <div key={ing.id}>ing</div>
+            return <div key={ing.id}>{ing.title}</div>
           })
         )}
       </Modal.Description>
