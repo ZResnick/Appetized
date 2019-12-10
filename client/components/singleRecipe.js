@@ -35,7 +35,7 @@ export class SingleRecipe extends Component {
         ) : (
           <div>
             <div className="recipe-header-section">
-              <div>
+              <div className="title-and-site">
                 <h1 className="recipe-title">{recipe.title}</h1>
                 {recipe.author ? (
                   <span className="recipe-caption">
@@ -45,7 +45,7 @@ export class SingleRecipe extends Component {
                   <span className="recipe-caption">By {recipe.site}</span>
                 )}
               </div>
-              <img src={recipe.imageUrl}></img>
+              <img className="recipe-img" src={recipe.imageUrl}></img>
             </div>
             <div className="ingredients-and-instructions">
               <div className="recipe-ingredients">

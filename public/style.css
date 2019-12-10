@@ -315,6 +315,14 @@ form div {
   padding-bottom: 2%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+.title-and-site {
+  max-width: 40%;
+}
+
+.recipe-img {
+  max-width: 60%;
 }
 
 .recipe-title {
@@ -456,4 +464,20 @@ form div {
   margin-left: 5.2%;
   padding-top: 40px;
   padding-bottom: 30px;
+}
+
+/* GROCERY LIST MODAL */
+
+.build-list {
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 1.6em;
+}
+
+.build-list-caption {
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 1em;
 }

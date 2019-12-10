@@ -8,8 +8,11 @@ const GroceryModal = props => (
       <Modal.Description>
         {!props.ingredients ? (
           <div>
-            It doesn't look like you have any ingredients in your grocery list
-            yet.
+            <h3 className="build-list">Build Your Grocery List</h3>
+            <p className="build-list-caption">
+              Add recipes you plan to cook. Adjust what you need to buy, then
+              export your list.
+            </p>
           </div>
         ) : (
           props.ingredients.map(ing => {
