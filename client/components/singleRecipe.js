@@ -1,10 +1,23 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {getSingleRecipe} from '../store/recipes'
+import {addNewRecipeToGroceryList} from '../store/groceryList'
 
 export class SingleRecipe extends Component {
+  constructor() {
+    super()
+    this.state = {
+      isAdded: false
+    }
+    this.addToGroceryClick = this.addToGroceryClick.bind(this)
+  }
   componentDidMount() {
     this.props.getSingleRecipe(this.props.match.params.id)
+  }
+
+  addToGroceryClick() {
+    this.props.addNewRecipeToGroceryList(this.props.match.params.id)
+    this.setState({isAdded: true})
   }
 
   render() {
@@ -40,6 +53,18 @@ export class SingleRecipe extends Component {
                 {recipe.ingredients.map(ing => {
                   return <p key={`ingredient${ing.id}`}>{ing.title}</p>
                 })}
+                {this.state.isAdded ? (
+                  <div>
+                    <h3 className="added-to-grocery-text">Added!</h3>
+                  </div>
+                ) : (
+                  <div
+                    className="add-to-grocery-button"
+                    onClick={this.addToGroceryClick}
+                  >
+                    <h3 className="add-to-grocery-text">Add to Grocery List</h3>
+                  </div>
+                )}
               </div>
               <div className="recipe-instructions">
                 <h4>Instructions</h4>
@@ -66,6 +91,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getSingleRecipe: id => {
     dispatch(getSingleRecipe(id))
+  },
+  addNewRecipeToGroceryList: id => {
+    dispatch(addNewRecipeToGroceryList(id))
   }
 })
 

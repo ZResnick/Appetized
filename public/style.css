@@ -344,6 +344,46 @@ form div {
   margin-left: 5%;
 }
 
+.add-to-grocery-button {
+  margin-top: 2.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: solid 2px grey;
+  border-radius: 5px;
+  color: grey;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+.add-to-grocery-text {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: inherit;
+}
+
+.add-to-grocery-button:hover {
+  margin-top: 2.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: solid 2px rgb(10, 196, 196);
+  border-radius: 5px;
+  letter-spacing: 0.05em;
+  color: rgb(10, 196, 196);
+  background: rgba(128, 128, 128, 0.315);
+}
+
+.add-to-grocery-text:hover {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: inherit;
+}
+
 /*FOOTER*/
 
 #main-footer {

@@ -4,7 +4,15 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {addNewRecipe, getSearchedByTitle} from '../store/recipes'
-import {Form, Dropdown, Menu, Image} from 'semantic-ui-react'
+import {
+  Form,
+  Dropdown,
+  Menu,
+  Image,
+  Button,
+  Header,
+  Modal
+} from 'semantic-ui-react'
 
 class Navbar extends React.Component {
   constructor(props) {

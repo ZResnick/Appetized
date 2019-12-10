@@ -17,7 +17,6 @@ router.post('/:id', async (req, res, next) => {
     let recipe = await Recipe.findByPk(req.params.id, {
       include: [{model: Ingredient}]
     })
-    console.log(recipe)
     let groceryList = await GroceryList.findOne({
       where: {
         userId: req.user.id,
