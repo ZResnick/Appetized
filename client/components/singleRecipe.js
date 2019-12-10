@@ -17,16 +17,39 @@ export class SingleRecipe extends Component {
       <div>
         {!recipe ? (
           <div>
-            <h1>There doesn't seem to be anything here...</h1>
+            <h1>Sorry, there doesnt seem to be anything here yet...</h1>
           </div>
         ) : (
           <div>
-            <div
-              className="single-recipe-image"
-              style={{backgroundImage: `url(${recipe.imageUrl})`}}
-            >
-              <div className="recipe-title-div">
+            <div className="recipe-header-section">
+              <div>
                 <h1 className="recipe-title">{recipe.title}</h1>
+                {recipe.author ? (
+                  <span className="recipe-caption">
+                    By {recipe.author}, {recipe.site}
+                  </span>
+                ) : (
+                  <span className="recipe-caption">By {recipe.site}</span>
+                )}
+              </div>
+              <img src={recipe.imageUrl}></img>
+            </div>
+            <div className="ingredients-and-instructions">
+              <div className="recipe-ingredients">
+                <h4>Ingredients</h4>
+                {recipe.ingredients.map(ing => {
+                  return <p key={`ingredient${ing.id}`}>{ing.title}</p>
+                })}
+              </div>
+              <div className="recipe-instructions">
+                <h4>Instructions</h4>
+                {recipe.instructions.map(ins => {
+                  return (
+                    <p key={ins.slice(0, 5)} className="instructions">
+                      {ins}
+                    </p>
+                  )
+                })}
               </div>
             </div>
           </div>
