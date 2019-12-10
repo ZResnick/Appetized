@@ -1,13 +1,15 @@
 // apiRoutes/example.js
 const router = require('express').Router()
-const {Recipe, User} = require('../../db/models')
+const {Recipe, User, Ingredient} = require('../../db/models')
 const scrapers = require('../../scrapers')
 const {Op} = require('sequelize')
 
 //gets all the recipes in the DB
 router.get('/allRecipes', async (req, res, next) => {
   try {
-    const recipes = await Recipe.findAll()
+    const recipes = await Recipe.findAll({
+      include: [{model: Ingredient}]
+    })
     if (recipes) res.send(recipes)
     else res.send(404)
   } catch (err) {
@@ -16,13 +18,13 @@ router.get('/allRecipes', async (req, res, next) => {
 })
 
 //blocks access to all other requests if not logged in
-// router.all('*', (req, res, next) => {
-//   if (!req.user) {
-//     res.sendStatus(401)
-//   } else {
-//     next()
-//   }
-// })
+router.all('*', (req, res, next) => {
+  if (!req.user) {
+    res.sendStatus(401)
+  } else {
+    next()
+  }
+})
 
 // //search by title route
 router.get('/search-by-title', async (req, res, next) => {
@@ -37,7 +39,8 @@ router.get('/search-by-title', async (req, res, next) => {
           [Op.iLike]: {[Op.any]: searchArray}
           // [Op.iLike]: `%fish%` || `%brisket%`
         }
-      }
+      },
+      include: [{model: Ingredient}]
     })
     res.send(searchedRecipes)
   } catch (err) {
@@ -61,7 +64,6 @@ router.get('/', async (req, res, next) => {
 //adds a recipe via the url
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req.body.url)
     let url = req.body.url
     let tail = url.split('www.')[1]
     let base = tail.split('.com')[0]
@@ -70,18 +72,34 @@ router.post('/', async (req, res, next) => {
     let newRecipe = await Recipe.findOne({
       where: {
         url
-      }
+      },
+      include: [{model: Ingredient}]
     })
     if (!newRecipe) {
-      newRecipe = await Recipe.create({
+      await Recipe.create({
         url,
         title,
         author,
-        ingredients,
         instructions,
         imageUrl,
         misc,
         site
+      })
+      await ingredients.forEach(async el => {
+        let ingredient = await Ingredient.findOne({
+          where: {
+            title: el
+          }
+        })
+        if (!ingredient) {
+          ingredient = await Ingredient.create({
+            title: el
+          })
+        }
+        ingredient.addRecipe(newRecipe)
+      })
+      newRecipe = await Recipe.findOne({
+        where: {url}
       })
     }
     await newRecipe.addUser(req.user.id)
@@ -100,6 +118,9 @@ router.get('/:id', async (req, res, next) => {
           model: Recipe,
           where: {
             id: req.params.id
+          },
+          include: {
+            model: Ingredient
           }
         }
       ]

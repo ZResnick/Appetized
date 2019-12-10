@@ -34,13 +34,13 @@ const Recipe = db.define('recipes', {
       notEmpty: true
     }
   },
-  ingredients: {
-    type: Sequelize.ARRAY(Sequelize.TEXT),
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
-  },
+  // ingredients: {
+  //   type: Sequelize.ARRAY(Sequelize.TEXT),
+  //   allowNull: false,
+  //   validate: {
+  //     notEmpty: true
+  //   }
+  // },
   imageUrl: {
     type: Sequelize.TEXT,
     defaultValue:

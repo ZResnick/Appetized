@@ -2,9 +2,13 @@ const db = require('../db')
 const User = require('./user')
 const Recipe = require('./recipe')
 const Folder = require('./folder')
+const Ingredient = require('./ingredient')
 
 User.belongsToMany(Recipe, {through: 'user-recipe'})
 Recipe.belongsToMany(User, {through: 'user-recipe'})
+
+Recipe.belongsToMany(Ingredient, {through: 'recipe-ingredient'})
+Ingredient.belongsToMany(Recipe, {through: 'recipe-ingredient'})
 
 Folder.belongsToMany(Recipe, {through: 'folder-recipe', unique: false})
 Recipe.belongsToMany(Folder, {through: 'folder-recipe', unique: false})
@@ -15,6 +19,7 @@ module.exports = {
   User,
   Recipe,
   Folder,
+  Ingredient,
   db
 }
 
@@ -25,12 +30,6 @@ May change this at some point if i can do what's on line 32
 
 // const Ingredient = require('./ingredient')
 //const RecipeIngredient = require('./recipeIngredient')
-
-// Recipe.belongsToMany(Ingredient, {through: RecipeIngredient})
-// Ingredient.belongsToMany(Recipe, {through: RecipeIngredient})
-
-// Recipe.hasMany(Ingredient)
-// Ingredient.belongsTo(Recipe, {as: 'recipe'})
 
 /*
 In order to add recipeIngredient, we need to be able to parse the ingredients

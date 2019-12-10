@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Folder = db.define('folder', {
+const Ingredient = db.define('ingredient', {
   title: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
     validate: {
       notEmpty: true
@@ -11,4 +11,4 @@ const Folder = db.define('folder', {
   }
 })
 
-module.exports = Folder
+module.exports = Ingredient
