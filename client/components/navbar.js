@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import GroceryModal from './groceryListModal'
 import {addNewRecipe, getSearchedByTitle} from '../store/recipes'
-import {getGroceryList} from '../store/groceryList'
+import {getGroceryList, removeIngredient} from '../store/groceryList'
 import {Form, Dropdown, Menu, Image} from 'semantic-ui-react'
 
 class Navbar extends React.Component {
@@ -166,8 +166,11 @@ const mapDispatch = dispatch => {
     getSearchedByTitle: searchQuery => {
       dispatch(getSearchedByTitle(searchQuery))
     },
-    getGroceryList: searchQuery => {
-      dispatch(getGroceryList(searchQuery))
+    getGroceryList: () => {
+      dispatch(getGroceryList())
+    },
+    removeIngredient: id => {
+      dispatch(removeIngredient(id))
     }
   }
 }

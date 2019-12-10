@@ -5,6 +5,7 @@ import history from '../history'
  * ACTION TYPES
  */
 const GOT_GROCERY_LIST = 'GOT_GROCERY_LIST'
+const REMOVE_INGREDIENT = 'REMOVE_INGREDIENT'
 
 /**
  * INITIAL STATE
@@ -32,6 +33,15 @@ export const addNewRecipeToGroceryList = id => async dispatch => {
   try {
     await axios.post(`/api/groceryList/${id}`)
     const {data} = await axios.get('/api/groceryList/')
+    dispatch(gotGroceryList(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const removeIngredient = id => async dispatch => {
+  try {
+    const {data} = await axios.put(`/api/groceryList/delete/${id}`)
     dispatch(gotGroceryList(data))
   } catch (err) {
     console.error(err)
