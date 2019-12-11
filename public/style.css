@@ -475,9 +475,40 @@ form div {
   font-size: 1.6em;
 }
 
+.grocery-modal-header {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 1.6em;
+}
+
 .build-list-caption {
   text-align: center;
   font-family: 'Nunito', sans-serif;
   font-weight: 200;
   font-size: 1em;
+}
+
+.grocery-ingredient {
+  display: flex;
+  max-width: 80%;
+  margin: auto;
+  justify-content: space-between;
+  border-bottom: solid 1px grey;
+  padding-bottom: 1%;
+  padding-top: 3%;
+}
+
+.grocery-ingredient h5 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 1em;
+}
+
+.grocery-delete-icon {
+  cursor: pointer;
+}
+
+.grocery-delete-icon:hover {
+  cursor: pointer;
+  color: red;
 }

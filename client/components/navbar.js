@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import GroceryModal from './groceryListModal'
 import {addNewRecipe, getSearchedByTitle} from '../store/recipes'
-import {getGroceryList, removeIngredient} from '../store/groceryList'
 import {Form, Dropdown, Menu, Image} from 'semantic-ui-react'
 
 class Navbar extends React.Component {
@@ -18,10 +17,6 @@ class Navbar extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmitSearch = this.handleSubmitSearch.bind(this)
-  }
-
-  componentDidMount() {
-    this.props.getGroceryList()
   }
 
   handleChange() {
@@ -63,7 +58,6 @@ class Navbar extends React.Component {
       </span>
     )
 
-    console.log('proppppppspspsps', this.props)
     return (
       <div className="mainNav">
         <div className="left-side-of-navbar">
@@ -104,11 +98,7 @@ class Navbar extends React.Component {
           </div>
         </div>
         <div>
-          {this.props.groceryList ? (
-            <GroceryModal {...this.props.groceryList} />
-          ) : (
-            <GroceryModal />
-          )}
+          <GroceryModal />
         </div>
         <div>
           <div className="main-nav-dropdown">
@@ -150,8 +140,7 @@ const mapState = state => {
     firstName: state.user.firstName,
     lastName: state.user.lastName,
     imageUrl: state.user.imgUrl,
-    searchedByTitle: state.recipes.searchedByTitle,
-    groceryList: state.groceryList.ingredients
+    searchedByTitle: state.recipes.searchedByTitle
   }
 }
 
@@ -165,12 +154,6 @@ const mapDispatch = dispatch => {
     },
     getSearchedByTitle: searchQuery => {
       dispatch(getSearchedByTitle(searchQuery))
-    },
-    getGroceryList: () => {
-      dispatch(getGroceryList())
-    },
-    removeIngredient: id => {
-      dispatch(removeIngredient(id))
     }
   }
 }
