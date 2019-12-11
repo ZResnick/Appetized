@@ -13,9 +13,13 @@ module.exports = {
       from: 'AppetizedRecipeManager@gmail.com',
       to: String(email),
       subject: `Appetized Grocery List`,
-      html: `<ul>
-      ${ings.map(ing => `<li>${ing.title}</li>`)}
-    </ul>`
+      html: `<h4>Thank you for using Appetized to manage your recipes!</h4>
+      <p>Please find your grovery list below.</p>
+      ${ings
+        .map(ing => {
+          return `<input type="checkbox">${ing.title}<br>`
+        })
+        .join('')}`
     }
     transporter.sendMail(mailOptions, function(error, info) {
       if (error) {

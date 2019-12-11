@@ -99,7 +99,7 @@ router.put('/emailList', async (req, res, next) => {
     let groceryList = await GroceryList.findOne({
       where: {
         // userId: req.user.id,
-        userId: 10,
+        userId: req.user.id,
         status: true
       },
       include: [
@@ -108,14 +108,19 @@ router.put('/emailList', async (req, res, next) => {
         }
       ]
     })
-    //This line sends the email confirmation
     if (groceryList) {
+      //This line sends the email confirmation
       utils.emailConfirmation(req.user.email, groceryList.ingredients)
-      res.send(200)
+
+      await groceryList.update({
+        status: false
+      })
+      let newGroceryList = await GroceryList.create({
+        userId: req.user.id,
+        status: true
+      })
+      if (newGroceryList) res.send(newGroceryList)
     }
-    await groceryList.update({
-      status: false
-    })
   } catch (error) {
     next(error)
   }

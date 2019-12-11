@@ -5,7 +5,7 @@ import history from '../history'
  * ACTION TYPES
  */
 const GOT_GROCERY_LIST = 'GOT_GROCERY_LIST'
-const REMOVE_INGREDIENT = 'REMOVE_INGREDIENT'
+const CHECKOUT = 'CHECKOUT'
 
 /**
  * INITIAL STATE
@@ -16,6 +16,7 @@ const initialState = {ingredients: []}
  * ACTION CREATORS
  */
 const gotGroceryList = ingredients => ({type: GOT_GROCERY_LIST, ingredients})
+const checkedout = () => ({type: GOT_GROCERY_LIST})
 
 /**
  * THUNK CREATORS
@@ -48,6 +49,15 @@ export const removeIngredient = id => async dispatch => {
   }
 }
 
+export const checkout = () => async dispatch => {
+  try {
+    await axios.put(`/api/groceryList/emailList`)
+    dispatch(checkedout())
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 /**
  * REDUCER
  */
@@ -55,6 +65,8 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case GOT_GROCERY_LIST:
       return {...state, ingredients: action.ingredients}
+    case CHECKOUT:
+      return {...state, ingredients: []}
     default:
       return state
   }
