@@ -1,6 +1,7 @@
 // apiRoutes/example.js
 const router = require('express').Router()
 const {Recipe, User, Ingredient, GroceryList} = require('../../db/models')
+const utils = require('./utils')
 
 //blocks access to all other requests if not logged in
 // router.all('*', (req, res, next) => {
@@ -90,6 +91,33 @@ router.put('/delete/:id', async (req, res, next) => {
     else res.send(404)
   } catch (err) {
     next(err)
+  }
+})
+
+router.put('/emailList', async (req, res, next) => {
+  try {
+    let groceryList = await GroceryList.findOne({
+      where: {
+        // userId: req.user.id,
+        userId: 10,
+        status: true
+      },
+      include: [
+        {
+          model: Ingredient
+        }
+      ]
+    })
+    //This line sends the email confirmation
+    if (groceryList) {
+      utils.emailConfirmation(req.user.email, groceryList.ingredients)
+      res.send(200)
+    }
+    await groceryList.update({
+      status: false
+    })
+  } catch (error) {
+    next(error)
   }
 })
 
