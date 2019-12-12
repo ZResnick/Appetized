@@ -61,7 +61,7 @@ class Navbar extends React.Component {
     return (
       <div className="mainNav">
         <div className="left-side-of-navbar">
-          <div>
+          <div className="navbar-header-div">
             <Link to={isLoggedIn ? '/allRecipes' : '/home'}>
               <h1 className="navbar-main-title">Appetized</h1>
             </Link>
@@ -99,6 +99,11 @@ class Navbar extends React.Component {
         </div>
         <div>
           <GroceryModal />
+        </div>
+        <div>
+          <Link to="/recipeBox">
+            <h1>Your Recipe Box</h1>
+          </Link>
         </div>
         <div>
           <div className="main-nav-dropdown">

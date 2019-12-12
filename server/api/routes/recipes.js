@@ -112,20 +112,15 @@ router.post('/', async (req, res, next) => {
 //gets a specific recipe
 router.get('/:id', async (req, res, next) => {
   try {
-    const userRecipes = await User.findByPk(req.user.id, {
+    const recipe = await Recipe.findByPk(req.params.id, {
       include: [
         {
-          model: Recipe,
-          where: {
-            id: req.params.id
-          },
-          include: {
-            model: Ingredient
-          }
+          model: Ingredient
         }
       ]
     })
-    if (userRecipes.recipes) res.send(userRecipes.recipes)
+    console.log(recipe)
+    if (recipe) res.send(recipe)
     else res.send(404)
   } catch (err) {
     next(err)

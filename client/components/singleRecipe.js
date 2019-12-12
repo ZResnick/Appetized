@@ -21,10 +21,12 @@ export class SingleRecipe extends Component {
   }
 
   render() {
+    console.log('PROPS', this.props)
     let recipe = undefined
-    if (this.props.recipe) {
-      if (this.props.recipe.length) recipe = this.props.recipe[0]
+    if (this.props.recipe.ingredients) {
+      recipe = this.props.recipe
     }
+    recipe && console.log(recipe)
 
     return (
       <div>

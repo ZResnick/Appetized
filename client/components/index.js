@@ -5,8 +5,10 @@
  */
 export {default as Navbar} from './navbar'
 export {default as AllRecipes} from './allRecipes'
+export {default as UserRecipes} from './userRecipes'
 export {default as Hero} from './hero'
 export {default as SingleRecipe} from './singleRecipe'
 export {default as Footer} from './footer'
 export {default as RecipeCard} from './recipeCard'
+export {default as RecipeBox} from './recipeBox'
 export {Login, Signup} from './auth-form'

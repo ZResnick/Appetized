@@ -267,7 +267,6 @@ form div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 0.3em;
   min-height: 65px;
 }
 
@@ -281,6 +280,11 @@ form div {
   margin-top: 1em;
   min-width: 30%;
   padding-top: 3%;
+}
+
+.navbar-header-div {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .add-recipe-nav-form {
@@ -511,4 +515,26 @@ form div {
 .grocery-delete-icon:hover {
   cursor: pointer;
   color: red;
+}
+
+/* ALL RECIPES PAGE */
+.all-recipes {
+  max-width: 95%;
+  margin: auto;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+/* RECIPE BOX*/
+
+.recipe-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.sideBar {
+  min-width: 269px;
+  max-width: 269px;
+  border-right: solid rgb(202, 202, 202) 1px;
+  min-height: 100%;
 }

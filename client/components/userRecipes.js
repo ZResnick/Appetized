@@ -1,13 +1,13 @@
 /* eslint-disable complexity */
 import React from 'react'
 import {connect} from 'react-redux'
-import {getRecipes} from '../store/recipes'
+import {getUserRecipes} from '../store/recipes'
 import {Card} from 'semantic-ui-react'
 import {RecipeCard} from './index'
 
-class AllRecipes extends React.Component {
+class UserRecipes extends React.Component {
   componentDidMount() {
-    this.props.getRecipes()
+    this.props.getUserRecipes()
   }
 
   render() {
@@ -33,13 +33,13 @@ class AllRecipes extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  recipes: state.recipes.all
+  recipes: state.recipes.userRecipes
 })
 
 const mapDispatchToProps = dispatch => ({
-  getRecipes: () => {
-    dispatch(getRecipes())
+  getUserRecipes: () => {
+    dispatch(getUserRecipes())
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllRecipes)
+export default connect(mapStateToProps, mapDispatchToProps)(UserRecipes)

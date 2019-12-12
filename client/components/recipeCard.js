@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 export default function RecipeCard(props) {
   const {id, imageUrl, title, site, author, url} = props
   return (
-    <Card as={Link} to={`/singleRecipe/${id}`}>
+    <Card raised as={Link} to={`/singleRecipe/${id}`}>
       <Image src={imageUrl} wrapped ui={false} />
       <Card.Content>
         <Card.Header>{title}</Card.Header>
