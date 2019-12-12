@@ -3,9 +3,18 @@ import {connect} from 'react-redux'
 import {Link, Route} from 'react-router-dom'
 import {UserRecipes} from '../components'
 import {Icon} from 'semantic-ui-react'
+import {getAllFolders} from '../store/folders'
 
 export class RecipeBox extends Component {
+  componentDidMount() {
+    this.props.getAllFolders()
+  }
+
   render() {
+    let folders
+    if (this.props.folders) folders = this.props.folders
+    folders && console.log(folders)
+
     return (
       <div className="recipe-box">
         <div className="sideBar">
@@ -22,15 +31,19 @@ export class RecipeBox extends Component {
             </div>
           </div>
         </div>
-
         <Route exact path="/recipeBox" render={() => <UserRecipes />} />
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+  folders: state.folders.folders
+})
 
-const mapDispatchToProps = {}
-
+const mapDispatchToProps = dispatch => ({
+  getAllFolders: () => {
+    dispatch(getAllFolders())
+  }
+})
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeBox)

@@ -18,6 +18,7 @@ Folder.belongsToMany(Recipe, {through: 'folder-recipe', unique: false})
 Recipe.belongsToMany(Folder, {through: 'folder-recipe', unique: false})
 
 GroceryList.belongsTo(User)
+Folder.belongsTo(User)
 
 module.exports = {
   User,
