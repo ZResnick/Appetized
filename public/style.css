@@ -530,6 +530,7 @@ form div {
 .recipe-box {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .sideBar {
@@ -537,4 +538,47 @@ form div {
   max-width: 269px;
   border-right: solid rgb(202, 202, 202) 1px;
   min-height: 100%;
+}
+
+.sidebar-section {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  max-width: 80%;
+  margin: auto;
+  border-bottom: solid rgb(202, 202, 202) 1px;
+}
+
+.sidebar-header {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 1.5em;
+  color: rgb(68, 68, 68);
+  text-align: center;
+}
+
+.sidebar-header:hover {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: rgb(68, 68, 68);
+  text-align: center;
+}
+
+.folder-header-text {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 1.5em;
+  text-align: center;
+  padding-top: 1em;
+}
+
+.saved-recipes {
+  max-width: 80%;
+  margin: auto;
+  margin-bottom: 2%;
+  background: white;
+}
+
+.saved-recipe-header {
+  text-align: center;
 }

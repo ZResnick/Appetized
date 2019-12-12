@@ -44,7 +44,6 @@ router.post('/', async (req, res, next) => {
 //assign a recipe a to a specific folder
 router.post('/:folderId/recipe/:recipeId', async (req, res, next) => {
   try {
-    console.log('PARAMS --->', req.params)
     let folder = await Folder.findOne({
       where: {
         id: req.params.folderId
