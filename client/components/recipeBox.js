@@ -11,7 +11,6 @@ export class RecipeBox extends Component {
   }
 
   render() {
-    console.log(this.props)
     let folders
     if (this.props.folders) folders = this.props.folders
 
@@ -41,11 +40,18 @@ export class RecipeBox extends Component {
           </div>
         </div>
         <Route exact path="/recipeBox" render={() => <UserRecipes />} />
-        <Route
-          exact
-          path="/recipeBox/folder/:id"
-          render={props => <FolderRecipes {...props} />}
-        />
+        {!folders
+          ? null
+          : folders.map(folder => {
+              return (
+                <Route
+                  key={folder.id}
+                  exact
+                  path={`/recipeBox/folder/${folder.id}`}
+                  render={props => <FolderRecipes {...props} />}
+                />
+              )
+            })}
       </div>
     )
   }

@@ -1,7 +1,6 @@
 /* eslint-disable complexity */
 import React from 'react'
 import {connect} from 'react-redux'
-import {getRecipes} from '../store/recipes'
 import {getSingleFolder} from '../store/folders'
 import {Card} from 'semantic-ui-react'
 import {RecipeCard} from './index'
@@ -13,14 +12,7 @@ class FolderRecipes extends React.Component {
     this.props.getSingleFolder(id)
   }
 
-  // componentDidUpdate() {
-  //   let pathnameArr = this.props.location.pathname.split('/')
-  //   let id = pathnameArr[pathnameArr.length - 1]
-  //   this.props.getSingleFolder(id)
-  // }
-
   render() {
-    // console.log(this.props)
     let recipes, folder
     if (this.props.folder) {
       if (this.props.folder.length) {
@@ -29,7 +21,7 @@ class FolderRecipes extends React.Component {
       }
     }
 
-    // recipes && console.log('recipes', recipes)
+    recipes && console.log('recipes', recipes)
 
     return (
       <div className="all-recipes">
