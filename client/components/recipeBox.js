@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link, Route} from 'react-router-dom'
-import {UserRecipes} from '../components'
+import {UserRecipes, FolderRecipes} from '../components'
 import {Icon} from 'semantic-ui-react'
 import {getAllFolders} from '../store/folders'
 
@@ -11,9 +11,9 @@ export class RecipeBox extends Component {
   }
 
   render() {
+    console.log(this.props)
     let folders
     if (this.props.folders) folders = this.props.folders
-    folders && console.log(folders)
 
     return (
       <div className="recipe-box">
@@ -29,9 +29,23 @@ export class RecipeBox extends Component {
             <div>
               <h3 className="folder-header-text">YOUR FOLDERS</h3>
             </div>
+            {!folders
+              ? null
+              : folders.map(folder => {
+                  return (
+                    <Link key={folder.id} to={`/recipeBox/folder/${folder.id}`}>
+                      <h3>{folder.title}</h3>
+                    </Link>
+                  )
+                })}
           </div>
         </div>
         <Route exact path="/recipeBox" render={() => <UserRecipes />} />
+        <Route
+          exact
+          path="/recipeBox/folder/:id"
+          render={props => <FolderRecipes {...props} />}
+        />
       </div>
     )
   }
