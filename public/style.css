@@ -325,6 +325,18 @@ form div {
   max-width: 40%;
 }
 
+.title-and-site a {
+  color: grey;
+  font-size: 1em;
+}
+
+.title-and-site a:hover {
+  color: grey;
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 .recipe-img {
   max-width: 60%;
 }

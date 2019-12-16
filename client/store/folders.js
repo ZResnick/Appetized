@@ -39,7 +39,7 @@ export const getSingleFolder = id => async dispatch => {
   }
 }
 
-export const addsAFolder = title => async dispatch => {
+export const addAFolder = title => async dispatch => {
   try {
     await axios.post('/api/folders', {title})
     const {data} = await axios.get('/api/folders/')

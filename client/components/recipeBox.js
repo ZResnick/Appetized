@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link, Route} from 'react-router-dom'
-import {UserRecipes, FolderRecipes} from '../components'
+import {UserRecipes, FolderRecipes, AddFolderModal} from '../components'
 import {Icon} from 'semantic-ui-react'
 import {getAllFolders} from '../store/folders'
 
@@ -37,6 +37,7 @@ export class RecipeBox extends Component {
                     </Link>
                   )
                 })}
+            <AddFolderModal />
           </div>
         </div>
         <Route exact path="/recipeBox" render={() => <UserRecipes />} />

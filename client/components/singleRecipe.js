@@ -44,8 +44,13 @@ export class SingleRecipe extends Component {
                     By {recipe.author}, {recipe.site}
                   </span>
                 ) : (
-                  <span className="recipe-caption">By {recipe.site}</span>
+                  <span className="recipe-caption">From {recipe.site}</span>
                 )}
+                <br></br>
+                <br></br>
+                <a href={recipe.url} target="_blank" rel="noopener noreferrer">
+                  Find the original recipe here.
+                </a>
               </div>
               <img className="recipe-img" src={recipe.imageUrl}></img>
             </div>
