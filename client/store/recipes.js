@@ -66,6 +66,14 @@ export const getSearchedByTitle = search => async dispatch => {
   }
 }
 
+export const saveRecipeToBox = url => async () => {
+  try {
+    await axios.post(`/api/recipes/`, {url})
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const addNewRecipe = url => async dispatch => {
   try {
     const {data} = await axios.post(`/api/recipes/`, {url})
