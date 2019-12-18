@@ -549,7 +549,7 @@ form div {
   min-width: 269px;
   max-width: 269px;
   border-right: solid rgb(202, 202, 202) 1px;
-  min-height: 100%;
+  min-height: 90vh;
 }
 
 .sidebar-section {
