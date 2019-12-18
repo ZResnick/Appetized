@@ -61,6 +61,21 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//Deletes a recipe from a users recipe box
+router.put('/deleteRecipe/:id', async (req, res, next) => {
+  try {
+    const recipe = await Recipe.findByPk(req.params.id)
+    if (!recipe) {
+      res.sendStatus(403)
+    } else {
+      await recipe.removeUser(req.user.id)
+      res.sendStatus(200)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
 //adds a recipe via the url
 router.post('/', async (req, res, next) => {
   try {
@@ -119,7 +134,7 @@ router.get('/:id', async (req, res, next) => {
         }
       ]
     })
-    console.log(recipe)
+    // console.log(recipe)
     if (recipe) res.send(recipe)
     else res.send(404)
   } catch (err) {

@@ -408,6 +408,46 @@ form div {
   color: inherit;
 }
 
+.save-recipe-button {
+  margin-top: 2.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: solid 2px grey;
+  border-radius: 5px;
+  color: grey;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  max-width: 60%;
+}
+
+.save-recipe-text {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: inherit;
+}
+
+.save-recipe-button:hover {
+  margin-top: 2.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: solid 2px rgb(10, 196, 196);
+  border-radius: 5px;
+  letter-spacing: 0.05em;
+  color: rgb(10, 196, 196);
+  background: rgba(128, 128, 128, 0.315);
+}
+
+.save-recipe-text:hover {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: inherit;
+}
 /*FOOTER*/
 
 #main-footer {

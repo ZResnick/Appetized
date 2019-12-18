@@ -21,7 +21,7 @@ class FolderRecipes extends React.Component {
       }
     }
 
-    recipes && console.log('recipes', recipes)
+    //recipes && console.log('recipes', recipes)
 
     return (
       <div className="all-recipes">

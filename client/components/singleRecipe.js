@@ -1,18 +1,25 @@
+/* eslint-disable complexity */
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getSingleRecipe} from '../store/recipes'
+import {
+  getSingleRecipe,
+  saveRecipeToBox,
+  getUserRecipes
+} from '../store/recipes'
 import {addNewRecipeToGroceryList} from '../store/groceryList'
 
 export class SingleRecipe extends Component {
   constructor() {
     super()
     this.state = {
-      isAdded: false
+      isAdded: false,
+      isOwned: false
     }
     this.addToGroceryClick = this.addToGroceryClick.bind(this)
   }
   componentDidMount() {
     this.props.getSingleRecipe(this.props.match.params.id)
+    this.props.getUserRecipes()
   }
 
   addToGroceryClick() {
@@ -20,13 +27,24 @@ export class SingleRecipe extends Component {
     this.setState({isAdded: true})
   }
 
+  saveRecipe(url) {
+    this.props.saveRecipeToBox(url)
+    this.props.recipe.ownership = true
+    this.setState({isOwned: true})
+  }
+
   render() {
-    console.log('PROPS', this.props)
     let recipe = undefined
-    if (this.props.recipe.ingredients) {
+    const {userRecipes} = this.props
+    if (this.props.recipe.ingredients && userRecipes.length) {
       recipe = this.props.recipe
+
+      if (userRecipes.find(userRecipe => userRecipe.id === recipe.id)) {
+        recipe.ownership = true
+      }
     }
-    recipe && console.log(recipe)
+
+    //recipe && console.log(recipe)
 
     return (
       <div>
@@ -47,10 +65,23 @@ export class SingleRecipe extends Component {
                   <span className="recipe-caption">From {recipe.site}</span>
                 )}
                 <br></br>
-                <br></br>
                 <a href={recipe.url} target="_blank" rel="noopener noreferrer">
                   Find the original recipe here.
                 </a>
+                <br></br>
+                <br></br>
+                {recipe.ownership || this.state.isOwned ? (
+                  <div className="save-recipe-button">
+                    <h3 className="save-recipe-text">Saved!</h3>
+                  </div>
+                ) : (
+                  <div
+                    className="save-recipe-button"
+                    onClick={() => this.saveRecipe(recipe.url)}
+                  >
+                    <h3 className="save-recipe-text">Save this Recipe</h3>
+                  </div>
+                )}
               </div>
               <img className="recipe-img" src={recipe.imageUrl}></img>
             </div>
@@ -92,7 +123,8 @@ export class SingleRecipe extends Component {
 }
 
 const mapStateToProps = state => ({
-  recipe: state.recipes.single
+  recipe: state.recipes.single,
+  userRecipes: state.recipes.userRecipes
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -101,6 +133,12 @@ const mapDispatchToProps = dispatch => ({
   },
   addNewRecipeToGroceryList: id => {
     dispatch(addNewRecipeToGroceryList(id))
+  },
+  saveRecipeToBox: url => {
+    dispatch(saveRecipeToBox(url))
+  },
+  getUserRecipes: () => {
+    dispatch(getUserRecipes())
   }
 })
 

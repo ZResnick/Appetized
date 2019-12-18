@@ -30,7 +30,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const {title} = req.body
-    console.log(req.body)
+    // console.log(req.body)
     let folder = await Folder.create({
       title,
       userId: req.user.id
