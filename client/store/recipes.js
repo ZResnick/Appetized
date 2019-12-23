@@ -74,6 +74,14 @@ export const saveRecipeToBox = url => async () => {
   }
 }
 
+export const deleteRecipeFromBox = id => async () => {
+  try {
+    await axios.put(`/api/recipes/deleteRecipe/${id}`)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const addNewRecipe = url => async dispatch => {
   try {
     const {data} = await axios.post(`/api/recipes/`, {url})
@@ -104,8 +112,6 @@ export default function(state = initialState, action) {
         ...state,
         searchedByTitle: action.recipes
       }
-    // case REMOVE_USER:
-    //   return defaultUser
     default:
       return state
   }

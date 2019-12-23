@@ -448,6 +448,14 @@ form div {
   font-size: 20px;
   color: inherit;
 }
+
+.save-recipe-div {
+  max-width: 60%;
+  margin-top: 2.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
 /*FOOTER*/
 
 #main-footer {

@@ -4,19 +4,25 @@ import {connect} from 'react-redux'
 import {
   getSingleRecipe,
   saveRecipeToBox,
-  getUserRecipes
+  getUserRecipes,
+  deleteRecipeFromBox
 } from '../store/recipes'
+import {addsRecipeToFolder} from '../store/folders'
 import {addNewRecipeToGroceryList} from '../store/groceryList'
+import {Button, Icon} from 'semantic-ui-react'
 
 export class SingleRecipe extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       isAdded: false,
-      isOwned: false
+      isOwned: true
     }
     this.addToGroceryClick = this.addToGroceryClick.bind(this)
+    this.saveRecipe = this.saveRecipe.bind(this)
+    this.deleteRecipe = this.deleteRecipe.bind(this)
   }
+
   componentDidMount() {
     this.props.getSingleRecipe(this.props.match.params.id)
     this.props.getUserRecipes()
@@ -33,16 +39,25 @@ export class SingleRecipe extends Component {
     this.setState({isOwned: true})
   }
 
+  deleteRecipe(id) {
+    this.props.deleteRecipeFromBox(id)
+    this.props.recipe.ownership = false
+    this.setState({isOwned: false})
+  }
+
   render() {
     let recipe = undefined
     const {userRecipes} = this.props
-    if (this.props.recipe.ingredients && userRecipes.length) {
+    if (this.props.recipe.ingredients) {
       recipe = this.props.recipe
-
+    }
+    if (this.props.recipe.ingredients && userRecipes.length >= 0) {
       if (userRecipes.find(userRecipe => userRecipe.id === recipe.id)) {
         recipe.ownership = true
       }
     }
+
+    recipe && console.log(this.props.recipe, this.state)
 
     //recipe && console.log(recipe)
 
@@ -70,16 +85,41 @@ export class SingleRecipe extends Component {
                 </a>
                 <br></br>
                 <br></br>
-                {recipe.ownership || this.state.isOwned ? (
-                  <div className="save-recipe-button">
-                    <h3 className="save-recipe-text">Saved!</h3>
+                {recipe.ownership && this.state.isOwned ? (
+                  // <div
+                  //   className="save-recipe-button"
+                  //   onClick={() => this.deleteRecipe(recipe.id)}
+                  // >
+                  //   <h3 className="save-recipe-text">Saved!</h3>
+                  // </div>
+                  <div className="save-recipe-div">
+                    <Button.Group fluid>
+                      <Button
+                        onClick={() => this.deleteRecipe(recipe.id)}
+                        color="teal"
+                      >
+                        Saved!
+                      </Button>
+                      <Button color="teal" icon>
+                        <Icon name="align justify" />
+                      </Button>
+                    </Button.Group>
                   </div>
                 ) : (
-                  <div
-                    className="save-recipe-button"
-                    onClick={() => this.saveRecipe(recipe.url)}
-                  >
-                    <h3 className="save-recipe-text">Save this Recipe</h3>
+                  // <div
+                  //   className="save-recipe-button"
+                  //   onClick={() => this.saveRecipe(recipe.url)}
+                  // >
+                  //   <h3 className="save-recipe-text">Save this Recipe</h3>
+                  // </div>
+                  <div className="save-recipe-div">
+                    <Button
+                      fluid
+                      color="teal"
+                      onClick={() => this.saveRecipe(recipe.url)}
+                    >
+                      Save This Recipe
+                    </Button>
                   </div>
                 )}
               </div>
@@ -139,6 +179,9 @@ const mapDispatchToProps = dispatch => ({
   },
   getUserRecipes: () => {
     dispatch(getUserRecipes())
+  },
+  deleteRecipeFromBox: id => {
+    dispatch(deleteRecipeFromBox(id))
   }
 })
 

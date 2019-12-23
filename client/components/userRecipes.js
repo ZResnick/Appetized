@@ -14,7 +14,7 @@ class UserRecipes extends React.Component {
     const {recipes} = this.props
 
     return (
-      <div className="saved-recipes">
+      <div className="all-recipes">
         {!recipes.length ? (
           <h1>It doesn't look like you have any recipes.</h1>
         ) : (
