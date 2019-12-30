@@ -51,7 +51,7 @@ export const addAFolder = title => async dispatch => {
 
 export const addsRecipeToFolder = (folderId, recipeId) => async dispatch => {
   try {
-    await axios.post(`/${folderId}/recipe/${recipeId}`)
+    await axios.post(`/api/folders/${folderId}/recipe/${recipeId}`)
     const {data} = await axios.get(`/api/folders/${folderId}`)
     dispatch(gotSingleFolder(data))
   } catch (err) {

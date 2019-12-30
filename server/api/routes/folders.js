@@ -17,7 +17,8 @@ router.get('/', async (req, res, next) => {
     const userFolders = await Folder.findAll({
       where: {
         userId: req.user.id
-      }
+      },
+      include: [{model: Recipe}]
     })
     if (userFolders) res.send(userFolders)
     else res.send(404)

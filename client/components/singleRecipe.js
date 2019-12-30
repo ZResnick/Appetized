@@ -7,25 +7,28 @@ import {
   getUserRecipes,
   deleteRecipeFromBox
 } from '../store/recipes'
-import {addsRecipeToFolder} from '../store/folders'
+import {addsRecipeToFolder, getAllFolders} from '../store/folders'
 import {addNewRecipeToGroceryList} from '../store/groceryList'
-import {Button, Icon} from 'semantic-ui-react'
+import {Button, Dropdown} from 'semantic-ui-react'
 
 export class SingleRecipe extends Component {
   constructor(props) {
     super(props)
     this.state = {
       isAdded: false,
-      isOwned: true
+      isOwned: true,
+      test: true
     }
     this.addToGroceryClick = this.addToGroceryClick.bind(this)
     this.saveRecipe = this.saveRecipe.bind(this)
     this.deleteRecipe = this.deleteRecipe.bind(this)
+    this.addToFolder = this.addToFolder.bind(this)
   }
 
   componentDidMount() {
     this.props.getSingleRecipe(this.props.match.params.id)
     this.props.getUserRecipes()
+    this.props.getAllFolders()
   }
 
   addToGroceryClick() {
@@ -45,6 +48,10 @@ export class SingleRecipe extends Component {
     this.setState({isOwned: false})
   }
 
+  addToFolder(folderId, recipeId) {
+    this.props.addsRecipeToFolder(folderId, recipeId)
+  }
+
   render() {
     let recipe = undefined
     const {userRecipes} = this.props
@@ -57,15 +64,13 @@ export class SingleRecipe extends Component {
       }
     }
 
-    recipe && console.log(this.props.recipe, this.state)
-
-    //recipe && console.log(recipe)
+    recipe && console.log(this.props)
 
     return (
       <div>
         {!recipe ? (
           <div>
-            <h1>Sorry, there doesnt seem to be anything here yet...</h1>
+            <h1>Sorry, there doesn't seem to be anything here yet...</h1>
           </div>
         ) : (
           <div>
@@ -86,32 +91,57 @@ export class SingleRecipe extends Component {
                 <br></br>
                 <br></br>
                 {recipe.ownership && this.state.isOwned ? (
-                  // <div
-                  //   className="save-recipe-button"
-                  //   onClick={() => this.deleteRecipe(recipe.id)}
-                  // >
-                  //   <h3 className="save-recipe-text">Saved!</h3>
-                  // </div>
                   <div className="save-recipe-div">
-                    <Button.Group fluid>
-                      <Button
-                        onClick={() => this.deleteRecipe(recipe.id)}
-                        color="teal"
-                      >
+                    <Button.Group fluid color="teal">
+                      <Button onClick={() => this.deleteRecipe(recipe.id)}>
                         Saved!
                       </Button>
-                      <Button color="teal" icon>
-                        <Icon name="align justify" />
-                      </Button>
+                      <Dropdown
+                        className="button icon"
+                        floating
+                        icon="justify align"
+                        trigger={<React.Fragment />}
+                      >
+                        <Dropdown.Menu>
+                          <Dropdown.Header
+                            icon="folder"
+                            content="Add to a folder"
+                          />
+                          <Dropdown.Divider />
+                          {this.props.folders && this.props.folders.length
+                            ? this.props.folders.map(folder => {
+                                let exists = folder.recipes.filter(
+                                  el => el.id === recipe.id
+                                )
+                                if (exists.length) {
+                                  return (
+                                    <Dropdown.Item
+                                      key={folder.title}
+                                      text={folder.title}
+                                      icon="check"
+                                    />
+                                  )
+                                } else {
+                                  return (
+                                    <Dropdown.Item
+                                      key={folder.title}
+                                      text={folder.title}
+                                      onClick={() =>
+                                        this.addToFolder(folder.id, recipe.id)
+                                      }
+                                    />
+                                  )
+                                }
+                              })
+                            : null}
+
+                          <Dropdown.Divider />
+                          <Dropdown.Item icon="edit" text="New Folder" />
+                        </Dropdown.Menu>
+                      </Dropdown>
                     </Button.Group>
                   </div>
                 ) : (
-                  // <div
-                  //   className="save-recipe-button"
-                  //   onClick={() => this.saveRecipe(recipe.url)}
-                  // >
-                  //   <h3 className="save-recipe-text">Save this Recipe</h3>
-                  // </div>
                   <div className="save-recipe-div">
                     <Button
                       fluid
@@ -148,7 +178,7 @@ export class SingleRecipe extends Component {
                 <h4>Instructions</h4>
                 {recipe.instructions.map(ins => {
                   return (
-                    <p key={ins.slice(0, 5)} className="instructions">
+                    <p key={ins.slice(1)} className="instructions">
                       {ins}
                     </p>
                   )
@@ -164,7 +194,8 @@ export class SingleRecipe extends Component {
 
 const mapStateToProps = state => ({
   recipe: state.recipes.single,
-  userRecipes: state.recipes.userRecipes
+  userRecipes: state.recipes.userRecipes,
+  folders: state.folders.folders
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -182,6 +213,12 @@ const mapDispatchToProps = dispatch => ({
   },
   deleteRecipeFromBox: id => {
     dispatch(deleteRecipeFromBox(id))
+  },
+  getAllFolders: () => {
+    dispatch(getAllFolders())
+  },
+  addsRecipeToFolder: (folderId, recipeId) => {
+    dispatch(addsRecipeToFolder(folderId, recipeId))
   }
 })
 
