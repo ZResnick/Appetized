@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="footer-list">
           <h3>Our Supported Websites:</h3>
           <a
-            href="www.epicurious.com"
+            href="https://www.epicurious.com"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -17,7 +17,7 @@ export default function Footer() {
           </a>
           <br></br>
           <a
-            href="www.foodnetwork.com"
+            href="https://www.foodnetwork.com"
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -59,6 +59,23 @@ router.post('/:folderId/recipe/:recipeId', async (req, res, next) => {
   }
 })
 
+//removes a recipe a to a specific folder
+router.post('/delete/:folderId/recipe/:recipeId', async (req, res, next) => {
+  try {
+    let folder = await Folder.findOne({
+      where: {
+        id: req.params.folderId
+      }
+    })
+    if (folder) {
+      await folder.removeRecipe(req.params.recipeId)
+    }
+    res.send(200)
+  } catch (err) {
+    next(err)
+  }
+})
+
 //get all the recipes from a specific folder
 router.get('/:id', async (req, res, next) => {
   try {

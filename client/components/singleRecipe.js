@@ -7,7 +7,11 @@ import {
   getUserRecipes,
   deleteRecipeFromBox
 } from '../store/recipes'
-import {addsRecipeToFolder, getAllFolders} from '../store/folders'
+import {
+  addsRecipeToFolder,
+  getAllFolders,
+  deletesRecipeFromFolder
+} from '../store/folders'
 import {addNewRecipeToGroceryList} from '../store/groceryList'
 import {Button, Dropdown} from 'semantic-ui-react'
 
@@ -16,13 +20,13 @@ export class SingleRecipe extends Component {
     super(props)
     this.state = {
       isAdded: false,
-      isOwned: true,
-      test: true
+      isOwned: true
     }
     this.addToGroceryClick = this.addToGroceryClick.bind(this)
     this.saveRecipe = this.saveRecipe.bind(this)
     this.deleteRecipe = this.deleteRecipe.bind(this)
     this.addToFolder = this.addToFolder.bind(this)
+    this.removeFromFolder = this.removeFromFolder.bind(this)
   }
 
   componentDidMount() {
@@ -50,6 +54,10 @@ export class SingleRecipe extends Component {
 
   addToFolder(folderId, recipeId) {
     this.props.addsRecipeToFolder(folderId, recipeId)
+  }
+
+  removeFromFolder(folderId, recipeId) {
+    this.props.deletesRecipeFromFolder(folderId, recipeId)
   }
 
   render() {
@@ -119,6 +127,12 @@ export class SingleRecipe extends Component {
                                       key={folder.title}
                                       text={folder.title}
                                       icon="check"
+                                      onClick={() =>
+                                        this.removeFromFolder(
+                                          folder.id,
+                                          recipe.id
+                                        )
+                                      }
                                     />
                                   )
                                 } else {
@@ -219,6 +233,9 @@ const mapDispatchToProps = dispatch => ({
   },
   addsRecipeToFolder: (folderId, recipeId) => {
     dispatch(addsRecipeToFolder(folderId, recipeId))
+  },
+  deletesRecipeFromFolder: (folderId, recipeId) => {
+    dispatch(deletesRecipeFromFolder(folderId, recipeId))
   }
 })
 

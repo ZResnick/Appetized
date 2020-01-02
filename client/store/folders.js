@@ -59,6 +59,19 @@ export const addsRecipeToFolder = (folderId, recipeId) => async dispatch => {
   }
 }
 
+export const deletesRecipeFromFolder = (
+  folderId,
+  recipeId
+) => async dispatch => {
+  try {
+    await axios.post(`/api/folders/delete/${folderId}/recipe/${recipeId}`)
+    const {data} = await axios.get(`/api/folders/${folderId}`)
+    dispatch(gotSingleFolder(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 /**
  * REDUCER
  */
