@@ -52,8 +52,8 @@ export const addAFolder = title => async dispatch => {
 export const addsRecipeToFolder = (folderId, recipeId) => async dispatch => {
   try {
     await axios.post(`/api/folders/${folderId}/recipe/${recipeId}`)
-    const {data} = await axios.get(`/api/folders/${folderId}`)
-    dispatch(gotSingleFolder(data))
+    const {data} = await axios.get('/api/folders/')
+    dispatch(gotAllFolders(data))
   } catch (err) {
     console.error(err)
   }
@@ -65,8 +65,8 @@ export const deletesRecipeFromFolder = (
 ) => async dispatch => {
   try {
     await axios.post(`/api/folders/delete/${folderId}/recipe/${recipeId}`)
-    const {data} = await axios.get(`/api/folders/${folderId}`)
-    dispatch(gotSingleFolder(data))
+    const {data} = await axios.get('/api/folders/')
+    dispatch(gotAllFolders(data))
   } catch (err) {
     console.error(err)
   }

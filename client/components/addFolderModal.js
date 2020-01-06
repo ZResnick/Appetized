@@ -4,10 +4,11 @@ import {addAFolder} from '../store/folders'
 import {connect} from 'react-redux'
 
 class AddFolderModal extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      title: ''
+      title: '',
+      open: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -21,22 +22,41 @@ class AddFolderModal extends React.Component {
     event.preventDefault()
     let temp = this.state.title
     this.setState({
-      title: ''
+      title: '',
+      open: false
     })
     this.props.addAFolder(temp)
   }
 
   render() {
+    const {open} = this.state
+
     return (
-      <Modal size="small" trigger={<Button>Create new folder</Button>}>
+      <Modal
+        open={open}
+        size="small"
+        closeIcon
+        onClose={() => {
+          this.setState({open: false})
+        }}
+        trigger={
+          <Button
+            onClick={() => {
+              this.setState({open: true})
+            }}
+          >
+            Create new folder
+          </Button>
+        }
+      >
         <Modal.Header>
           <h5 className="grocery-modal-header">Add a folder</h5>
         </Modal.Header>
-        <Modal.Content scrolling>
+        <Modal.Content>
           <Modal.Description>
-            <div className="add-recipe-nav-form">
+            <div>
               <Form onSubmit={this.handleSubmit}>
-                <Form.Field>
+                <Form.Field width={10}>
                   <label htmlFor="title"></label>
                   <input
                     placeholder="Write the name of your folder here"
@@ -51,9 +71,15 @@ class AddFolderModal extends React.Component {
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-          <Button onClick={this.handleSubmit} color="teal">
-            <Icon name="checkmark" /> Done
-          </Button>
+          {this.state.title ? (
+            <Button onClick={this.handleSubmit} color="teal">
+              <Icon name="checkmark" /> Done
+            </Button>
+          ) : (
+            <Button disabled onClick={this.handleSubmit} color="teal">
+              <Icon name="checkmark" /> Done
+            </Button>
+          )}
         </Modal.Actions>
       </Modal>
     )

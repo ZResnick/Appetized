@@ -7,13 +7,9 @@ import {
   getUserRecipes,
   deleteRecipeFromBox
 } from '../store/recipes'
-import {
-  addsRecipeToFolder,
-  getAllFolders,
-  deletesRecipeFromFolder
-} from '../store/folders'
 import {addNewRecipeToGroceryList} from '../store/groceryList'
-import {Button, Dropdown} from 'semantic-ui-react'
+import {Button} from 'semantic-ui-react'
+import {FolderDropdown} from './index'
 
 export class SingleRecipe extends Component {
   constructor(props) {
@@ -25,14 +21,11 @@ export class SingleRecipe extends Component {
     this.addToGroceryClick = this.addToGroceryClick.bind(this)
     this.saveRecipe = this.saveRecipe.bind(this)
     this.deleteRecipe = this.deleteRecipe.bind(this)
-    this.addToFolder = this.addToFolder.bind(this)
-    this.removeFromFolder = this.removeFromFolder.bind(this)
   }
 
   componentDidMount() {
     this.props.getSingleRecipe(this.props.match.params.id)
     this.props.getUserRecipes()
-    this.props.getAllFolders()
   }
 
   addToGroceryClick() {
@@ -50,14 +43,6 @@ export class SingleRecipe extends Component {
     this.props.deleteRecipeFromBox(id)
     this.props.recipe.ownership = false
     this.setState({isOwned: false})
-  }
-
-  addToFolder(folderId, recipeId) {
-    this.props.addsRecipeToFolder(folderId, recipeId)
-  }
-
-  removeFromFolder(folderId, recipeId) {
-    this.props.deletesRecipeFromFolder(folderId, recipeId)
   }
 
   render() {
@@ -104,55 +89,7 @@ export class SingleRecipe extends Component {
                       <Button onClick={() => this.deleteRecipe(recipe.id)}>
                         Saved!
                       </Button>
-                      <Dropdown
-                        className="button icon"
-                        floating
-                        icon="justify align"
-                        trigger={<React.Fragment />}
-                      >
-                        <Dropdown.Menu>
-                          <Dropdown.Header
-                            icon="folder"
-                            content="Add to a folder"
-                          />
-                          <Dropdown.Divider />
-                          {this.props.folders && this.props.folders.length
-                            ? this.props.folders.map(folder => {
-                                let exists = folder.recipes.filter(
-                                  el => el.id === recipe.id
-                                )
-                                if (exists.length) {
-                                  return (
-                                    <Dropdown.Item
-                                      key={folder.title}
-                                      text={folder.title}
-                                      icon="check"
-                                      onClick={() =>
-                                        this.removeFromFolder(
-                                          folder.id,
-                                          recipe.id
-                                        )
-                                      }
-                                    />
-                                  )
-                                } else {
-                                  return (
-                                    <Dropdown.Item
-                                      key={folder.title}
-                                      text={folder.title}
-                                      onClick={() =>
-                                        this.addToFolder(folder.id, recipe.id)
-                                      }
-                                    />
-                                  )
-                                }
-                              })
-                            : null}
-
-                          <Dropdown.Divider />
-                          <Dropdown.Item icon="edit" text="New Folder" />
-                        </Dropdown.Menu>
-                      </Dropdown>
+                      <FolderDropdown recipe={recipe} />
                     </Button.Group>
                   </div>
                 ) : (
@@ -227,15 +164,6 @@ const mapDispatchToProps = dispatch => ({
   },
   deleteRecipeFromBox: id => {
     dispatch(deleteRecipeFromBox(id))
-  },
-  getAllFolders: () => {
-    dispatch(getAllFolders())
-  },
-  addsRecipeToFolder: (folderId, recipeId) => {
-    dispatch(addsRecipeToFolder(folderId, recipeId))
-  },
-  deletesRecipeFromFolder: (folderId, recipeId) => {
-    dispatch(deletesRecipeFromFolder(folderId, recipeId))
   }
 })
 
