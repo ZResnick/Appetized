@@ -84,20 +84,18 @@ const createApp = () => {
   //   }
   // })
 
+  const corsOptions = {
+    origin: '*', // CORS does not support wildcards except exactly "*"
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }
+  app.use(cors(corsOptions))
+
   if (!process.env.HEADLESS) {
     // sends index.html
     app.use('*', (req, res) => {
       res.sendFile(path.join(__dirname, '..', 'public/index.html'))
     })
-  }
-
-  if (process.env.CORS) {
-    const corsOptions = {
-      origin: '*', // CORS does not support wildcards except exactly "*"
-      credentials: true,
-      allowedHeaders: ['Content-Type', 'Authorization']
-    }
-    app.use(cors(corsOptions))
   }
 
   // error handling endware
