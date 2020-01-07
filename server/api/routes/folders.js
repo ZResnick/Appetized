@@ -53,7 +53,7 @@ router.post('/:folderId/recipe/:recipeId', async (req, res, next) => {
     if (folder) {
       await folder.addRecipe(req.params.recipeId)
     }
-    res.send(200)
+    res.sendStatus(200)
   } catch (err) {
     next(err)
   }
