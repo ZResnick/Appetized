@@ -66,6 +66,14 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
+  //add cors options
+  const corsOptions = {
+    origin: '*', // CORS does not support wildcards except exactly "*"
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }
+  app.use(cors(corsOptions))
+
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
@@ -83,13 +91,6 @@ const createApp = () => {
   //     next()
   //   }
   // })
-
-  const corsOptions = {
-    origin: '*', // CORS does not support wildcards except exactly "*"
-    credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization']
-  }
-  app.use(cors(corsOptions))
 
   if (!process.env.HEADLESS) {
     // sends index.html
