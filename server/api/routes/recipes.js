@@ -84,41 +84,45 @@ router.post('/', async (req, res, next) => {
     let base = tail.split('.com')[0]
     let data = await scrapers[base](url)
     let {title, author, ingredients, instructions, imageUrl, misc, site} = data
-    let newRecipe = await Recipe.findOne({
-      where: {
-        url
-      },
-      include: [{model: Ingredient}]
-    })
-    if (!newRecipe) {
-      await Recipe.create({
-        url,
-        title,
-        author,
-        instructions,
-        imageUrl,
-        misc,
-        site
+    if (title && ingredients && instructions) {
+      let newRecipe = await Recipe.findOne({
+        where: {
+          url
+        },
+        include: [{model: Ingredient}]
       })
-      await ingredients.forEach(async el => {
-        let ingredient = await Ingredient.findOne({
-          where: {
-            title: el
-          }
+      if (!newRecipe) {
+        await Recipe.create({
+          url,
+          title,
+          author,
+          instructions,
+          imageUrl,
+          misc,
+          site
         })
-        if (!ingredient) {
-          ingredient = await Ingredient.create({
-            title: el
+        await ingredients.forEach(async el => {
+          let ingredient = await Ingredient.findOne({
+            where: {
+              title: el
+            }
           })
-        }
-        ingredient.addRecipe(newRecipe)
-      })
-      newRecipe = await Recipe.findOne({
-        where: {url}
-      })
+          if (!ingredient) {
+            ingredient = await Ingredient.create({
+              title: el
+            })
+          }
+          ingredient.addRecipe(newRecipe)
+        })
+        newRecipe = await Recipe.findOne({
+          where: {url}
+        })
+      }
+      await newRecipe.addUser(req.user.id)
+      res.send(newRecipe)
+    } else {
+      res.send(500)
     }
-    await newRecipe.addUser(req.user.id)
-    res.send(newRecipe)
   } catch (err) {
     next(err)
   }

@@ -17,32 +17,26 @@ chrome.tabs.query({active: true, currentWindow: true}, tabs => {
   if (urlTail) site = urlTail.split('.com')[0]
 })
 
-// savePageButton.addEventListener('click', function (event) {
-//   event.preventDefault()
-//   scraper[site](url).then(
-//     article => {
-//       fetch('https://simmer.brook.li/api/articles/scraped', {
-//         method: 'POST',
-//         mode: 'cors',
-//         credentials: 'include',
-//         headers: {
-//           "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify(
-//           article
-//         )
-//       }).then(response => {
-//         if (response.status >= 400 && response.status < 500)
-//           throw new Error('Sorry, the page cannot be scraped')
-//         else
-//           pageSavedMessage.innerText = 'Page saved successfully!';
-
-//       }).catch(error => {
-//         pageSavedMessage.innerText = 'Page saving failed: ' + error.message
-//       })
-//     }
-//   );
-// })
+savePageButton.addEventListener('click', function(event) {
+  event.preventDefault()
+  fetch('https://appetized.herokuapp.com/api/recipes/', {
+    method: 'POST',
+    mode: 'cors',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({url})
+  })
+    .then(response => {
+      if (response.status >= 400 && response.status < 500)
+        throw new Error('Sorry, this page cannot be scraped')
+      else pageSavedMessage.innerText = 'Page saved successfully!'
+    })
+    .catch(error => {
+      pageSavedMessage.innerText = 'Page saving failed: ' + error.message
+    })
+})
 
 const loginForm = document.getElementById('auth-form')
 const usernameInput = document.getElementById('username')
