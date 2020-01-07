@@ -1,4 +1,10 @@
-//import scraper from './scraping/index.js'
+const sites = {
+  // allrecipes: true,
+  // chowhound: true,
+  epicurious: true,
+  foodnetwork: true
+  // simplyrecipes: true
+}
 
 const savePageButton = document.getElementById('save-page-btn')
 const pageSavedMessage = document.getElementById('page-saved-message')
@@ -11,27 +17,31 @@ chrome.tabs.query({active: true, currentWindow: true}, tabs => {
   if (urlTail) site = urlTail.split('.com')[0]
 })
 
-// savePageButton.addEventListener('click', function(event) {
+// savePageButton.addEventListener('click', function (event) {
 //   event.preventDefault()
-//   scraper[site](url).then(article => {
-//     fetch('localhost:7693/api/recipes/', {
-//       method: 'POST',
-//       mode: 'cors',
-//       credentials: 'include',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(article)
-//     })
-//       .then(response => {
+//   scraper[site](url).then(
+//     article => {
+//       fetch('https://simmer.brook.li/api/articles/scraped', {
+//         method: 'POST',
+//         mode: 'cors',
+//         credentials: 'include',
+//         headers: {
+//           "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(
+//           article
+//         )
+//       }).then(response => {
 //         if (response.status >= 400 && response.status < 500)
 //           throw new Error('Sorry, the page cannot be scraped')
-//         else pageSavedMessage.innerText = 'Page saved successfully!'
-//       })
-//       .catch(error => {
+//         else
+//           pageSavedMessage.innerText = 'Page saved successfully!';
+
+//       }).catch(error => {
 //         pageSavedMessage.innerText = 'Page saving failed: ' + error.message
 //       })
-//   })
+//     }
+//   );
 // })
 
 const loginForm = document.getElementById('auth-form')
@@ -41,7 +51,7 @@ const loginErrorMessage = document.getElementById('login-error-message')
 
 loginForm.addEventListener('submit', function(event) {
   event.preventDefault()
-  fetch('localhost:7693/auth/login', {
+  fetch('https://appetized.herokuapp.com/auth/login', {
     method: 'POST',
     mode: 'cors',
     credentials: 'include',
@@ -69,7 +79,7 @@ loginForm.addEventListener('submit', function(event) {
 const loginInfo = document.getElementById('login-info')
 
 function checkLoginStatus() {
-  fetch('localhost:7693/auth/me', {
+  fetch('https://appetized.herokuapp.com/auth/me', {
     method: 'GET',
     mode: 'cors',
     credentials: 'include'
@@ -79,10 +89,10 @@ function checkLoginStatus() {
         response.json().then(data => {
           const logoutButton = document.createElement('button')
           logoutButton.innerText = 'logout'
-          if (url && scraper[site]) savePageButton.disabled = false
+          if (url && sites[site]) savePageButton.disabled = false
           logoutButton.onclick = function() {
             savePageButton.disabled = true
-            fetch('localhost:7693/auth/logout', {
+            fetch('https://appetized.herokuapp.com/auth/logout', {
               method: 'POST',
               mode: 'cors',
               credentials: 'include'

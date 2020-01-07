@@ -9,14 +9,15 @@ const db = require('./db')
 const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 7693
 const app = express()
-const socketio = require('socket.io')
+const cors = require('cors')
+// const socketio = require('socket.io')
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
-if (process.env.NODE_ENV === 'test') {
-  after('close the session store', () => sessionStore.stopExpiringSessions())
-}
+// if (process.env.NODE_ENV === 'test') {
+//   after('close the session store', () => sessionStore.stopExpiringSessions())
+// }
 
 /**
  * In your development environment, you can keep all of your
@@ -26,7 +27,7 @@ if (process.env.NODE_ENV === 'test') {
  * keys as environment variables, so that they can still be read by the
  * Node process on process.env
  */
-if (process.env.NODE_ENV !== 'production') require('../secrets')
+// if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id))
@@ -70,23 +71,34 @@ const createApp = () => {
   app.use('/api', require('./api'))
 
   // static file-serving middleware
-  app.use(express.static(path.join(__dirname, '..', 'public')))
+  app.use(express.static(path.join(__dirname, '..', 'build')))
 
   // any remaining requests with an extension (.js, .css, etc.) send 404
-  app.use((req, res, next) => {
-    if (path.extname(req.path).length) {
-      const err = new Error('Not found')
-      err.status = 404
-      next(err)
-    } else {
-      next()
-    }
-  })
+  // app.use((req, res, next) => {
+  //   if (path.extname(req.path).length) {
+  //     const err = new Error('Not found')
+  //     err.status = 404
+  //     next(err)
+  //   } else {
+  //     next()
+  //   }
+  // })
 
-  // sends index.html
-  app.use('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public/index.html'))
-  })
+  if (!process.env.HEADLESS) {
+    // sends index.html
+    app.use('*', (req, res) => {
+      res.sendFile(path.join(__dirname, '..', 'build/index.html'))
+    })
+  }
+
+  if (process.env.CORS) {
+    const corsOptions = {
+      origin: '*', // CORS does not support wildcards except exactly "*"
+      credentials: true,
+      allowedHeaders: ['Content-Type', 'Authorization']
+    }
+    app.use(cors(corsOptions))
+  }
 
   // error handling endware
   app.use((err, req, res, next) => {
@@ -102,13 +114,13 @@ const createApp = () => {
 
 const startListening = () => {
   // start listening (and create a 'server' object representing our server)
-  const server = app.listen(PORT, () =>
+  app.listen(PORT, () =>
     console.log(`Solemnly swearing we're up to no good on localhost:${PORT}`)
   )
 
   // set up our socket control center
-  const io = socketio(server)
-  require('./socket')(io)
+  // const io = socketio(server)
+  // require('./socket')(io)
 }
 
 const syncDb = () => db.sync()
