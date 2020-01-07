@@ -54,7 +54,7 @@ loginForm.addEventListener('submit', function(event) {
   fetch('https://appetized.herokuapp.com/auth/login', {
     method: 'POST',
     mode: 'cors',
-    credentials: 'include',
+    // credentials: 'include',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -79,10 +79,11 @@ loginForm.addEventListener('submit', function(event) {
 const loginInfo = document.getElementById('login-info')
 
 function checkLoginStatus() {
+  console.log('This is check login')
   fetch('https://appetized.herokuapp.com/auth/me', {
     method: 'GET',
-    mode: 'cors',
-    credentials: 'include'
+    mode: 'cors'
+    // credentials: 'include'
   })
     .then(response => {
       if (response.status === 200) {
@@ -94,8 +95,8 @@ function checkLoginStatus() {
             savePageButton.disabled = true
             fetch('https://appetized.herokuapp.com/auth/logout', {
               method: 'POST',
-              mode: 'cors',
-              credentials: 'include'
+              mode: 'cors'
+              // credentials: 'include'
             })
               .then(() => {
                 location.reload()
