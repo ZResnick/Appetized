@@ -35,7 +35,7 @@ Heroku:
     2.1 if heroku links appear, continue...
 3.  CLI: git push heroku master
 4.  CLI: heroku logs --tail
-5.  CLI: npm run delpoy (This script creates a deploy branch, runs webpack, adds these files to the branch, commits these changes, deploys them to Heroku by git push heroku deploy:master and finally deletes the deploy branch)
+5.  CLI: npm run deploy (This script creates a deploy branch, runs webpack, adds these files to the branch, commits these changes, deploys them to Heroku by git push heroku deploy:master and finally deletes the deploy branch)
 6.  In heroku, go to overview > configure add-ons:
     6.1 search for postgres and click Heroku Postgres > Hobby Dev-Free, click provision
 7.  CLI: heroku run bash
