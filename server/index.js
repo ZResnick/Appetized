@@ -10,7 +10,6 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 7693
 const app = express()
 const cors = require('cors')
-// const socketio = require('socket.io')
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -116,10 +115,6 @@ const startListening = () => {
   app.listen(PORT, () =>
     console.log(`Solemnly swearing we're up to no good on localhost:${PORT}`)
   )
-
-  // set up our socket control center
-  // const io = socketio(server)
-  // require('./socket')(io)
 }
 
 const syncDb = () => db.sync()
