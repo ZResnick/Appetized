@@ -1,10 +1,11 @@
 const sites = {
-  // allrecipes: true,
-  // chowhound: true,
   epicurious: true,
-  foodnetwork: true
-  // simplyrecipes: true
+  foodnetwork: true,
+  bonappetit: true,
+  allrecipes: true
 }
+// chowhound: true,
+// simplyrecipes: true
 
 chrome.tabs.onUpdated.addListener(toggleIcon)
 chrome.tabs.onActivated.addListener(toggleIcon)

@@ -1,10 +1,11 @@
 const sites = {
-  // allrecipes: true,
-  // chowhound: true,
   epicurious: true,
-  foodnetwork: true
-  // simplyrecipes: true
+  foodnetwork: true,
+  bonappetit: true,
+  allrecipes: true
 }
+// chowhound: true,
+// simplyrecipes: true
 
 const savePageButton = document.getElementById('save-page-btn')
 const savePageButtonDiv = document.getElementById('save-page-button-div')
