@@ -16,9 +16,9 @@ function toggleIcon() {
     const urlTail = url.split('www.')[1]
     if (urlTail) urlBase = urlTail.split('.com')[0]
     if (url && sites[urlBase]) {
-      chrome.browserAction.setIcon({path: 'enabled.png'})
+      chrome.browserAction.setIcon({path: 'enabled128.png'})
     } else {
-      chrome.browserAction.setIcon({path: 'disabled.png'})
+      chrome.browserAction.setIcon({path: 'disabled128.png'})
     }
   })
 }
