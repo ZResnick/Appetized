@@ -3,54 +3,165 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script type="module" src="popup.js" defer></script>
     <script type="module" src="background.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:black,regular|Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body {
-        background-color: pink;
+        background: linear-gradient(
+            rgba(228, 228, 228, 0.75),
+            rgba(255, 255, 255, 0.75)
+          ),
+          url('./dishes.png');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      #main-header {
+        font-family: 'Nunito', sans-serif;
+        font-weight: black;
+        font-size: 40px;
+        text-decoration: none;
+        text-shadow: 3px 6px 8px #00000059;
         color: black;
       }
+
+      #title-div {
+        margin-left: 30px;
+        margin-right: 32px;
+        margin-top: 15px;
+      }
+
+      #save-page-button-div {
+        display: none;
+      }
+
       #save-page-btn {
-        height: 30px;
-        font-size: 12px;
-        background: rgb(255, 0, 0);
+        height: 1.8em;
+        background-color: rgb(59, 169, 177);
         text-align: center;
-        border-radius: 5px;
+        width: 100%;
+        border-radius: 17px;
         text-align: center;
         cursor: pointer;
+        font-family: 'Nunito', sans-serif;
         font-weight: bold;
+        font-size: 20px;
+        color: white;
       }
+
+      #save-page-btn:hover {
+        height: 1.8em;
+        background-color: rgb(66, 152, 158);
+        text-align: center;
+        width: 100%;
+        border-radius: 17px;
+        text-align: center;
+        cursor: pointer;
+        font-family: 'Nunito', sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+        color: white;
+      }
+
       #save-page-btn[disabled] {
-        background-color: #cccccc;
-        color: #666666;
+        background-color: #808080;
+        color: white;
         cursor: auto;
       }
+
       #auth-form > * {
         margin: 5px;
       }
+
+      #auth-form {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Nunito', sans-serif;
+        font-size: 15px;
+      }
+
+      .required {
+        color: rgb(165, 0, 0);
+        font-size: 15px;
+      }
+
+      /* #login-text {
+        font-family: 'Nunito', sans-serif;
+        font-size: 15px;
+        font-weight: bold;
+      } */
+
+      #login-info {
+        font-family: 'Nunito', sans-serif;
+        font-size: 15px;
+        text-align: center;
+      }
+
       #login-info button {
-        background-color: rgb(220, 0, 0);
+        background-color: rgb(59, 169, 177);
         border-radius: 17px;
         cursor: pointer;
         color: #ffffff;
-        font-size: 15px;
         padding: 6px 13px;
+        font-family: 'Nunito', sans-serif;
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      #login-info button:hover {
+        background-color: rgb(66, 152, 158);
+        border-radius: 17px;
+        cursor: pointer;
+        color: #ffffff;
+        padding: 6px 13px;
+        font-family: 'Nunito', sans-serif;
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      #logout-button {
+        /* text-decoration: none; */
+        margin-top: 18%;
+      }
+
+      #logout-div {
+        align-items: flex-end;
       }
     </style>
   </head>
 
   <body>
-    <div>
-      <button id="save-page-btn" type="button" disabled>Add Recipe</button>
-      <p id="page-saved-message"></p>
+    <div id="title-div">
+      <h1>
+        <a
+          id="main-header"
+          href="https://appetized.herokuapp.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Appetized</a
+        >
+      </h1>
     </div>
     <div id="login-info">
       <form id="auth-form">
-        <label for="username">Username</label>
+        <label for="username">Email <span class="required">*</span></label>
         <input type="text" id="username" name="username" />
-        <label for="password">Password</label>
+        <label for="password">Password <span class="required">*</span></label>
         <input type="password" id="password" name="password" />
-        <button type="submit">Login</button>
+        <button type="submit">
+          <span id="login-text">
+            Login
+          </span>
+        </button>
       </form>
       <p id="login-error-message"></p>
     </div>
+    <div id="save-page-button-div">
+      <button id="save-page-btn" type="button" disabled>Add Recipe</button>
+      <p id="page-saved-message"></p>
+    </div>
+    <div id="logout-div"></div>
   </body>
 </html>

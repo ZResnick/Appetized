@@ -7,6 +7,7 @@ const sites = {
 }
 
 const savePageButton = document.getElementById('save-page-btn')
+const savePageButtonDiv = document.getElementById('save-page-button-div')
 const pageSavedMessage = document.getElementById('page-saved-message')
 
 checkLoginStatus()
@@ -34,7 +35,9 @@ savePageButton.addEventListener('click', function(event) {
       else pageSavedMessage.innerText = 'Page saved successfully!'
     })
     .catch(error => {
-      pageSavedMessage.innerText = 'Page saving failed: ' + error.message
+      pageSavedMessage.innerText =
+        "Sorry!  We're having trouble saving this page."
+      console.log(error.message)
     })
 })
 
@@ -42,6 +45,7 @@ const loginForm = document.getElementById('auth-form')
 const usernameInput = document.getElementById('username')
 const passwordInput = document.getElementById('password')
 const loginErrorMessage = document.getElementById('login-error-message')
+const logoutDiv = document.getElementById('logout-div')
 
 loginForm.addEventListener('submit', function(event) {
   event.preventDefault()
@@ -59,7 +63,7 @@ loginForm.addEventListener('submit', function(event) {
   })
     .then(response => {
       if (response.status === 401) {
-        loginErrorMessage.innerText = 'wrong username and/or password'
+        loginErrorMessage.innerText = 'Wrong username and/or password'
       } else {
         checkLoginStatus()
       }
@@ -82,7 +86,8 @@ function checkLoginStatus() {
       if (response.status === 200) {
         response.json().then(data => {
           const logoutButton = document.createElement('button')
-          logoutButton.innerText = 'logout'
+          logoutButton.id = 'logout-button'
+          logoutButton.innerText = 'Logout'
           if (url && sites[site]) savePageButton.disabled = false
           logoutButton.onclick = function() {
             savePageButton.disabled = true
@@ -98,8 +103,12 @@ function checkLoginStatus() {
                 console.error(error)
               })
           }
-          loginInfo.innerHTML = '<p>Hello, ' + data.email + '<p>'
-          loginInfo.appendChild(logoutButton)
+          loginInfo.innerHTML =
+            '<p>Hello, ' +
+            data.firstName +
+            '!  Navigate to a recipe at one of our supported sites to activate the Add Recipe button below.<p>'
+          savePageButtonDiv.style.display = 'block'
+          logoutDiv.appendChild(logoutButton)
         })
       }
       savePageButton.disabled = true
