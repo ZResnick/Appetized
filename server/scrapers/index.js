@@ -4,6 +4,7 @@ const epicuriousScraper = require('./epicurious')
 const scrapers = {
   foodnetwork: foodnetworkScraper,
   epicurious: epicuriousScraper
+
   /*
   food
   bonappetit
