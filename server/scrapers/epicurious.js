@@ -7,22 +7,22 @@ const epicuriousScraper = url => {
   return rp(url)
     .then(function(html) {
       //success!
-      const article = {
+      const recipe = {
         site: 'epicurious'
       }
-      article.url = url
-      article.title = $('.title-source h1', html)
+      recipe.url = url
+      recipe.title = $('.title-source h1', html)
         .text()
         .trim()
-      article.author = $('.contributor', html).text()
-      article.ingredients = $('.ingredient', html)
+      recipe.author = $('.contributor', html).text()
+      recipe.ingredients = $('.ingredient', html)
         .each(function() {
           $(this).append('**')
         })
         .text()
         .split('**')
         .filter(ingredient => ingredient.length)
-      article.instructions = $('.preparation-steps', html)
+      recipe.instructions = $('.preparation-steps', html)
         .text()
         .trim()
         .split(/\s\s+/)
@@ -41,15 +41,15 @@ const epicuriousScraper = url => {
         .text()
         .trim()
         .split(/\s\s+/)
-      article.misc = times.concat(nutrition)
-      article.imageUrl = $('picture > source', html).attr('srcset')
-      article.tags = $('.tags dt', html)
+      recipe.misc = times.concat(nutrition)
+      recipe.imageUrl = $('picture > source', html).attr('srcset')
+      recipe.tags = $('.tags dt', html)
         .each(function() {
           $(this).append('**')
         })
         .text()
         .split('**')
-      return article
+      return recipe
     })
     .catch(function(err) {
       console.error(err)
@@ -59,8 +59,8 @@ const epicuriousScraper = url => {
 module.exports = epicuriousScraper
 
 // const test = async url => {
-//   let article = await epicuriousScraper(url)
-//   console.log(article)
+//   let recipe = await epicuriousScraper(url)
+//   console.log(recipe)
 // }
 
 // test(url)
