@@ -1,7 +1,5 @@
 const rp = require('request-promise')
 const $ = require('cheerio')
-// const url =
-//   "https://www.allrecipes.com/recipe/213656/amazing-crusted-chicken/?clickId=right%20rail0&internalSource=rr_feed_recipe_sb&referringId=272457%20referringContentType%3Drecipe";
 
 const allrecipesScraper = url => {
   return rp(url)
@@ -51,16 +49,16 @@ const allrecipesScraper = url => {
 
 module.exports = allrecipesScraper
 
-const testUrl =
-  'https://www.allrecipes.com/recipe/228052/chinese-pork-dumplings/?internalSource=previously%20viewed&referringContentType=Homepage&clickId=cardslot%202'
+// const testUrl =
+//   'https://www.allrecipes.com/recipe/228052/chinese-pork-dumplings/?internalSource=previously%20viewed&referringContentType=Homepage&clickId=cardslot%202'
 
-const testUrl2 =
-  'https://www.allrecipes.com/recipe/256482/panettone-french-toast/?clickId=right%20rail1&internalSource=rr_feed_recipe_sb&referringId=228052%20referringContentType%3Drecipe'
+// const testUrl2 =
+//   'https://www.allrecipes.com/recipe/256482/panettone-french-toast/?clickId=right%20rail1&internalSource=rr_feed_recipe_sb&referringId=228052%20referringContentType%3Drecipe'
 
-const test = async url => {
-  let recipe = await allrecipesScraper(url)
-  console.log(recipe)
-}
+// const test = async url => {
+//   let recipe = await allrecipesScraper(url)
+//   console.log(recipe)
+// }
 
-test(testUrl)
-test(testUrl2)
+// test(testUrl)
+// test(testUrl2)

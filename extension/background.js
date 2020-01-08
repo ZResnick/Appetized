@@ -2,9 +2,9 @@ const sites = {
   epicurious: true,
   foodnetwork: true,
   bonappetit: true,
+  chowhound: true,
   allrecipes: true
 }
-// chowhound: true,
 // simplyrecipes: true
 
 chrome.tabs.onUpdated.addListener(toggleIcon)
