@@ -4,6 +4,7 @@ const bonAppetitScraper = require('./bonAppetit')
 const allrecipesScraper = require('./allrecipes')
 const chowhoundScraper = require('./chowhound')
 const simplyrecipesScraper = require('./simplyrecipes')
+const nytimesScraper = require('./nytimes')
 
 const scrapers = {
   foodnetwork: foodnetworkScraper,
@@ -11,7 +12,8 @@ const scrapers = {
   bonappetit: bonAppetitScraper,
   allrecipes: allrecipesScraper,
   simplyrecipes: simplyrecipesScraper,
-  chowhound: chowhoundScraper
+  chowhound: chowhoundScraper,
+  nytimes: nytimesScraper
 }
 module.exports = scrapers
 

@@ -81,7 +81,9 @@ router.post('/', async (req, res, next) => {
   try {
     let url = req.body.url
     let tail = url.split('www.')[1]
-    let base = tail.split('.com')[0]
+    let base = tail && tail.split('.com')[0]
+    let isNYT = url.indexOf('nytimes')
+    if (isNYT !== -1) base = 'nytimes'
     let data = await scrapers[base](url)
     let {title, author, ingredients, instructions, imageUrl, misc, site} = data
     if (title && ingredients && instructions) {
