@@ -24,6 +24,38 @@ export default function Footer() {
             Food Network
           </a>
           <br></br>
+          <a
+            href="https://www.bonappetit.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Bon Appetit
+          </a>
+          <br></br>
+          <a
+            href="https://www.allrecipes.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            All Recipes
+          </a>
+          <br></br>
+          <a
+            href="https://www.chowhound.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Chow Hound
+          </a>
+          <br></br>
+          <a
+            href="https://www.simplyrecipes.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Simply Recipes
+          </a>
+          <br></br>
         </div>
         <div className="footer-list">
           <h3>Appetized Chrome Extension:</h3>
