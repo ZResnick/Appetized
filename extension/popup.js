@@ -3,9 +3,9 @@ const sites = {
   foodnetwork: true,
   bonappetit: true,
   chowhound: true,
+  simplyrecipes: true,
   allrecipes: true
 }
-// simplyrecipes: true
 
 const savePageButton = document.getElementById('save-page-btn')
 const savePageButtonDiv = document.getElementById('save-page-button-div')
