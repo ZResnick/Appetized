@@ -6,7 +6,8 @@ export default function RecipeCard(props) {
   const {id, imageUrl, title, site, author, ownership, url} = props
   return (
     <Card raised as={Link} to={`/singleRecipe/${id}`}>
-      <Image src={imageUrl} wrapped ui={false} />
+      {/* <Image src={imageUrl} wrapped ui={false} /> */}
+      <img src={imageUrl} height={200} position="relative" overflow="hidden" />
       <Card.Content>
         <Card.Header>{title}</Card.Header>
         <Card.Meta>

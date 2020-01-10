@@ -1,6 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Appetized",
+  "name": "Appetized Recipe Manager",
+  "short_name": "Appetized",
   "version": "1.0.0",
   "description": "Adds recipes, and only recipes, to an Appetized users account.",
   "browser_action": {
@@ -8,6 +9,7 @@
     "default_popup": "popup.html",
     "default_icon": "disabled128.png"
   },
+  "icons": {"128": "enabled128.png"},
   "background": {
     "scripts": ["background.js"]
   },

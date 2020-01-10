@@ -4,7 +4,8 @@ const sites = {
   bonappetit: true,
   chowhound: true,
   simplyrecipes: true,
-  allrecipes: true
+  allrecipes: true,
+  nytimes: true
 }
 
 const savePageButton = document.getElementById('save-page-btn')
@@ -17,6 +18,10 @@ chrome.tabs.query({active: true, currentWindow: true}, tabs => {
   url = tabs[0].url
   const urlTail = url.split('www.')[1]
   if (urlTail) site = urlTail.split('.com')[0]
+  else {
+    let isNYT = url.indexOf('nytimes')
+    if (isNYT !== -1) site = 'nytimes'
+  }
 })
 
 savePageButton.addEventListener('click', function(event) {

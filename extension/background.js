@@ -4,7 +4,8 @@ const sites = {
   bonappetit: true,
   chowhound: true,
   simplyrecipes: true,
-  allrecipes: true
+  allrecipes: true,
+  nytimes: true
 }
 
 chrome.tabs.onUpdated.addListener(toggleIcon)
@@ -16,6 +17,8 @@ function toggleIcon() {
     let urlBase = ''
     const urlTail = url.split('www.')[1]
     if (urlTail) urlBase = urlTail.split('.com')[0]
+    let isNYT = url.indexOf('nytimes')
+    if (isNYT !== -1) urlBase = 'nytimes'
     if (url && sites[urlBase]) {
       chrome.browserAction.setIcon({path: 'enabled128.png'})
     } else {

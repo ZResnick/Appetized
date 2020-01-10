@@ -18,11 +18,11 @@ const scrapers = {
 module.exports = scrapers
 
 /*
+seriouseats
 food
 tasty
 yummly
 chow
 myrecipes
-seriouseats
 foodlab
 */

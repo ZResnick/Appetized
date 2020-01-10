@@ -104,6 +104,16 @@ export class SingleRecipe extends Component {
                   </div>
                 )}
               </div>
+
+              {/* <div className="recipe-image-wrapper">
+                <div
+                  className="recipe-img"
+                  style={{
+                    backgroundImage: `url(${recipe.imageUrl})`
+                  }}
+                ></div>
+              </div> */}
+
               <img className="recipe-img" src={recipe.imageUrl}></img>
             </div>
             <div className="ingredients-and-instructions">
