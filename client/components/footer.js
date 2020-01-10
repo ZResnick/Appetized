@@ -33,6 +33,14 @@ export default function Footer() {
           </a>
           <br></br>
           <a
+            href="https://cooking.nytimes.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            New York Times Cooking
+          </a>
+          <br></br>
+          <a
             href="https://www.allrecipes.com"
             target="_blank"
             rel="noopener noreferrer"
