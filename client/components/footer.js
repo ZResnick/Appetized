@@ -7,7 +7,13 @@ export default function Footer() {
     <div id="main-footer">
       <div className="footer-lists">
         <div className="footer-list">
+          {/* <Link
+            style={{textDecoration: 'none'}}
+            className="undecorated-link"
+            to="/siteList"
+          > */}
           <h3>Our Supported Websites:</h3>
+          {/* </Link> */}
           <a
             href="https://www.epicurious.com"
             target="_blank"

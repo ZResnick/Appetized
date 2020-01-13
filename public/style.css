@@ -654,3 +654,15 @@ form div {
 .saved-recipe-header {
   text-align: center;
 }
+
+/* Informational Page */
+
+#information-page {
+  max-width: 60%;
+  margin: auto;
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 25px;
+}

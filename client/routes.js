@@ -8,7 +8,8 @@ import {
   AllRecipes,
   SingleRecipe,
   Hero,
-  RecipeBox
+  RecipeBox,
+  SiteList
 } from './components'
 import {me} from './store'
 
@@ -28,6 +29,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/siteList" component={SiteList} />
         <Route exact path="/" component={isLoggedIn ? AllRecipes : Hero} />
 
         {isLoggedIn && (
