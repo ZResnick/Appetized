@@ -14,7 +14,7 @@ module.exports = {
       to: String(email),
       subject: `Appetized Grocery List`,
       html: `<h4>Thank you for using Appetized to manage your recipes!</h4>
-      <p>Please find your grovery list below.</p>
+      <p>Please find your grocery list below.</p>
       ${ings
         .map(ing => {
           return `<input type="checkbox">${ing.title}<br>`

@@ -74,7 +74,7 @@ export default function Footer() {
         <div className="footer-list">
           <h3>Appetized Chrome Extension:</h3>
           <a
-            href="https://chrome.google.com/webstore/category/extensions"
+            href="https://chrome.google.com/webstore/detail/appetized-recipe-manager/fonefhjcpmipemnobojdmphjljlcgeia"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -82,7 +82,7 @@ export default function Footer() {
           </a>
           <br></br>
           <a
-            href="https://chrome.google.com/webstore/category/extensions"
+            href="https://chrome.google.com/webstore/detail/appetized-recipe-manager/fonefhjcpmipemnobojdmphjljlcgeia"
             target="_blank"
             rel="noopener noreferrer"
           >
