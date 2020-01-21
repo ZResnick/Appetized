@@ -1,4 +1,4 @@
-# Boilermaker
+<!-- # Boilermaker
 
 ## Quick Start Guide:
 
@@ -281,4 +281,9 @@ production server to be cluttered up with dev dependencies like
 `webpack`, but at the same time we don't want our development
 git-tracking to be cluttered with production build files like
 `bundle.js`! By doing these steps, we make sure our development and
-production environments both stay nice and clean!
+production environments both stay nice and clean! -->
+
+npm run start-dev to launch in dev mode.
+All pull requests should be done a new branch please.
+
+The rest of this readme is to come soon!
