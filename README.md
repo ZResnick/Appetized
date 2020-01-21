@@ -284,6 +284,6 @@ git-tracking to be cluttered with production build files like
 production environments both stay nice and clean! -->
 
 npm run start-dev to launch in dev mode.
-All pull requests should be done a new branch please.
+All pull requests should be done on a new branch please.
 
 The rest of this readme is to come soon!
