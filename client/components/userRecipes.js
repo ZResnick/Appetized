@@ -19,12 +19,25 @@ class UserRecipes extends React.Component {
           <h1>It doesn't look like you have any recipes.</h1>
         ) : (
           <div>
-            <h3>Saved Recipes</h3>
-            <Card.Group>
-              {recipes.map(recipe => (
-                <RecipeCard key={recipe.id} {...recipe} />
-              ))}
-            </Card.Group>
+            <div className="recipe-box-category-section">
+              <h2 className="recipe-box-category">Saved Recipes</h2>
+              {recipes.length === 1 ? (
+                <h4 className="recipe-box-category-count">
+                  {recipes.length} recipe
+                </h4>
+              ) : (
+                <h4 className="recipe-box-category-count">
+                  {recipes.length} recipes
+                </h4>
+              )}
+            </div>
+            <div className="category-cards">
+              <Card.Group>
+                {recipes.map(recipe => (
+                  <RecipeCard key={recipe.id} {...recipe} />
+                ))}
+              </Card.Group>
+            </div>
           </div>
         )}
       </div>

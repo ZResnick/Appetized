@@ -634,6 +634,7 @@ form div {
   margin-bottom: 2%;
 }
 
+/* sidebar  */
 .sidebar-section {
   padding-top: 1em;
   padding-bottom: 1em;
@@ -686,14 +687,14 @@ form div {
   font-weight: 200;
   font-size: 1.2em;
   color: rgb(68, 68, 68);
-  /* max-width: 99%; */
+  border-bottom: solid white 2px;
 }
 
 .folder-title-recipeBox-sideBar:hover {
   font-family: 'Nunito', sans-serif;
   font-weight: 200;
-  color: rgb(68, 68, 68);
-  text-decoration: underline;
+  color: rgb(0, 0, 0);
+  border-bottom: solid rgb(24, 163, 163) 2px;
 }
 
 .folder-recipe-count {
@@ -701,6 +702,30 @@ form div {
   font-weight: bold;
   color: rgb(119, 119, 119);
   margin-left: 90%;
+}
+
+/* Recipes Section */
+.recipe-box-category-section {
+  margin-bottom: 10px;
+}
+
+.recipe-box-category {
+  margin-bottom: 0.25em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  color: black;
+}
+
+.recipe-box-category-count {
+  margin-top: 0px;
+  margin-bottom: 0.25em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  color: rgb(116, 116, 116);
+}
+
+.category-cards {
+  margin-top: 20px;
 }
 
 /* Informational Page */
