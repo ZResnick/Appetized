@@ -24,7 +24,7 @@ class FolderRecipes extends React.Component {
     //recipes && console.log('recipes', recipes)
 
     return (
-      <div className="all-recipes">
+      <div className="saved-recipes">
         {!recipes ? (
           <h1>It doesn't look like you have any recipes.</h1>
         ) : (
@@ -32,7 +32,7 @@ class FolderRecipes extends React.Component {
             <div>
               <h3>{folder.title}</h3>
             </div>
-            <Card.Group centered>
+            <Card.Group>
               {recipes.map(recipe => (
                 <RecipeCard key={recipe.id} {...recipe} />
               ))}

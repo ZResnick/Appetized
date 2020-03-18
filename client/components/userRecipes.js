@@ -14,13 +14,13 @@ class UserRecipes extends React.Component {
     const {recipes} = this.props
 
     return (
-      <div className="all-recipes">
+      <div className="saved-recipes">
         {!recipes.length ? (
           <h1>It doesn't look like you have any recipes.</h1>
         ) : (
           <div>
-            <h3 className="saved-recipe-header">Saved Recipes</h3>
-            <Card.Group centered>
+            <h3>Saved Recipes</h3>
+            <Card.Group>
               {recipes.map(recipe => (
                 <RecipeCard key={recipe.id} {...recipe} />
               ))}

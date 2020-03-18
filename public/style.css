@@ -617,7 +617,7 @@ form div {
 .recipe-box {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .sideBar {
@@ -625,6 +625,13 @@ form div {
   max-width: 269px;
   border-right: solid rgb(202, 202, 202) 1px;
   min-height: 90vh;
+}
+
+.saved-recipes {
+  max-width: 95%;
+  margin-left: 5%;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .sidebar-section {
@@ -694,17 +701,6 @@ form div {
   font-weight: bold;
   color: rgb(119, 119, 119);
   margin-left: 90%;
-}
-
-.saved-recipes {
-  max-width: 80%;
-  margin: auto;
-  margin-bottom: 2%;
-  background: white;
-}
-
-.saved-recipe-header {
-  text-align: center;
 }
 
 /* Informational Page */
