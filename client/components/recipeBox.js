@@ -20,7 +20,8 @@ export class RecipeBox extends Component {
           <Link to="/recipeBox">
             <div className="sidebar-section">
               <h1 className="sidebar-header">
-                <Icon name="star" /> Your Recipes
+                {/* <Icon name="star" />  */}
+                All Saved Recipes
               </h1>
             </div>
           </Link>
@@ -28,16 +29,35 @@ export class RecipeBox extends Component {
             <div>
               <h3 className="folder-header-text">YOUR FOLDERS</h3>
             </div>
-            {!folders
-              ? null
-              : folders.map(folder => {
-                  return (
-                    <Link key={folder.id} to={`/recipeBox/folder/${folder.id}`}>
-                      <h3>{folder.title}</h3>
-                    </Link>
-                  )
-                })}
-            <AddFolderModal />
+            <div id="folder-titles-section">
+              {!folders
+                ? null
+                : folders.map(folder => {
+                    console.log(folder.recipes.length)
+                    return (
+                      <Link
+                        key={folder.id}
+                        to={`/recipeBox/folder/${folder.id}`}
+                      >
+                        <div className="folder-and-count">
+                          <div>
+                            <h3 className="folder-title-recipeBox-sideBar">
+                              <Icon name="folder outline" />
+                              {folder.title}
+                            </h3>
+                          </div>
+                          <div>
+                            <h4 className="folder-recipe-count">
+                              {folder.recipes.length}
+                            </h4>
+                          </div>
+                        </div>
+                      </Link>
+                    )
+                  })}
+              <br />
+              <AddFolderModal />
+            </div>
           </div>
         </div>
         <Route exact path="/recipeBox" render={() => <UserRecipes />} />

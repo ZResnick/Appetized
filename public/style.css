@@ -282,28 +282,43 @@ form div {
   padding-top: 3%;
 }
 
+.left-side-of-navbar {
+  display: flex;
+  flex-direction: row;
+  min-width: 269px;
+  max-width: 269px;
+  border-right: solid rgb(202, 202, 202) 1px;
+}
+
 .navbar-header-div {
   margin-left: 20px;
   margin-right: 20px;
 }
 
 .add-recipe-nav-form {
-  margin-left: 8%;
-  padding-left: 5%;
-  min-width: 100%;
-  border-left: solid rgb(202, 202, 202) 1px;
-  padding-top: 2%;
+  /* margin-left: 8%;
+  padding-left: 5%; */
 }
 
 .search-recipe-nav-form {
-  margin-left: 8%;
-  padding-left: 5%;
-  padding-top: 4.13%;
+  /* margin-left: 8%;
+  padding-left: 5%; */
 }
 
-.left-side-of-navbar {
-  display: flex;
-  flex-direction: row;
+.your-recipeBox-navbar {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 2.5em;
+  color: rgb(85, 85, 85);
+  padding-top: 3%;
+}
+
+.your-recipeBox-navbar:hover {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 2.5em;
+  color: black;
+  border-bottom: solid 4px rgb(21, 165, 165);
 }
 
 .main-nav-dropdown {
@@ -632,16 +647,53 @@ form div {
   font-family: 'Nunito', sans-serif;
   font-weight: bold;
   font-size: 1.5em;
-  color: rgb(68, 68, 68);
+  color: rgb(14, 14, 14);
   text-align: center;
 }
 
 .folder-header-text {
   font-family: 'Nunito', sans-serif;
-  font-weight: 200;
+  /* font-weight: 200; */
   font-size: 1.5em;
   text-align: center;
   padding-top: 1em;
+}
+
+#folder-titles-section {
+  margin-top: 5%;
+  /* margin-left: 21%; */
+  margin-left: 10%;
+}
+
+.folder-and-count {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 80%;
+  margin-top: 10px;
+}
+
+.folder-title-recipeBox-sideBar {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 1.2em;
+  color: rgb(68, 68, 68);
+  /* max-width: 99%; */
+}
+
+.folder-title-recipeBox-sideBar:hover {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  color: rgb(68, 68, 68);
+  text-decoration: underline;
+}
+
+.folder-recipe-count {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  color: rgb(119, 119, 119);
+  margin-left: 90%;
 }
 
 .saved-recipes {

@@ -66,43 +66,41 @@ class Navbar extends React.Component {
               <h1 className="navbar-main-title">Appetized</h1>
             </Link>
           </div>
-          <div className="add-recipe-nav-form">
-            <Form onSubmit={this.handleSubmit}>
-              <Form.Field>
-                <label htmlFor="url"></label>
-                <input
-                  placeholder="Add a recipe URL here"
-                  type="text"
-                  name="url"
-                  value={this.state.url}
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
-            </Form>
-          </div>
         </div>
-        <div className="middle-of-navbar">
-          <div className="search-recipe-nav-form">
-            <Form onSubmit={this.handleSubmitSearch}>
-              <Form.Field>
-                <label htmlFor="searchQuery"></label>
-                <input
-                  placeholder="Search recipes by title here"
-                  type="text"
-                  name="searchQuery"
-                  value={this.state.searchQuery}
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
-            </Form>
-          </div>
+        <div className="add-recipe-nav-form">
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Field>
+              <label htmlFor="url"></label>
+              <input
+                placeholder="Add a recipe URL here"
+                type="text"
+                name="url"
+                value={this.state.url}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+          </Form>
+        </div>
+        <div className="search-recipe-nav-form">
+          <Form onSubmit={this.handleSubmitSearch}>
+            <Form.Field>
+              <label htmlFor="searchQuery"></label>
+              <input
+                placeholder="Search recipes by title here"
+                type="text"
+                name="searchQuery"
+                value={this.state.searchQuery}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+          </Form>
         </div>
         <div>
           <GroceryModal />
         </div>
         <div>
           <Link to="/recipeBox">
-            <h1>Your Recipe Box</h1>
+            <h1 className="your-recipeBox-navbar">YOUR RECIPE BOX</h1>
           </Link>
         </div>
         <div>

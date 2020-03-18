@@ -41,6 +41,7 @@ class AddFolderModal extends React.Component {
         }}
         trigger={
           <Button
+            color="teal"
             onClick={() => {
               this.setState({open: true})
             }}
