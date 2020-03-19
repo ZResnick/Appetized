@@ -60,19 +60,22 @@ export class RecipeBox extends Component {
             </div>
           </div>
         </div>
-        <Route exact path="/recipeBox" render={() => <UserRecipes />} />
-        {!folders
-          ? null
-          : folders.map(folder => {
-              return (
-                <Route
-                  key={folder.id}
-                  exact
-                  path={`/recipeBox/folder/${folder.id}`}
-                  render={props => <FolderRecipes {...props} />}
-                />
-              )
-            })}
+        <div className="right-side-of-recipe-box">
+          {/* Placeholder for add recipe and search recipe box  */}
+          <Route exact path="/recipeBox" render={() => <UserRecipes />} />
+          {!folders
+            ? null
+            : folders.map(folder => {
+                return (
+                  <Route
+                    key={folder.id}
+                    exact
+                    path={`/recipeBox/folder/${folder.id}`}
+                    render={props => <FolderRecipes {...props} />}
+                  />
+                )
+              })}
+        </div>
       </div>
     )
   }

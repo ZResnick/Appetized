@@ -656,9 +656,13 @@ form div {
   min-height: 90vh;
 }
 
+.right-side-of-recipe-box {
+  min-width: 90%;
+}
+
 .saved-recipes {
-  max-width: 95%;
-  margin-left: 5%;
+  max-width: 85%;
+  margin-left: 6%;
   margin-top: 2%;
   margin-bottom: 2%;
 }
