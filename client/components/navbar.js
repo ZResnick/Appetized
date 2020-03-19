@@ -4,32 +4,21 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import GroceryModal from './groceryListModal'
-import {addNewRecipe, getSearchedByTitle} from '../store/recipes'
-import {Form, Dropdown, Menu, Image, Icon} from 'semantic-ui-react'
+import {getSearchedByTitle} from '../store/recipes'
+import {Form, Dropdown, Image, Icon} from 'semantic-ui-react'
 
 class Navbar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      url: '',
       searchQuery: ''
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmitSearch = this.handleSubmitSearch.bind(this)
   }
 
   handleChange() {
     this.setState({[event.target.name]: event.target.value})
-  }
-
-  handleSubmit() {
-    event.preventDefault()
-    let temp = this.state.url
-    this.setState({
-      url: ''
-    })
-    this.props.addNewRecipe(temp)
   }
 
   handleSubmitSearch() {
@@ -70,83 +59,75 @@ class Navbar extends React.Component {
             </Link>
           </div>
         </div>
-        <div className="add-recipe-nav-form">
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Field>
-              <label htmlFor="url"></label>
-              <input
-                placeholder="Add a recipe URL here"
-                type="text"
-                name="url"
-                value={this.state.url}
-                onChange={this.handleChange}
-              />
-            </Form.Field>
-          </Form>
-        </div>
-        <div className="search-recipe-nav-form">
-          <Form onSubmit={this.handleSubmitSearch}>
-            <Form.Field>
-              <label htmlFor="searchQuery"></label>
-              <input
-                placeholder="Search recipes by title here"
-                type="text"
-                name="searchQuery"
-                value={this.state.searchQuery}
-                onChange={this.handleChange}
-              />
-            </Form.Field>
-          </Form>
-        </div>
-        <div>
-          <GroceryModal />
-        </div>
-        <div>
-          <Link to="/recipeBox">
-            <h1 className="your-recipeBox-navbar">YOUR RECIPE BOX</h1>
-          </Link>
-        </div>
-        <div className="main-nav-dropdown-container">
-          <div className="main-nav-dropdown">
-            {/* <Menu> */}
-            <Dropdown
-              size="massive"
-              trigger={trigger}
-              pointing
-              direction="left"
-              className="link item"
-            >
-              <Dropdown.Menu>
-                <Dropdown.Header>Chrome Extension</Dropdown.Header>
-                <Dropdown.Item>
-                  <a
-                    href="https://chrome.google.com/webstore/detail/appetized-recipe-manager/fonefhjcpmipemnobojdmphjljlcgeia"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="dropdown-link"
-                  >
-                    Chrome Store
-                  </a>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                  <a
-                    href="https://chrome.google.com/webstore/detail/appetized-recipe-manager/fonefhjcpmipemnobojdmphjljlcgeia"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="dropdown-link"
-                  >
-                    Info
-                  </a>
-                </Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item>
-                  <a href="#" onClick={handleClick} className="dropdown-link">
-                    Logout
-                  </a>
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            {/* </Menu> */}
+        <div className="right-side-of-navbar">
+          <div className="search-recipe-nav-form">
+            <Form onSubmit={this.handleSubmitSearch}>
+              <Form.Field>
+                <label htmlFor="searchQuery"></label>
+                <input
+                  placeholder="Search recipes by title here"
+                  type="text"
+                  name="searchQuery"
+                  value={this.state.searchQuery}
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+            </Form>
+          </div>
+          <div className="far-right-navbar">
+            <div className="grocery-list-navbar-container">
+              <GroceryModal />
+            </div>
+            <div className="recipe-box-navbar-container">
+              <Link to="/recipeBox">
+                <h1 className="your-recipeBox-navbar">YOUR RECIPE BOX</h1>
+              </Link>
+            </div>
+            <div className="main-nav-dropdown-container">
+              <div className="main-nav-dropdown">
+                <Dropdown
+                  size="massive"
+                  trigger={trigger}
+                  pointing
+                  direction="left"
+                  className="link item"
+                >
+                  <Dropdown.Menu>
+                    <Dropdown.Header>Chrome Extension</Dropdown.Header>
+                    <Dropdown.Item>
+                      <a
+                        href="https://chrome.google.com/webstore/detail/appetized-recipe-manager/fonefhjcpmipemnobojdmphjljlcgeia"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="dropdown-link"
+                      >
+                        Chrome Store
+                      </a>
+                    </Dropdown.Item>
+                    <Dropdown.Item>
+                      <a
+                        href="https://chrome.google.com/webstore/detail/appetized-recipe-manager/fonefhjcpmipemnobojdmphjljlcgeia"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="dropdown-link"
+                      >
+                        Info
+                      </a>
+                    </Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item>
+                      <a
+                        href="#"
+                        onClick={handleClick}
+                        className="dropdown-link"
+                      >
+                        Logout
+                      </a>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -172,9 +153,9 @@ const mapDispatch = dispatch => {
     handleClick() {
       dispatch(logout())
     },
-    addNewRecipe: url => {
-      dispatch(addNewRecipe(url))
-    },
+    // addNewRecipe: url => {
+    //   dispatch(addNewRecipe(url))
+    // },
     getSearchedByTitle: searchQuery => {
       dispatch(getSearchedByTitle(searchQuery))
     }
