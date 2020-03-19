@@ -40,14 +40,16 @@ class AddFolderModal extends React.Component {
           this.setState({open: false})
         }}
         trigger={
-          <Button
-            color="teal"
+          <button
+            type="button"
+            className="add-new-folder-modal-button"
             onClick={() => {
               this.setState({open: true})
             }}
           >
-            Create new folder
-          </Button>
+            <Icon name="plus" />
+            Create New Folder
+          </button>
         }
       >
         <Modal.Header>
