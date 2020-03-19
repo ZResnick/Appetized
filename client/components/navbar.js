@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import GroceryModal from './groceryListModal'
 import {addNewRecipe, getSearchedByTitle} from '../store/recipes'
-import {Form, Dropdown, Menu, Image} from 'semantic-ui-react'
+import {Form, Dropdown, Menu, Image, Icon} from 'semantic-ui-react'
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -52,9 +52,12 @@ class Navbar extends React.Component {
 
     const trigger = (
       <span>
-        <Image avatar src={imageUrl} />
-        {`Hi, ${firstName}`}
-        {'    '}
+        {imageUrl !==
+        'https://www.seekclipart.com/clipng/middle/105-1058558_bulldog-default-avatar-icon-clipart.png' ? (
+          <Image avatar src={imageUrl} />
+        ) : (
+          <Icon size="big" name="user circle" />
+        )}
       </span>
     )
 
@@ -103,30 +106,47 @@ class Navbar extends React.Component {
             <h1 className="your-recipeBox-navbar">YOUR RECIPE BOX</h1>
           </Link>
         </div>
-        <div>
+        <div className="main-nav-dropdown-container">
           <div className="main-nav-dropdown">
-            <Menu>
-              <Dropdown
-                size="massive"
-                trigger={trigger}
-                pointing
-                className="link item"
-              >
-                <Dropdown.Menu>
-                  <Dropdown.Header>Categories</Dropdown.Header>
-                  <Dropdown.Item>Home Goods</Dropdown.Item>
-                  <Dropdown.Item>Bedroom</Dropdown.Item>
-                  <Dropdown.Divider />
-                  <Dropdown.Header>Order</Dropdown.Header>
-                  <Dropdown.Item>Status</Dropdown.Item>
-                  <Dropdown.Item>
-                    <a href="#" onClick={handleClick}>
-                      Logout
-                    </a>
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Menu>
+            {/* <Menu> */}
+            <Dropdown
+              size="massive"
+              trigger={trigger}
+              pointing
+              direction="left"
+              className="link item"
+            >
+              <Dropdown.Menu>
+                <Dropdown.Header>Chrome Extension</Dropdown.Header>
+                <Dropdown.Item>
+                  <a
+                    href="https://chrome.google.com/webstore/detail/appetized-recipe-manager/fonefhjcpmipemnobojdmphjljlcgeia"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="dropdown-link"
+                  >
+                    Chrome Store
+                  </a>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <a
+                    href="https://chrome.google.com/webstore/detail/appetized-recipe-manager/fonefhjcpmipemnobojdmphjljlcgeia"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="dropdown-link"
+                  >
+                    Info
+                  </a>
+                </Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item>
+                  <a href="#" onClick={handleClick} className="dropdown-link">
+                    Logout
+                  </a>
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            {/* </Menu> */}
           </div>
         </div>
       </div>

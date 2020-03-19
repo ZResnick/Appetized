@@ -295,6 +295,20 @@ form div {
   margin-right: 20px;
 }
 
+.dropdown-link {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 1em;
+  color: rgb(85, 85, 85);
+}
+.dropdown-link:hover {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 1em;
+  color: rgb(0, 0, 0);
+  text-decoration: underline rgb(38, 160, 160);
+}
+
 .add-recipe-nav-form {
   /* margin-left: 8%;
   padding-left: 5%; */
@@ -318,11 +332,26 @@ form div {
   font-weight: 200;
   font-size: 2.5em;
   color: black;
-  border-bottom: solid 4px rgb(21, 165, 165);
+  border-bottom: solid 4px rgba(21, 165, 165);
 }
 
 .main-nav-dropdown {
-  margin-right: 40px;
+  min-width: 75px;
+  min-width: 75px;
+}
+
+.main-nav-dropdown-container {
+  border-left: solid rgb(202, 202, 202) 1px;
+  padding-top: 1.25%;
+  padding-left: 1%;
+  flex: end;
+}
+
+.main-nav-dropdown-container:hover {
+  border-left: solid rgb(202, 202, 202) 1px;
+  padding-top: 1.25%;
+  padding-left: 1%;
+  background-color: whitesmoke;
 }
 
 /*Single Recipe*/
