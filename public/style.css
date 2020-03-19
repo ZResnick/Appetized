@@ -266,7 +266,7 @@ form div {
   box-shadow: 0px 0px 5px rgb(214, 214, 214);
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   min-height: 65px;
 }
 
@@ -288,6 +288,18 @@ form div {
   min-width: 269px;
   max-width: 269px;
   border-right: solid rgb(202, 202, 202) 1px;
+}
+
+.right-side-of-navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: calc(100% - 269px);
+}
+
+.far-right-navbar {
+  display: flex;
+  flex-direction: row;
 }
 
 .navbar-header-div {
@@ -319,40 +331,92 @@ form div {
   padding-left: 5%; */
 }
 
+/* ---------------------------------------- */
+
+.grocery-list-navbar-container {
+  border-bottom: solid 3px rgb(255, 255, 255);
+  border-left: solid rgb(202, 202, 202) 1px;
+}
+
+.grocery-list-navbar-container:hover {
+  background-color: whitesmoke;
+  border-bottom: solid 3px rgb(46, 192, 192);
+  border-left: solid rgb(202, 202, 202) 1px;
+}
+
+.grocery-list-navbar {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 1.5em;
+  color: rgb(85, 85, 85);
+  padding-top: 9%;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.grocery-list-navbar:hover {
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 1.5em;
+  color: rgb(0, 0, 0);
+  padding-top: 9%;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.recipe-box-navbar-container {
+  border-bottom: solid 3px rgb(255, 255, 255);
+  border-left: solid rgb(202, 202, 202) 1px;
+}
+
+.recipe-box-navbar-container:hover {
+  background-color: whitesmoke;
+  border-bottom: solid 3px rgb(46, 192, 192);
+  border-left: solid rgb(202, 202, 202) 1px;
+}
+
 .your-recipeBox-navbar {
   font-family: 'Nunito', sans-serif;
   font-weight: 200;
-  font-size: 2.5em;
+  font-size: 1.5em;
   color: rgb(85, 85, 85);
-  padding-top: 3%;
+  padding-top: 10%;
+  margin-right: 15px;
+  margin-left: 15px;
 }
 
 .your-recipeBox-navbar:hover {
   font-family: 'Nunito', sans-serif;
   font-weight: 200;
-  font-size: 2.5em;
-  color: black;
-  border-bottom: solid 4px rgba(21, 165, 165);
+  font-size: 1.5em;
+  color: rgb(0, 0, 0);
+  padding-top: 10%;
+  margin-right: 15px;
+  margin-left: 15px;
 }
 
 .main-nav-dropdown {
-  min-width: 75px;
-  min-width: 75px;
+  min-width: 85px;
+  min-width: 85px;
 }
 
 .main-nav-dropdown-container {
+  padding-top: 4.3%;
+  padding-left: 3%;
+  border-bottom: solid 3px rgb(255, 255, 255);
   border-left: solid rgb(202, 202, 202) 1px;
-  padding-top: 1.25%;
-  padding-left: 1%;
-  flex: end;
 }
 
 .main-nav-dropdown-container:hover {
-  border-left: solid rgb(202, 202, 202) 1px;
-  padding-top: 1.25%;
-  padding-left: 1%;
+  padding-top: 4.3%;
+  padding-left: 3%;
   background-color: whitesmoke;
+  border-bottom: solid 3px rgb(46, 192, 192);
+  border-left: solid rgb(202, 202, 202) 1px;
 }
+
+/* ------------------------------------ */
 
 /*Single Recipe*/
 .recipe-header-section {
@@ -737,7 +801,86 @@ form div {
   margin-left: 90%;
 }
 
+.add-new-folder-modal-button {
+  min-width: 85%;
+  /* border: solid 5px; */
+  cursor: pointer;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: black;
+  font-size: 1em;
+  font-weight: 600;
+  border-radius: 20px;
+  color: white;
+  background: rgb(24, 160, 160);
+  letter-spacing: 0.05em;
+}
+
+.add-new-folder-modal-button:hover {
+  min-width: 85%;
+  /* border: solid 5px; */
+  cursor: pointer;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: black;
+  font-size: 1em;
+  font-weight: 600;
+  border-radius: 20px;
+  color: white;
+  background: rgb(5, 134, 134);
+  letter-spacing: 0.05em;
+}
+
 /* Recipes Section */
+
+.add-and-search {
+  max-width: 70vw;
+  margin-left: 6%;
+  margin-top: 3%;
+  padding-bottom: 3%;
+  border-bottom: solid rgb(202, 202, 202) 1px;
+}
+
+.add-recipe-modal-button {
+  min-width: 25%;
+  /* border: solid 5px; */
+  cursor: pointer;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: black;
+  font-size: 1.3em;
+  font-weight: 600;
+  border-radius: 20px;
+  color: white;
+  background: rgb(24, 160, 160);
+  letter-spacing: 0.05em;
+}
+
+.add-recipe-modal-button:hover {
+  min-width: 25%;
+  /* border: solid 5px; */
+  cursor: pointer;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: black;
+  font-size: 1.3em;
+  font-weight: 600;
+  border-radius: 20px;
+  color: white;
+  background: rgb(5, 134, 134);
+  letter-spacing: 0.05em;
+}
+
+.modal-caption {
+  font-family: 'Nunito', sans-serif;
+  font-weight: black;
+  font-size: 1em;
+}
+
 .recipe-box-category-section {
   margin-bottom: 10px;
 }
@@ -772,4 +915,8 @@ form div {
   flex-direction: column;
   background: white;
   border-radius: 25px;
+}
+
+.bold {
+  font-weight: bold;
 }

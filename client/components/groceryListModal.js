@@ -34,7 +34,10 @@ class GroceryModal extends React.Component {
     }
 
     return (
-      <Modal size="small" trigger={<Button>YOUR GROCERY LIST</Button>}>
+      <Modal
+        size="small"
+        trigger={<h1 className="grocery-list-navbar">YOUR GROCERY LIST</h1>}
+      >
         <Modal.Header>
           <h5 className="grocery-modal-header">Your Grocery List</h5>
         </Modal.Header>
