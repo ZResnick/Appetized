@@ -21,8 +21,6 @@ class AllRecipes extends React.Component {
         }
       }
     }
-    // recipes.length && userRecipes.length && console.log(recipes, userRecipes)
-
     return (
       <div className="all-recipes">
         {!recipes.length && userRecipes.length ? (
