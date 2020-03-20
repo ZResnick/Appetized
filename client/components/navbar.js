@@ -4,40 +4,29 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import GroceryModal from './groceryListModal'
-import {getSearchedByTitle} from '../store/recipes'
-import {Form, Dropdown, Image, Icon} from 'semantic-ui-react'
+import SearchForm from './searchForm'
+import {Dropdown, Image, Icon} from 'semantic-ui-react'
 
 class Navbar extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      searchQuery: ''
-    }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmitSearch = this.handleSubmitSearch.bind(this)
-  }
-
-  handleChange() {
-    this.setState({[event.target.name]: event.target.value})
-  }
-
-  handleSubmitSearch() {
-    event.preventDefault()
-    let temp = this.state.searchQuery
-    this.setState({
-      searchQuery: ''
-    })
-    this.props.getSearchedByTitle(temp)
-  }
-
   render() {
-    const {
-      isLoggedIn,
-      handleClick,
-      firstName,
-      imageUrl,
-      searchedByTitle
-    } = this.props
+    const resultRenderer = ({title, site, imageUrl, realID}) => {
+      return (
+        <Link to={`/singleRecipe/${realID}`}>
+          <div className="search-recipe-container">
+            <div className="search-image">
+              <Image src={imageUrl} />
+            </div>
+            <div className="search-title-and-site">
+              <span className="search-title">{title}</span>
+              <br></br>
+              <span className="search-site">{site}</span>
+            </div>
+          </div>
+        </Link>
+      )
+    }
+
+    const {isLoggedIn, handleClick, imageUrl} = this.props
 
     const trigger = (
       <span>
@@ -61,18 +50,7 @@ class Navbar extends React.Component {
         </div>
         <div className="right-side-of-navbar">
           <div className="search-recipe-nav-form">
-            <Form onSubmit={this.handleSubmitSearch}>
-              <Form.Field>
-                <label htmlFor="searchQuery"></label>
-                <input
-                  placeholder="Search recipes by title here"
-                  type="text"
-                  name="searchQuery"
-                  value={this.state.searchQuery}
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
-            </Form>
+            <SearchForm resultRenderer={resultRenderer} />
           </div>
           <div className="far-right-navbar">
             <div className="grocery-list-navbar-container">
@@ -143,8 +121,7 @@ const mapState = state => {
     isLoggedIn: !!state.user.id,
     firstName: state.user.firstName,
     lastName: state.user.lastName,
-    imageUrl: state.user.imgUrl,
-    searchedByTitle: state.recipes.searchedByTitle
+    imageUrl: state.user.imgUrl
   }
 }
 
@@ -152,12 +129,6 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
-    },
-    // addNewRecipe: url => {
-    //   dispatch(addNewRecipe(url))
-    // },
-    getSearchedByTitle: searchQuery => {
-      dispatch(getSearchedByTitle(searchQuery))
     }
   }
 }

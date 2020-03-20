@@ -72,7 +72,7 @@ export class SingleRecipe extends Component {
                 <h1 className="recipe-title">{recipe.title}</h1>
                 {recipe.author ? (
                   <span className="recipe-caption">
-                    By {recipe.author}, {recipe.site}
+                    By {recipe.author.split('.')[0]}, {recipe.site}
                   </span>
                 ) : (
                   <span className="recipe-caption">From {recipe.site}</span>
@@ -104,16 +104,6 @@ export class SingleRecipe extends Component {
                   </div>
                 )}
               </div>
-
-              {/* <div className="recipe-image-wrapper">
-                <div
-                  className="recipe-img"
-                  style={{
-                    backgroundImage: `url(${recipe.imageUrl})`
-                  }}
-                ></div>
-              </div> */}
-
               <img className="recipe-img" src={recipe.imageUrl}></img>
             </div>
             <div className="ingredients-and-instructions">

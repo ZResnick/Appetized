@@ -7,7 +7,6 @@ export default function RecipeCard(props) {
   author = author.split('.')[0]
   return (
     <Card raised as={Link} to={`/singleRecipe/${id}`}>
-      {/* <Image src={imageUrl} wrapped ui={false} /> */}
       <img src={imageUrl} height={200} position="relative" overflow="hidden" />
       <Card.Content>
         <Card.Header>{title}</Card.Header>

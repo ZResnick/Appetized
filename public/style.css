@@ -268,6 +268,15 @@ form div {
   flex-direction: row;
   /* justify-content: space-between; */
   min-height: 65px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10000000;
+  background-color: white;
+}
+
+.routes-container {
+  margin-top: 65px;
 }
 
 .navbar-main-title {
@@ -321,14 +330,12 @@ form div {
   text-decoration: underline rgb(38, 160, 160);
 }
 
-.add-recipe-nav-form {
-  /* margin-left: 8%;
-  padding-left: 5%; */
+.search-recipe-nav-form {
+  margin-left: 2%;
 }
 
-.search-recipe-nav-form {
-  /* margin-left: 8%;
-  padding-left: 5%; */
+.search-bar-in-nav {
+  margin-top: 3%;
 }
 
 /* ---------------------------------------- */
@@ -423,7 +430,7 @@ form div {
   max-width: 75%;
   margin: auto;
   border-bottom: solid 1px grey;
-  margin-top: 2%;
+  margin-top: calc(2% + 65px);
   padding-bottom: 2%;
   display: flex;
   align-items: center;
@@ -701,7 +708,7 @@ form div {
 .all-recipes {
   max-width: 95%;
   margin: auto;
-  margin-top: 2%;
+  margin-top: calc(2% + 65px);
   margin-bottom: 2%;
 }
 
@@ -919,4 +926,18 @@ form div {
 
 .bold {
   font-weight: bold;
+}
+
+/* Search Bar */
+
+.search-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  color: black;
+}
+.search-site {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 0.7em;
+  color: rgb(109, 109, 109);
 }
