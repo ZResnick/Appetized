@@ -29,7 +29,9 @@ export class App extends Component {
     ) : (
       <div>
         <Navbar />
-        <Routes />
+        <div className="routes-container">
+          <Routes />
+        </div>
         <Footer />
       </div>
     )
