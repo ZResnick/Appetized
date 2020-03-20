@@ -24,10 +24,7 @@ export class RecipeBox extends Component {
         <div className="sideBar">
           <Link to="/recipeBox">
             <div className="sidebar-section">
-              <h1 className="sidebar-header">
-                {/* <Icon name="star" />  */}
-                All Saved Recipes
-              </h1>
+              <h1 className="sidebar-header">All Saved Recipes</h1>
             </div>
           </Link>
           <div className="folder-section">
