@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import {withRouter, Route, Switch, Page} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {
   Login,
@@ -37,7 +37,13 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/allRecipes" component={AllRecipes} />
             <Route path="/recipeBox" component={RecipeBox} />
-            <Route path="/singleRecipe/:id" component={SingleRecipe} />
+            <Route
+              path="/singleRecipe/:id"
+              render={props => (
+                <SingleRecipe key={props.match.params.id} {...props} />
+              )}
+            />
+            {/* <Route path="/singleRecipe/:id" component={SingleRecipe} /> */}
           </Switch>
         )}
         {/* Displays our Hero component as a fallback */}
