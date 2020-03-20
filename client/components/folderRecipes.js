@@ -21,8 +21,6 @@ class FolderRecipes extends React.Component {
       }
     }
 
-    //recipes && console.log('recipes', recipes)
-
     return (
       <div className="saved-recipes">
         {!recipes ? (
