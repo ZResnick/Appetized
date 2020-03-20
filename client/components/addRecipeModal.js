@@ -111,10 +111,6 @@ class AddRecipeModal extends React.Component {
   }
 }
 
-/**
- * CONTAINER
- */
-
 const mapDispatch = dispatch => {
   return {
     addNewRecipe: url => {
