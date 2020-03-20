@@ -51,6 +51,10 @@ class SearchForm extends Component {
         isLoading: false,
         results: _.filter(recipes, isMatch)
       })
+      //for adding a see all results at the end of the list.
+      if (this.state.results.length >= 1) {
+        this.state.results.push({searchValue: this.state.value})
+      }
     }, 300)
   }
 
@@ -61,7 +65,7 @@ class SearchForm extends Component {
         <Grid>
           <Grid.Column width={6}>
             <Search
-              placeholder="Search recipes here"
+              placeholder="Search all recipes"
               size="big"
               loading={isLoading}
               onResultSelect={this.handleResultSelect}
@@ -70,7 +74,7 @@ class SearchForm extends Component {
               })}
               results={results}
               value={value}
-              {...this.props}
+              {...this.props} //Note that this corresponds to the content in client/navbar.js line 12
             />
           </Grid.Column>
         </Grid>
