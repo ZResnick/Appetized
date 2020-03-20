@@ -9,8 +9,9 @@ import {Dropdown, Image, Icon} from 'semantic-ui-react'
 
 class Navbar extends React.Component {
   render() {
-    const resultRenderer = ({title, site, imageUrl, realID}) => {
-      return (
+    //The below is the code that renders the results of the search bar.
+    const resultRenderer = ({title, site, imageUrl, realID, searchValue}) => {
+      return realID ? (
         <Link to={`/singleRecipe/${realID}`}>
           <div className="search-recipe-container">
             <div className="search-image">
@@ -23,7 +24,14 @@ class Navbar extends React.Component {
             </div>
           </div>
         </Link>
-      )
+      ) : searchValue ? (
+        <Link to="/allRecipes">
+          <div className="search-title-and-site">
+            <span className="search-title">{searchValue}</span>
+            <span className="search-title">See all results</span>
+          </div>
+        </Link>
+      ) : null
     }
 
     const {isLoggedIn, handleClick, imageUrl} = this.props
