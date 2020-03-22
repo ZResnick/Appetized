@@ -8,13 +8,20 @@ const GOT_RECIPES = 'GOT_RECIPES'
 const GOT_USER_RECIPES = 'GOT_USER_RECIPES'
 const GOT_SINGLE_RECIPE = 'GOT_SINGLE_RECIPE'
 const GOT_SEARCHED_BY_TITLE = 'GOT_SEARCHED_BY_TITLE'
+const GOT_SEARCHED_BY_TITLE_STATIC = 'GOT_SEARCHED_BY_TITLE_STATIC'
 
 //const REMOVED_RECIPE = 'REMOVED_RECIPE'
 
 /**
  * INITIAL STATE
  */
-const initialState = {all: [], userRecipes: [], searchedByTitle: [], single: {}}
+const initialState = {
+  all: [],
+  userRecipes: [],
+  searchedByTitle: [],
+  searchedByTitleStatic: [],
+  single: {}
+}
 
 /**
  * ACTION CREATORS
@@ -22,7 +29,14 @@ const initialState = {all: [], userRecipes: [], searchedByTitle: [], single: {}}
 const gotRecipes = recipes => ({type: GOT_RECIPES, recipes})
 const gotUserRecipes = recipes => ({type: GOT_USER_RECIPES, recipes})
 const gotSingleRecipe = recipe => ({type: GOT_SINGLE_RECIPE, recipe})
-const gotSearchedByTitle = recipes => ({type: GOT_SEARCHED_BY_TITLE, recipes})
+const gotSearchedByTitle = recipes => ({
+  type: GOT_SEARCHED_BY_TITLE,
+  recipes
+})
+const gotSearchedByTitleStatic = recipes => ({
+  type: GOT_SEARCHED_BY_TITLE_STATIC,
+  recipes
+})
 //const removedRecipe = id => ({type: REMOVED_RECIPE, id})
 
 /**
@@ -61,6 +75,17 @@ export const getSearchedByTitle = search => async dispatch => {
       `/api/recipes/search-by-title?search=${search}`
     )
     dispatch(gotSearchedByTitle(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const getSearchedByTitleStatic = search => async dispatch => {
+  try {
+    const {data} = await axios.get(
+      `/api/recipes/search-by-title?search=${search}`
+    )
+    dispatch(gotSearchedByTitleStatic(data))
   } catch (err) {
     console.error(err)
   }
@@ -111,6 +136,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         searchedByTitle: action.recipes
+      }
+    case GOT_SEARCHED_BY_TITLE_STATIC:
+      return {
+        ...state,
+        searchedByTitleStatic: action.recipes
       }
     default:
       return state
