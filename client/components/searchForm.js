@@ -52,9 +52,7 @@ class SearchForm extends Component {
         results: _.filter(recipes, isMatch)
       })
       //for adding a see all results at the end of the list.
-      if (this.state.results.length >= 1) {
-        this.state.results.push({searchValue: this.state.value})
-      }
+      this.state.results.push({searchValue: this.state.value})
     }, 300)
   }
 
