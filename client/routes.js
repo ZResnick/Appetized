@@ -9,7 +9,8 @@ import {
   SingleRecipe,
   Hero,
   RecipeBox,
-  SiteList
+  SiteList,
+  SearchResults
 } from './components'
 import {me} from './store'
 
@@ -36,6 +37,12 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/allRecipes" component={AllRecipes} />
+            <Route
+              path="/searchResults"
+              render={props => (
+                <SearchResults key={props.location.search} {...props} />
+              )}
+            />
             <Route path="/recipeBox" component={RecipeBox} />
             <Route
               path="/singleRecipe/:id"
@@ -43,7 +50,6 @@ class Routes extends Component {
                 <SingleRecipe key={props.match.params.id} {...props} />
               )}
             />
-            {/* <Route path="/singleRecipe/:id" component={SingleRecipe} /> */}
           </Switch>
         )}
         {/* Displays our Hero component as a fallback */}
