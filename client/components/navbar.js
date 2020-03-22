@@ -25,10 +25,12 @@ class Navbar extends React.Component {
           </div>
         </Link>
       ) : searchValue ? (
-        <Link to="/allRecipes">
+        <Link to={`/searchResults?${searchValue}`}>
           <div className="search-title-and-site">
-            <span className="search-title">{searchValue}</span>
-            <span className="search-title">See all results</span>
+            <span className="search-title">
+              <span className="bold">See all results for: </span>
+              {searchValue}
+            </span>
           </div>
         </Link>
       ) : null
