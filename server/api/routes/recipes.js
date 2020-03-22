@@ -37,7 +37,6 @@ router.get('/search-by-title', async (req, res, next) => {
       where: {
         title: {
           [Op.iLike]: {[Op.any]: searchArray}
-          // [Op.iLike]: `%fish%` || `%brisket%`
         }
       },
       include: [{model: Ingredient}]

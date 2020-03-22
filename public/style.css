@@ -941,3 +941,9 @@ form div {
   font-size: 0.7em;
   color: rgb(109, 109, 109);
 }
+
+.search-results-container {
+  max-width: 95%;
+  margin: auto;
+  min-height: 80vh;
+}
