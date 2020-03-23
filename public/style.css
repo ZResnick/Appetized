@@ -991,3 +991,26 @@ form div {
   color: rgb(0, 0, 0);
   text-align: center;
 }
+
+/* Recipe Cards */
+
+.recipe-card-title {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 1.1em;
+  color: rgb(0, 0, 0);
+}
+
+.recipe-card-caption {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 0.85em;
+  color: rgb(114, 114, 114);
+}
+
+.recipe-card-saved-status {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 0.85em;
+  color: rgb(21, 143, 143);
+}

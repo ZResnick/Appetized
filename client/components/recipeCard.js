@@ -9,11 +9,17 @@ export default function RecipeCard(props) {
     <Card raised as={Link} to={`/singleRecipe/${id}`}>
       <img src={imageUrl} height={200} position="relative" overflow="hidden" />
       <Card.Content>
-        <Card.Header>{title}</Card.Header>
+        <Card.Header>
+          <div className="recipe-card-title">{title}</div>
+        </Card.Header>
         <Card.Meta>
-          <span className="date">Original recipe by {author}</span>
+          <span className="recipe-card-caption">by {site}</span>
         </Card.Meta>
-        {ownership ? <Card.Description>Saved!</Card.Description> : null}
+        {ownership ? (
+          <Card.Description textAlign="right">
+            <span className="recipe-card-saved-status">Saved!</span>
+          </Card.Description>
+        ) : null}
       </Card.Content>
     </Card>
   )
