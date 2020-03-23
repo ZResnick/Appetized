@@ -92,7 +92,7 @@ export default function Footer() {
         </div>
         <div className="footer-list">
           <h3>Useful Links:</h3>
-          <Link to="/">
+          <Link to="/siteList">
             <span>FAQ</span>
           </Link>
           <br></br>
