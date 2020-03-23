@@ -36,6 +36,12 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
+            <Route
+              path="/allRecipes/:pageNum"
+              render={props => (
+                <AllRecipes key={props.match.params.pageNum} {...props} />
+              )}
+            />
             <Route path="/allRecipes" component={AllRecipes} />
             <Route
               path="/searchResults"
