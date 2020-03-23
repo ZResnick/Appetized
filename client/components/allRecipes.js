@@ -65,7 +65,7 @@ class AllRecipes extends React.Component {
           <div>
             <p className="pagination-label">
               <span className="bold">
-                {pageNum * 16 - 15} - {pageNum * 16}{' '}
+                {pageNum && pageNum * 16 - 15} - {pageNum && pageNum * 16}{' '}
               </span>
               of{' '}
               <span className="bold">
