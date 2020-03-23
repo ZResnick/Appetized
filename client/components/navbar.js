@@ -53,7 +53,7 @@ class Navbar extends React.Component {
       <div className="mainNav">
         <div className="left-side-of-navbar">
           <div className="navbar-header-div">
-            <Link to={isLoggedIn ? '/allRecipes' : '/home'}>
+            <Link to={isLoggedIn ? '/allRecipes/1' : '/home'}>
               <h1 className="navbar-main-title">Appetized</h1>
             </Link>
           </div>
