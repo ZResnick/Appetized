@@ -5,6 +5,7 @@ import {getPageRecipes, getUserRecipes, getTotalCount} from '../store/recipes'
 import {Card, Pagination} from 'semantic-ui-react'
 import {RecipeCard} from './index'
 import history from '../history'
+import {animateScroll as scroll} from 'react-scroll'
 
 class AllRecipes extends React.Component {
   constructor(props) {
@@ -20,7 +21,10 @@ class AllRecipes extends React.Component {
   }
 
   updatePage = () => {
-    history.push(`/allRecipes/${this.state.activePage}`)
+    scroll.scrollToTop()
+    setTimeout(() => {
+      history.push(`/allRecipes/${this.state.activePage}`)
+    }, 800)
   }
 
   componentDidMount() {
