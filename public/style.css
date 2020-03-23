@@ -710,6 +710,7 @@ form div {
   margin: auto;
   margin-top: calc(2% + 65px);
   margin-bottom: 2%;
+  min-height: 75vh;
 }
 
 /* RECIPE BOX*/
@@ -974,4 +975,19 @@ form div {
   max-width: 95%;
   margin: auto;
   min-height: 80vh;
+}
+
+/* Pagination */
+.pagination-container {
+  margin-top: 6%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.pagination-label {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  font-size: 1.5em;
+  color: rgb(0, 0, 0);
+  text-align: center;
 }
