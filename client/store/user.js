@@ -51,7 +51,7 @@ export const auth = (
 
   try {
     dispatch(getUser(res.data))
-    history.push('/allRecipes')
+    history.push('/allRecipes/1')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
