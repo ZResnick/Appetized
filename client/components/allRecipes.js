@@ -37,7 +37,9 @@ class AllRecipes extends React.Component {
 
   render() {
     console.log(this.props)
-    const pageNum = this.state.activePage
+    const pageNum = this.props.match.params.pageNum
+      ? this.props.match.params.pageNum
+      : 1
     const {userRecipes, pageRecipes, totalCount} = this.props
     let recipes = pageRecipes
     if (recipes.length && userRecipes.length) {
@@ -65,7 +67,10 @@ class AllRecipes extends React.Component {
           <div>
             <p className="pagination-label">
               <span className="bold">
-                {pageNum && pageNum * 16 - 15} - {pageNum && pageNum * 16}{' '}
+                {pageNum * 16 - 15} -{' '}
+                {totalCount && pageNum * 16 > totalCount.recipeCount
+                  ? totalCount.recipeCount
+                  : pageNum * 16}{' '}
               </span>
               of{' '}
               <span className="bold">
