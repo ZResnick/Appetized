@@ -3,6 +3,35 @@ const router = require('express').Router()
 const {Recipe, User, Ingredient} = require('../../db/models')
 const scrapers = require('../../scrapers')
 const {Op} = require('sequelize')
+const sequelize = require('sequelize')
+
+//gets all the recipes for a specific page, where a page is 16 recipes
+router.get('/allRecipes/:pageNum', async (req, res, next) => {
+  try {
+    const recipes = await Recipe.findAll({
+      // order: sequelize.col('createdAt'),
+      order: [['createdAt', 'DESC']],
+      include: [{model: Ingredient}],
+      offset: 16 * req.params.pageNum - 16,
+      limit: 16
+    })
+    if (recipes) res.send(recipes)
+    else res.send(404)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//gets the total count of all recipes
+router.get('/totalCount', async (req, res, next) => {
+  try {
+    const recipeCount = await Recipe.count()
+    if (recipeCount) res.send({recipeCount})
+    else res.send(404)
+  } catch (err) {
+    next(err)
+  }
+})
 
 //gets all the recipes in the DB
 router.get('/allRecipes', async (req, res, next) => {
