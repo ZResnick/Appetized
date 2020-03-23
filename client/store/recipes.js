@@ -5,10 +5,12 @@ import history from '../history'
  * ACTION TYPES
  */
 const GOT_RECIPES = 'GOT_RECIPES'
+const GOT_PAGE_RECIPES = 'GOT_PAGE_RECIPES'
 const GOT_USER_RECIPES = 'GOT_USER_RECIPES'
 const GOT_SINGLE_RECIPE = 'GOT_SINGLE_RECIPE'
 const GOT_SEARCHED_BY_TITLE = 'GOT_SEARCHED_BY_TITLE'
 const GOT_SEARCHED_BY_TITLE_STATIC = 'GOT_SEARCHED_BY_TITLE_STATIC'
+const GOT_TOTAL_COUNT = 'GOT_TOTAL_COUNT'
 
 //const REMOVED_RECIPE = 'REMOVED_RECIPE'
 
@@ -16,11 +18,13 @@ const GOT_SEARCHED_BY_TITLE_STATIC = 'GOT_SEARCHED_BY_TITLE_STATIC'
  * INITIAL STATE
  */
 const initialState = {
+  totalCount: null,
   all: [],
   userRecipes: [],
   searchedByTitle: [],
   searchedByTitleStatic: [],
-  single: {}
+  single: {},
+  pageRecipes: []
 }
 
 /**
@@ -37,15 +41,39 @@ const gotSearchedByTitleStatic = recipes => ({
   type: GOT_SEARCHED_BY_TITLE_STATIC,
   recipes
 })
+const gotPageRecipes = recipes => ({
+  type: GOT_PAGE_RECIPES,
+  recipes
+})
+const gotTotalCount = count => ({type: GOT_TOTAL_COUNT, count})
 //const removedRecipe = id => ({type: REMOVED_RECIPE, id})
 
 /**
  * THUNK CREATORS
  */
+export const getTotalCount = () => async dispatch => {
+  try {
+    const {data} = await axios.get('/api/recipes/totalCount')
+    dispatch(gotTotalCount(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const getRecipes = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/recipes/allRecipes')
     dispatch(gotRecipes(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const getPageRecipes = pageNum => async dispatch => {
+  try {
+    const {data} = await axios.get(`/api/recipes/allRecipes/${pageNum}`)
+    console.log('HELLO THERE')
+    dispatch(gotPageRecipes(data))
   } catch (err) {
     console.error(err)
   }
@@ -141,6 +169,16 @@ export default function(state = initialState, action) {
       return {
         ...state,
         searchedByTitleStatic: action.recipes
+      }
+    case GOT_PAGE_RECIPES:
+      return {
+        ...state,
+        pageRecipes: action.recipes
+      }
+    case GOT_TOTAL_COUNT:
+      return {
+        ...state,
+        totalCount: action.count
       }
     default:
       return state
