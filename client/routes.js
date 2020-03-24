@@ -44,9 +44,16 @@ class Routes extends Component {
             />
             <Route path="/allRecipes" component={AllRecipes} />
             <Route
-              path="/searchResults"
+              path="/searchResults/page/:pageNum"
               render={props => (
-                <SearchResults key={props.location.search} {...props} />
+                <SearchResults
+                  /*this key ensures that the page will update with a change in
+                  either the query or the page number.  So when you click the next page,
+                  the component will update, or when you search a new term, the component will
+                  update*/
+                  key={`query:${props.location.search}/page:${props.match.params.pageNum}`}
+                  {...props}
+                />
               )}
             />
             <Route path="/recipeBox" component={RecipeBox} />
