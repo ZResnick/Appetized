@@ -48,7 +48,12 @@ class UserRecipes extends React.Component {
     return (
       <div className="saved-recipes">
         {!totalCount ? (
-          <h1>It doesn't look like you have any recipes.</h1>
+          <h1 className="no-recipes-message">
+            It doesn't look like you have any recipes yet! Try adding a recipe
+            using the Appetized Chrome Extension, pasting a link into the 'Add a
+            New Recipe' form above, or searching for a recipe and clicking the
+            'Save' button.
+          </h1>
         ) : (
           <div>
             <div className="recipe-box-category-section">
@@ -70,27 +75,27 @@ class UserRecipes extends React.Component {
                 ))}
               </Card.Group>
             </div>
+            <div className="pagination-container-recipe-box">
+              <div>
+                <p className="pagination-label">
+                  <span className="bold">
+                    {start + 1} -{' '}
+                    {totalCount && pageNum * 15 > totalCount
+                      ? totalCount
+                      : pageNum * 15}{' '}
+                  </span>
+                  of <span className="bold">{totalCount && totalCount} </span>
+                  Saved Recipes
+                </p>
+                <Pagination
+                  defaultActivePage={pageNum}
+                  totalPages={totalCount && Math.ceil(totalCount / 15)}
+                  onPageChange={this.paginationClick}
+                />
+              </div>
+            </div>
           </div>
         )}
-        <div className="pagination-container">
-          <div>
-            <p className="pagination-label">
-              <span className="bold">
-                {start + 1} -{' '}
-                {totalCount && pageNum * 15 > totalCount
-                  ? totalCount
-                  : pageNum * 15}{' '}
-              </span>
-              of <span className="bold">{totalCount && totalCount} </span>
-              Saved Recipes
-            </p>
-            <Pagination
-              defaultActivePage={pageNum}
-              totalPages={totalCount && Math.ceil(totalCount / 15)}
-              onPageChange={this.paginationClick}
-            />
-          </div>
-        </div>
       </div>
     )
   }
