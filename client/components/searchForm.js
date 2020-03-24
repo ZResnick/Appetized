@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React, {Component} from 'react'
-import {Search, Grid, Header, Segment} from 'semantic-ui-react'
+import {Search, Grid} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {getSearchedByTitle} from '../store/recipes'
 
@@ -36,8 +36,8 @@ class SearchForm extends Component {
     setTimeout(() => {
       if (this.state.value.length < 1) return this.resetComponent()
 
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = result => re.test(result.title)
+      // const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+      // const isMatch = result => re.test(result.title)
 
       this.props.getSearchedByTitle(this.state.value)
       let recipes = this.props.searchedByTitle.slice(0, 5)
@@ -49,7 +49,8 @@ class SearchForm extends Component {
 
       this.setState({
         isLoading: false,
-        results: _.filter(recipes, isMatch)
+        // results: _.filter(recipes, isMatch)
+        results: recipes
       })
       //for adding a see all results at the end of the list.
       this.state.results.push({searchValue: this.state.value})
