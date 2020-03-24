@@ -12,6 +12,8 @@ class AllRecipes extends React.Component {
     super(props)
     this.state = {
       activePage: this.props.match.params.pageNum
+        ? this.props.match.params.pageNum
+        : 1
     }
     this.paginationClick = this.paginationClick.bind(this)
   }
@@ -36,7 +38,6 @@ class AllRecipes extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const pageNum = this.props.match.params.pageNum
       ? this.props.match.params.pageNum
       : 1

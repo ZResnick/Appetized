@@ -67,7 +67,7 @@ class Navbar extends React.Component {
               <GroceryModal />
             </div>
             <div className="recipe-box-navbar-container">
-              <Link to="/recipeBox">
+              <Link to="/recipeBox/page/1">
                 <h1 className="your-recipeBox-navbar">YOUR RECIPE BOX</h1>
               </Link>
             </div>

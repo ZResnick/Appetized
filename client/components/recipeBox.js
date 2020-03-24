@@ -22,7 +22,7 @@ export class RecipeBox extends Component {
     return (
       <div className="recipe-box">
         <div className="sideBar">
-          <Link to="/recipeBox">
+          <Link to="/recipeBox/page/1">
             <div className="sidebar-section">
               <h1 className="sidebar-header">All Saved Recipes</h1>
             </div>
@@ -35,7 +35,6 @@ export class RecipeBox extends Component {
               {!folders
                 ? null
                 : folders.map(folder => {
-                    console.log(folder.recipes.length)
                     return (
                       <Link
                         key={folder.id}
@@ -65,6 +64,12 @@ export class RecipeBox extends Component {
         <div className="right-side-of-recipe-box">
           <AddAndSearch />
           <Route exact path="/recipeBox" render={() => <UserRecipes />} />
+          <Route
+            path="/recipeBox/page/:pageNum"
+            render={props => (
+              <UserRecipes key={props.match.params.pageNum} {...props} />
+            )}
+          />
           {!folders
             ? null
             : folders.map(folder => {
