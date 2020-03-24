@@ -318,13 +318,13 @@ form div {
 
 .dropdown-link {
   font-family: 'Nunito', sans-serif;
-  font-weight: 200;
+  font-weight: 600;
   font-size: 1em;
   color: rgb(85, 85, 85);
 }
 .dropdown-link:hover {
   font-family: 'Nunito', sans-serif;
-  font-weight: 200;
+  font-weight: 600;
   font-size: 1em;
   color: rgb(0, 0, 0);
   text-decoration: underline rgb(38, 160, 160);
@@ -353,7 +353,7 @@ form div {
 
 .grocery-list-navbar {
   font-family: 'Nunito', sans-serif;
-  font-weight: 200;
+  font-weight: 600;
   font-size: 1.5em;
   color: rgb(85, 85, 85);
   padding-top: 9%;
@@ -364,7 +364,7 @@ form div {
 .grocery-list-navbar:hover {
   cursor: pointer;
   font-family: 'Nunito', sans-serif;
-  font-weight: 200;
+  font-weight: 600;
   font-size: 1.5em;
   color: rgb(0, 0, 0);
   padding-top: 9%;
@@ -385,7 +385,7 @@ form div {
 
 .your-recipeBox-navbar {
   font-family: 'Nunito', sans-serif;
-  font-weight: 200;
+  font-weight: 600;
   font-size: 1.5em;
   color: rgb(85, 85, 85);
   padding-top: 10%;
@@ -395,7 +395,7 @@ form div {
 
 .your-recipeBox-navbar:hover {
   font-family: 'Nunito', sans-serif;
-  font-weight: 200;
+  font-weight: 600;
   font-size: 1.5em;
   color: rgb(0, 0, 0);
   padding-top: 10%;
@@ -961,7 +961,7 @@ form div {
 
 .search-title {
   font-family: 'Nunito', sans-serif;
-  font-weight: 200;
+  font-weight: 600;
   color: black;
 }
 .search-site {
@@ -977,11 +977,33 @@ form div {
   min-height: 80vh;
 }
 
+.search-results-header {
+  margin-bottom: 0.25em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 200;
+  color: black;
+}
+
+.no-recipes-message {
+  margin-bottom: 0.25em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  color: black;
+  max-width: 80%;
+}
+
 /* Pagination */
 .pagination-container {
   margin-top: 6%;
   display: flex;
   justify-content: space-around;
+}
+
+.pagination-container-recipe-box {
+  margin-top: 6%;
+  display: flex;
+  justify-content: space-around;
+  max-width: 85%;
 }
 
 .pagination-label {
