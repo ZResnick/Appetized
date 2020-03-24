@@ -49,12 +49,15 @@ class FolderRecipes extends React.Component {
         recipes = recipes.slice(start, end)
       }
     }
-
     return (
       <div className="saved-recipes">
         {!recipes ? (
-          <h1>It doesn't look like you have any recipes.</h1>
-        ) : (
+          <h1 className="bold search-results-header">
+            It doesn't look like you have any recipes in this folder yet. Try
+            adding one by clicking on the dropdown menu next to the 'Saved'
+            button on the recipe's page!
+          </h1>
+        ) : recipes.length ? (
           <div>
             <div className="recipe-box-category-section">
               <h2 className="recipe-box-category">{folder.title}</h2>
@@ -75,27 +78,33 @@ class FolderRecipes extends React.Component {
                 ))}
               </Card.Group>
             </div>
+            <div className="pagination-container-recipe-box">
+              <div>
+                <p className="pagination-label">
+                  <span className="bold">
+                    {start + 1} -{' '}
+                    {totalCount && pageNum * 15 > totalCount
+                      ? totalCount
+                      : pageNum * 15}{' '}
+                  </span>
+                  of <span className="bold">{totalCount && totalCount} </span>
+                  Saved Recipes
+                </p>
+                <Pagination
+                  defaultActivePage={pageNum}
+                  totalPages={totalCount && Math.ceil(totalCount / 15)}
+                  onPageChange={this.paginationClick}
+                />
+              </div>
+            </div>
           </div>
+        ) : (
+          <h1 className="no-recipes-message">
+            It doesn't look like you have any recipes in this folder yet. Try
+            adding one by clicking on the dropdown menu next to the 'Saved'
+            button on a recipe's page!
+          </h1>
         )}
-        <div className="pagination-container">
-          <div>
-            <p className="pagination-label">
-              <span className="bold">
-                {start + 1} -{' '}
-                {totalCount && pageNum * 15 > totalCount
-                  ? totalCount
-                  : pageNum * 15}{' '}
-              </span>
-              of <span className="bold">{totalCount && totalCount} </span>
-              Saved Recipes
-            </p>
-            <Pagination
-              defaultActivePage={pageNum}
-              totalPages={totalCount && Math.ceil(totalCount / 15)}
-              onPageChange={this.paginationClick}
-            />
-          </div>
-        </div>
       </div>
     )
   }

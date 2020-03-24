@@ -26,7 +26,7 @@ router.get('/allRecipes/:pageNum', async (req, res, next) => {
 router.get('/totalCount', async (req, res, next) => {
   try {
     const recipeCount = await Recipe.count()
-    if (recipeCount) res.send({recipeCount})
+    if (typeof recipeCount === 'number') res.send({recipeCount})
     else res.send(404)
   } catch (err) {
     next(err)
@@ -52,6 +52,48 @@ router.all('*', (req, res, next) => {
     res.sendStatus(401)
   } else {
     next()
+  }
+})
+
+// //search by title page route with 24 results per page
+router.get('/search-by-title/:pageNum', async (req, res, next) => {
+  try {
+    let search = req.query.search
+    let words = search.split(' ')
+    let searchArray = words.map(word => `%${word}%`)
+    let searchedRecipes = await Recipe.findAll({
+      limit: 24,
+      order: [['createdAt', 'DESC']],
+      offset: 24 * req.params.pageNum - 24,
+      where: {
+        title: {
+          [Op.iLike]: {[Op.any]: searchArray}
+        }
+      },
+      include: [{model: Ingredient}]
+    })
+    res.send(searchedRecipes)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//searched recipe count
+router.get('/search-by-title-count', async (req, res, next) => {
+  try {
+    let search = req.query.search
+    let words = search.split(' ')
+    let searchArray = words.map(word => `%${word}%`)
+    let searchedRecipeCount = await Recipe.count({
+      where: {
+        title: {
+          [Op.iLike]: {[Op.any]: searchArray}
+        }
+      }
+    })
+    if (typeof searchedRecipeCount === 'number') res.send({searchedRecipeCount})
+  } catch (err) {
+    next(err)
   }
 })
 
