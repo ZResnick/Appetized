@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import axios from 'axios'
 import history from '../history'
 
@@ -12,6 +13,9 @@ const GOT_SEARCHED_BY_TITLE = 'GOT_SEARCHED_BY_TITLE'
 const GOT_SEARCHED_BY_TITLE_STATIC = 'GOT_SEARCHED_BY_TITLE_STATIC'
 const GOT_TOTAL_COUNT = 'GOT_TOTAL_COUNT'
 
+const GOT_SEARCHED_PAGE_RECIPES = 'GOT_SEARCHED_PAGE_RECIPES'
+const GOT_SEARCHED_COUNT = 'GOT_SEARCHED_COUNT'
+
 //const REMOVED_RECIPE = 'REMOVED_RECIPE'
 
 /**
@@ -19,12 +23,14 @@ const GOT_TOTAL_COUNT = 'GOT_TOTAL_COUNT'
  */
 const initialState = {
   totalCount: null,
+  searchedRecipeCount: null,
   all: [],
   userRecipes: [],
   searchedByTitle: [],
   searchedByTitleStatic: [],
   single: {},
-  pageRecipes: []
+  pageRecipes: [],
+  searchedPageRecipes: []
 }
 
 /**
@@ -46,24 +52,45 @@ const gotPageRecipes = recipes => ({
   recipes
 })
 const gotTotalCount = count => ({type: GOT_TOTAL_COUNT, count})
+
+const gotSearchedPageRecipes = recipes => ({
+  type: GOT_SEARCHED_PAGE_RECIPES,
+  recipes
+})
+const gotSearchedCount = count => ({type: GOT_SEARCHED_COUNT, count})
 //const removedRecipe = id => ({type: REMOVED_RECIPE, id})
 
 /**
  * THUNK CREATORS
  */
-export const getTotalCount = () => async dispatch => {
+
+export const getSearchedCount = search => async dispatch => {
   try {
-    const {data} = await axios.get('/api/recipes/totalCount')
-    dispatch(gotTotalCount(data))
+    const {data} = await axios.get(
+      `/api/recipes/search-by-title-count?search=${search}`
+    )
+    dispatch(gotSearchedCount(data))
   } catch (err) {
     console.error(err)
   }
 }
 
-export const getRecipes = () => async dispatch => {
+export const getSearchedPageRecipes = (search, pageNum) => async dispatch => {
   try {
-    const {data} = await axios.get('/api/recipes/allRecipes')
-    dispatch(gotRecipes(data))
+    const {data} = await axios.get(
+      `/api/recipes/search-by-title/${pageNum}?search=${search}`
+    )
+    console.log('HELLO THERE')
+    dispatch(gotSearchedPageRecipes(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const getTotalCount = () => async dispatch => {
+  try {
+    const {data} = await axios.get('/api/recipes/totalCount')
+    dispatch(gotTotalCount(data))
   } catch (err) {
     console.error(err)
   }
@@ -74,6 +101,15 @@ export const getPageRecipes = pageNum => async dispatch => {
     const {data} = await axios.get(`/api/recipes/allRecipes/${pageNum}`)
     console.log('HELLO THERE')
     dispatch(gotPageRecipes(data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const getRecipes = () => async dispatch => {
+  try {
+    const {data} = await axios.get('/api/recipes/allRecipes')
+    dispatch(gotRecipes(data))
   } catch (err) {
     console.error(err)
   }
@@ -179,6 +215,16 @@ export default function(state = initialState, action) {
       return {
         ...state,
         totalCount: action.count
+      }
+    case GOT_SEARCHED_PAGE_RECIPES:
+      return {
+        ...state,
+        searchedPageRecipes: action.recipes
+      }
+    case GOT_SEARCHED_COUNT:
+      return {
+        ...state,
+        searchedRecipeCount: action.count
       }
     default:
       return state
