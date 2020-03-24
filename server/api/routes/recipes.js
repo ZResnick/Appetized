@@ -5,15 +5,15 @@ const scrapers = require('../../scrapers')
 const {Op} = require('sequelize')
 const sequelize = require('sequelize')
 
-//gets all the recipes for a specific page, where a page is 16 recipes
+//gets all the recipes for a specific page, where a page is 24 recipes
 router.get('/allRecipes/:pageNum', async (req, res, next) => {
   try {
     const recipes = await Recipe.findAll({
       // order: sequelize.col('createdAt'),
       order: [['createdAt', 'DESC']],
       include: [{model: Ingredient}],
-      offset: 16 * req.params.pageNum - 16,
-      limit: 16
+      offset: 24 * req.params.pageNum - 24,
+      limit: 24
     })
     if (recipes) res.send(recipes)
     else res.send(404)

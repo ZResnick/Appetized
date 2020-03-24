@@ -68,10 +68,10 @@ class AllRecipes extends React.Component {
           <div>
             <p className="pagination-label">
               <span className="bold">
-                {pageNum * 16 - 15} -{' '}
-                {totalCount && pageNum * 16 > totalCount.recipeCount
+                {pageNum * 24 - 23} -{' '}
+                {totalCount && pageNum * 24 > totalCount.recipeCount
                   ? totalCount.recipeCount
-                  : pageNum * 16}{' '}
+                  : pageNum * 24}{' '}
               </span>
               of{' '}
               <span className="bold">
@@ -81,7 +81,7 @@ class AllRecipes extends React.Component {
             </p>
             <Pagination
               defaultActivePage={pageNum}
-              totalPages={totalCount && Math.ceil(totalCount.recipeCount / 16)}
+              totalPages={totalCount && Math.ceil(totalCount.recipeCount / 24)}
               onPageChange={this.paginationClick}
             />
           </div>
