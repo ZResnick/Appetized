@@ -38,7 +38,7 @@ export class RecipeBox extends Component {
                     return (
                       <Link
                         key={folder.id}
-                        to={`/recipeBox/folder/${folder.id}`}
+                        to={`/recipeBox/folder/${folder.id}/page/1`}
                       >
                         <div className="folder-and-count">
                           <div>
@@ -77,8 +77,13 @@ export class RecipeBox extends Component {
                   <Route
                     key={folder.id}
                     exact
-                    path={`/recipeBox/folder/${folder.id}`}
-                    render={props => <FolderRecipes {...props} />}
+                    path={`/recipeBox/folder/${folder.id}/page/:pageNum`}
+                    render={props => (
+                      <FolderRecipes
+                        key={props.match.params.pageNum}
+                        {...props}
+                      />
+                    )}
                   />
                 )
               })}
