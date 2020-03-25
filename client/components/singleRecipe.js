@@ -104,7 +104,7 @@ export class SingleRecipe extends Component {
                   </div>
                 )}
               </div>
-              <img className="recipe-img" src={recipe.imageUrl}></img>
+              <img className="recipe-img" src={recipe.imageUrl} />
             </div>
             <div className="ingredients-and-instructions">
               <div className="recipe-ingredients">
