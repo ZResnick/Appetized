@@ -43,7 +43,9 @@ class FolderRecipes extends React.Component {
       if (this.props.folder.length) {
         folder = this.props.folder[0]
         recipes = this.props.folder[0].recipes
-        if (recipes[0].createdAt < recipes[1].createdAt) recipes.reverse() //so that the most recently added appear first        totalCount = recipes.length
+        if (recipes.length > 1 && recipes[0].createdAt < recipes[1].createdAt)
+          recipes.reverse() //so that the most recently added appear first
+        totalCount = recipes.length
         start = (pageNum - 1) * 15
         end = pageNum * 15
         recipes = recipes.slice(start, end)
