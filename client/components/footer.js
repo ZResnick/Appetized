@@ -47,6 +47,14 @@ export default function Footer() {
           </a>
           <br></br>
           <a
+            href="https://sallysbakingaddiction.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Sally's Baking Addiction
+          </a>
+          <br></br>
+          <a
             href="https://www.allrecipes.com"
             target="_blank"
             rel="noopener noreferrer"

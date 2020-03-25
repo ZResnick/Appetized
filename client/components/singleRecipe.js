@@ -141,7 +141,11 @@ export class SingleRecipe extends Component {
                 <h4>Instructions</h4>
                 {recipe.instructions.map(ins => {
                   return (
-                    <p key={ins.slice(1)} className="instructions">
+                    <p
+                      key={ins.slice(1)}
+                      className={`instructions ${ins === 'Notes:' && 'bold'}`}
+                      style={{fontSize: `${ins === 'Notes:' && '1.1em'}`}}
+                    >
                       {ins}
                     </p>
                   )

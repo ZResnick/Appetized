@@ -5,7 +5,8 @@ const sites = {
   chowhound: true,
   simplyrecipes: true,
   allrecipes: true,
-  nytimes: true
+  nytimes: true,
+  sallysbakingaddiction: true
 }
 
 const savePageButton = document.getElementById('save-page-btn')
@@ -21,6 +22,8 @@ chrome.tabs.query({active: true, currentWindow: true}, tabs => {
   else {
     let isNYT = url.indexOf('nytimes')
     if (isNYT !== -1) site = 'nytimes'
+    let isSBA = url.indexOf('sallysbakingaddiction')
+    if (isSBA !== -1) site = 'sallysbakingaddiction'
   }
 })
 
