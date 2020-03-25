@@ -1,6 +1,7 @@
 /* eslint-disable complexity */
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import Error404Page from './error404Page'
 import {
   getSingleRecipe,
   saveRecipeToBox,
@@ -62,9 +63,7 @@ export class SingleRecipe extends Component {
     return (
       <div>
         {!recipe ? (
-          <div>
-            <h1>Sorry, there doesn't seem to be anything here yet...</h1>
-          </div>
+          <Error404Page />
         ) : (
           <div>
             <div className="recipe-header-section">

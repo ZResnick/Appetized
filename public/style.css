@@ -1024,3 +1024,35 @@ form div {
   font-size: 0.85em;
   color: rgb(21, 143, 143);
 }
+
+/* 404 Page  */
+
+.error-404-container {
+  text-align: center;
+  min-height: 76vh;
+}
+
+.error-page-title {
+  padding-top: 11%;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  color: rgb(0, 0, 0);
+}
+
+.error-page-404 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 17em;
+  line-height: 0.9em;
+  letter-spacing: 0.1em;
+  color: rgb(0, 0, 0);
+  text-shadow: 5px 8px 10px #00000059;
+}
+
+.error-page-button {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 1em;
+  color: rgb(255, 255, 255);
+}
