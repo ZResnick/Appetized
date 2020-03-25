@@ -5,6 +5,7 @@ const allrecipesScraper = require('./allrecipes')
 const chowhoundScraper = require('./chowhound')
 const simplyrecipesScraper = require('./simplyrecipes')
 const nytimesScraper = require('./nytimes')
+const sallysBakingAddictionScraper = require('./sallysBakingAddiction')
 
 const scrapers = {
   foodnetwork: foodnetworkScraper,
@@ -13,11 +14,14 @@ const scrapers = {
   allrecipes: allrecipesScraper,
   simplyrecipes: simplyrecipesScraper,
   chowhound: chowhoundScraper,
-  nytimes: nytimesScraper
+  nytimes: nytimesScraper,
+  sallysbakingaddiction: sallysBakingAddictionScraper
 }
 module.exports = scrapers
 
 /*
+http://thespruceeats.com
+chefeps
 seriouseats
 food
 tasty
