@@ -10,7 +10,8 @@ import {
   Hero,
   RecipeBox,
   SiteList,
-  SearchResults
+  SearchResults,
+  Error404Page
 } from './components'
 import {me} from './store'
 
@@ -63,6 +64,7 @@ class Routes extends Component {
                 <SingleRecipe key={props.match.params.id} {...props} />
               )}
             />
+            <Route path="/" component={Error404Page} />
           </Switch>
         )}
         {/* Displays our Hero component as a fallback */}
