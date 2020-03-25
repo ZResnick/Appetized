@@ -39,6 +39,8 @@ class UserRecipes extends React.Component {
     let end
 
     if (recipes.length) {
+      // recipes.reverse() //so that the most recently added appear first
+      if (recipes[0].createdAt < recipes[1].createdAt) recipes.reverse() //so that the most recently added appear first
       totalCount = recipes.length
       start = (pageNum - 1) * 15
       end = pageNum * 15
