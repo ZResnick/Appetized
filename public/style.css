@@ -523,6 +523,27 @@ form div {
   color: inherit;
 }
 
+.add-to-grocery-button-disabled {
+  margin-top: 2.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: solid 2px grey;
+  border-radius: 5px;
+  color: grey;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  background-color: rgb(204, 204, 204);
+}
+
+.add-to-grocery-text-disabled {
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: inherit;
+}
+
 .save-recipe-button {
   margin-top: 2.5em;
   padding-top: 0.5em;

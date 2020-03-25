@@ -113,14 +113,27 @@ export class SingleRecipe extends Component {
                 })}
                 {this.state.isAdded ? (
                   <div>
-                    <h3 className="added-to-grocery-text">Added!</h3>
+                    <button
+                      className="add-to-grocery-button-disabled"
+                      type="button"
+                      disabled="true"
+                    >
+                      <h3 className="add-to-grocery-text-disabled">
+                        Ingredients Added!
+                      </h3>
+                    </button>
                   </div>
                 ) : (
-                  <div
-                    className="add-to-grocery-button"
-                    onClick={this.addToGroceryClick}
-                  >
-                    <h3 className="add-to-grocery-text">Add to Grocery List</h3>
+                  <div>
+                    <button
+                      className="add-to-grocery-button"
+                      onClick={this.addToGroceryClick}
+                      type="button"
+                    >
+                      <h3 className="add-to-grocery-text">
+                        Add to Grocery List
+                      </h3>
+                    </button>
                   </div>
                 )}
               </div>
