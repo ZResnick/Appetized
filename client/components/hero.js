@@ -1,8 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Button} from 'semantic-ui-react'
+import history from '../history'
 
-export default function Hero() {
+export default function Hero(props) {
+  // console.log(props)
+  // if (props.location.pathname !== '/') history.push('/')
+
   return (
     <div id="hero">
       <div className="hero-head">
