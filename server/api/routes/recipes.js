@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 // apiRoutes/example.js
 const router = require('express').Router()
 const {Recipe, User, Ingredient} = require('../../db/models')
@@ -152,8 +153,15 @@ router.post('/', async (req, res, next) => {
     let url = req.body.url
     let tail = url.split('www.')[1]
     let base = tail && tail.split('.com')[0]
+
+    //because nytimes url is composed differently
     let isNYT = url.indexOf('nytimes')
     if (isNYT !== -1) base = 'nytimes'
+
+    //because sallysbakingaddiction url is composed differently
+    let isSBA = url.indexOf('sallysbakingaddiction')
+    if (isSBA !== -1) base = 'sallysbakingaddiction'
+
     let data = await scrapers[base](url)
     let {title, author, ingredients, instructions, imageUrl, misc, site} = data
     if (title && ingredients && instructions) {
