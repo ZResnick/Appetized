@@ -50,7 +50,7 @@ const allrecipesScraper = url => {
 module.exports = allrecipesScraper
 
 // const testUrl =
-//   'https://www.allrecipes.com/recipe/228052/chinese-pork-dumplings/?internalSource=previously%20viewed&referringContentType=Homepage&clickId=cardslot%202'
+//   'https://www.allrecipes.com/recipe/93597/authentic-and-easy-shrimp-curry/'
 
 // const testUrl2 =
 //   'https://www.allrecipes.com/recipe/256482/panettone-french-toast/?clickId=right%20rail1&internalSource=rr_feed_recipe_sb&referringId=228052%20referringContentType%3Drecipe'
