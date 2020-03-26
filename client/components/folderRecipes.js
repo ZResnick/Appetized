@@ -53,12 +53,10 @@ class FolderRecipes extends React.Component {
     }
     return (
       <div className="saved-recipes">
-        {!recipes ? (
-          <h1 className="bold search-results-header">
-            It doesn't look like you have any recipes in this folder yet. Try
-            adding one by clicking on the dropdown menu next to the 'Saved'
-            button on the recipe's page!
-          </h1>
+        {!folder ? (
+          <div>
+            <h1>Loading!!</h1>
+          </div>
         ) : recipes.length ? (
           <div>
             <div className="recipe-box-category-section">
@@ -101,11 +99,17 @@ class FolderRecipes extends React.Component {
             </div>
           </div>
         ) : (
-          <h1 className="no-recipes-message">
-            It doesn't look like you have any recipes in this folder yet. Try
-            adding one by clicking on the dropdown menu next to the 'Saved'
-            button on a recipe's page!
-          </h1>
+          <div>
+            <div className="recipe-box-category-section">
+              <h2 className="recipe-box-category">{folder.title}</h2>
+              <h4 className="recipe-box-category-count">0 recipes</h4>
+            </div>
+            <h1 className="no-recipes-message">
+              It doesn't look like you have any recipes in this folder yet. Try
+              adding one by clicking on the dropdown menu next to the 'Saved'
+              button on a recipe's page!
+            </h1>
+          </div>
         )}
       </div>
     )
