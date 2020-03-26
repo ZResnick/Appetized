@@ -59,7 +59,7 @@ router.post('/:folderId/recipe/:recipeId', async (req, res, next) => {
   }
 })
 
-//removes a recipe a to a specific folder
+//removes a recipe a from a specific folder
 router.post('/delete/:folderId/recipe/:recipeId', async (req, res, next) => {
   try {
     let folder = await Folder.findOne({
@@ -88,6 +88,44 @@ router.get('/:id', async (req, res, next) => {
     })
     if (userFolders) res.send(userFolders)
     else res.send(404)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//Deletes a folder from a users recipe box
+router.put('/deleteFolder/:folderId', async (req, res, next) => {
+  try {
+    const folder = await Folder.findAll({
+      where: {
+        userId: req.user.id,
+        id: req.params.folderId
+      }
+    })
+    if (folder[0]) {
+      await folder[0].destroy()
+      res.sendStatus(200)
+    } else res.send(404)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//Updates a folders name
+router.put('/changeName/:folderId', async (req, res, next) => {
+  try {
+    const {title} = req.body
+    const folders = await Folder.findAll({
+      where: {
+        userId: req.user.id,
+        id: req.params.folderId
+      }
+    })
+    if (folders[0]) {
+      let folder = folders[0]
+      await folder.update({title})
+      res.send(folder)
+    } else res.send(404)
   } catch (err) {
     next(err)
   }
