@@ -17,7 +17,8 @@ export class RecipeBox extends Component {
 
   render() {
     let folders
-    if (this.props.folders) folders = this.props.folders
+    if (this.props.folders)
+      folders = this.props.folders.sort((a, b) => a.id - b.id)
 
     return (
       <div className="recipe-box">
