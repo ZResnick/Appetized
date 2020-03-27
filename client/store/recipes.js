@@ -80,7 +80,6 @@ export const getSearchedPageRecipes = (search, pageNum) => async dispatch => {
     const {data} = await axios.get(
       `/api/recipes/search-by-title/${pageNum}?search=${search}`
     )
-    console.log('HELLO THERE')
     dispatch(gotSearchedPageRecipes(data))
   } catch (err) {
     console.error(err)
@@ -99,7 +98,6 @@ export const getTotalCount = () => async dispatch => {
 export const getPageRecipes = pageNum => async dispatch => {
   try {
     const {data} = await axios.get(`/api/recipes/allRecipes/${pageNum}`)
-    console.log('HELLO THERE')
     dispatch(gotPageRecipes(data))
   } catch (err) {
     console.error(err)
