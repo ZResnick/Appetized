@@ -182,6 +182,14 @@ export const addNewRecipe = url => async dispatch => {
   }
 }
 
+export const fixRecipe = url => async dispatch => {
+  try {
+    await axios.put(`/api/recipes/fixRecipe`, {url})
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 /**
  * REDUCER
  */
