@@ -1077,3 +1077,13 @@ form div {
   font-size: 1em;
   color: rgb(255, 255, 255);
 }
+
+/* Edit Folder Modal  */
+
+.edit-folder-icon {
+  transition: all 0.2s ease-in-out;
+  padding-left: 12px;
+}
+.edit-folder-icon:hover {
+  transform: scale(1.3);
+}
