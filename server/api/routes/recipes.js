@@ -6,6 +6,49 @@ const scrapers = require('../../scrapers')
 const {Op} = require('sequelize')
 const sequelize = require('sequelize')
 
+//fixes a recipe via the url
+// router.put('/fixRecipe', async (req, res, next) => {
+//   try {
+//     let url = req.body.url
+//     let tail = url.split('www.')[1]
+//     let base = tail && tail.split('.com')[0]
+
+//     //because nytimes url is composed differently
+//     let isNYT = url.indexOf('nytimes')
+//     if (isNYT !== -1) base = 'nytimes'
+
+//     //because sallysbakingaddiction url is composed differently
+//     let isSBA = url.indexOf('sallysbakingaddiction')
+//     if (isSBA !== -1) base = 'sallysbakingaddiction'
+
+//     let data = await scrapers[base](url)
+//     let {title, author, ingredients, instructions, imageUrl, misc, site} = data
+//     if (title && ingredients && instructions) {
+//       let recipe = await Recipe.findOne({
+//         where: {
+//           url
+//         },
+//         include: [{model: Ingredient}]
+//       })
+//       await ingredients.forEach(async el => {
+//         let ingredient = await Ingredient.findOne({
+//           where: {
+//             title: el
+//           }
+//         })
+//         if (!recipe.ingredients.includes(ingredient)) {
+//           await ingredient.addRecipe(recipe)
+//         }
+//       })
+//       res.sendStatus(200)
+//     } else {
+//       res.send(500)
+//     }
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+
 //gets all the recipes for a specific page, where a page is 24 recipes
 router.get('/allRecipes/:pageNum', async (req, res, next) => {
   try {
@@ -105,7 +148,7 @@ router.get('/search-by-title', async (req, res, next) => {
     let words = search.split(' ')
     let searchArray = words.map(word => `%${word}%`)
     let searchedRecipes = await Recipe.findAll({
-      limit: 25,
+      // limit: 25,
       where: {
         title: {
           [Op.iLike]: {[Op.any]: searchArray}
