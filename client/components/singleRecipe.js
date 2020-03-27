@@ -58,8 +58,6 @@ export class SingleRecipe extends Component {
       }
     }
 
-    recipe && console.log(this.props)
-
     return (
       <div>
         {!recipe ? (
