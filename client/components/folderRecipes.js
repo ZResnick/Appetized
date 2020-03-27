@@ -2,8 +2,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {getSingleFolder} from '../store/folders'
-import {Card, Pagination} from 'semantic-ui-react'
-import {RecipeCard} from './index'
+import {Card, Pagination, Loader} from 'semantic-ui-react'
+import {RecipeCard, EditFolderModal} from './index'
 import history from '../history'
 import {animateScroll as scroll} from 'react-scroll'
 
@@ -55,12 +55,19 @@ class FolderRecipes extends React.Component {
       <div className="saved-recipes">
         {!folder ? (
           <div>
-            <h1>Loading!!</h1>
+            <Loader active inline="centered" />
           </div>
         ) : recipes.length ? (
           <div>
             <div className="recipe-box-category-section">
-              <h2 className="recipe-box-category">{folder.title}</h2>
+              <h2 className="recipe-box-category">
+                {folder.title}
+                {'  '}
+                <EditFolderModal
+                  currentFolderId={folder.id}
+                  currentTitle={folder.title}
+                />
+              </h2>
               {totalCount === 1 ? (
                 <h4 className="recipe-box-category-count">
                   {totalCount} recipe
@@ -101,7 +108,14 @@ class FolderRecipes extends React.Component {
         ) : (
           <div>
             <div className="recipe-box-category-section">
-              <h2 className="recipe-box-category">{folder.title}</h2>
+              <h2 className="recipe-box-category">
+                {folder.title}
+                {'   '}
+                <EditFolderModal
+                  currentFolderId={folder.id}
+                  currentTitle={folder.title}
+                />
+              </h2>
               <h4 className="recipe-box-category-count">0 recipes</h4>
             </div>
             <h1 className="no-recipes-message">
