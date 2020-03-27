@@ -4,9 +4,6 @@ import {Button} from 'semantic-ui-react'
 import history from '../history'
 
 export default function Hero(props) {
-  // console.log(props)
-  // if (props.location.pathname !== '/') history.push('/')
-
   return (
     <div id="hero">
       <div className="hero-head">
