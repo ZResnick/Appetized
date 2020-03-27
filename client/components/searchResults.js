@@ -73,7 +73,6 @@ class SearchResults extends React.Component {
     let totalCount = null
     if (searchedRecipeCount && searchedRecipeCount.searchedRecipeCount > -1)
       totalCount = searchedRecipeCount.searchedRecipeCount
-    console.log('here', totalCount)
 
     return (
       <div className="search-results-container">
