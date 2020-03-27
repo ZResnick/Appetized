@@ -1,18 +1,11 @@
 /* eslint-disable complexity */
 import React from 'react'
 import {connect} from 'react-redux'
-import {
-  getPageRecipes,
-  getUserRecipes,
-  getTotalCount,
-  getRecipes,
-  fixRecipe
-} from '../store/recipes'
+import {getPageRecipes, getUserRecipes, getTotalCount} from '../store/recipes'
 import {Card, Pagination} from 'semantic-ui-react'
 import {RecipeCard} from './index'
 import history from '../history'
 import {animateScroll as scroll} from 'react-scroll'
-import recipeBox from './recipeBox'
 
 class AllRecipes extends React.Component {
   constructor(props) {
@@ -42,15 +35,6 @@ class AllRecipes extends React.Component {
     )
     this.props.getUserRecipes()
     this.props.getTotalCount()
-    this.props.getRecipes()
-    setTimeout(() => {
-      {
-        let recipes = this.props.allRecipes
-        recipes.forEach(recipe => {
-          this.props.fixRecipe(recipe.url)
-        })
-      }
-    }, 3000)
   }
 
   render() {
@@ -110,8 +94,7 @@ class AllRecipes extends React.Component {
 const mapStateToProps = state => ({
   userRecipes: state.recipes.userRecipes,
   pageRecipes: state.recipes.pageRecipes,
-  totalCount: state.recipes.totalCount,
-  allRecipes: state.recipes.all
+  totalCount: state.recipes.totalCount
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -123,12 +106,6 @@ const mapDispatchToProps = dispatch => ({
   },
   getTotalCount: () => {
     dispatch(getTotalCount())
-  },
-  getRecipes: () => {
-    dispatch(getRecipes())
-  },
-  fixRecipe: url => {
-    dispatch(fixRecipe(url))
   }
 })
 

@@ -6,49 +6,6 @@ const scrapers = require('../../scrapers')
 const {Op} = require('sequelize')
 const sequelize = require('sequelize')
 
-//fixes a recipe via the url
-router.put('/fixRecipe', async (req, res, next) => {
-  try {
-    let url = req.body.url
-    let tail = url.split('www.')[1]
-    let base = tail && tail.split('.com')[0]
-
-    //because nytimes url is composed differently
-    let isNYT = url.indexOf('nytimes')
-    if (isNYT !== -1) base = 'nytimes'
-
-    //because sallysbakingaddiction url is composed differently
-    let isSBA = url.indexOf('sallysbakingaddiction')
-    if (isSBA !== -1) base = 'sallysbakingaddiction'
-
-    let data = await scrapers[base](url)
-    let {title, author, ingredients, instructions, imageUrl, misc, site} = data
-    if (title && ingredients && instructions) {
-      let recipe = await Recipe.findOne({
-        where: {
-          url
-        },
-        include: [{model: Ingredient}]
-      })
-      await ingredients.forEach(async el => {
-        let ingredient = await Ingredient.findOne({
-          where: {
-            title: el
-          }
-        })
-        if (!recipe.ingredients.includes(ingredient)) {
-          await ingredient.addRecipe(recipe)
-        }
-      })
-      res.sendStatus(200)
-    } else {
-      res.send(500)
-    }
-  } catch (err) {
-    next(err)
-  }
-})
-
 //gets all the recipes for a specific page, where a page is 24 recipes
 router.get('/allRecipes/:pageNum', async (req, res, next) => {
   try {
@@ -268,6 +225,49 @@ router.get('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+//THIS IS AN OLD ROUTE.  It was used to fix a bunch of recipes that were missing ingredients.  If you ever want to see how it worked, look at : https://github.com/ZResnick/Appetized/commit/568d62b4a3c674f5e9b0293fdbce1c94b3861a55, https://github.com/ZResnick/Appetized/commit/3777821345ae8e828fcef8b4e924ed34897a03ff, and https://github.com/ZResnick/Appetized/commit/52685f612377a42145f813a328beab5c4b6f559a
+// router.put('/fixRecipe', async (req, res, next) => {
+//   try {
+//     let url = req.body.url
+//     let tail = url.split('www.')[1]
+//     let base = tail && tail.split('.com')[0]
+
+//     //because nytimes url is composed differently
+//     let isNYT = url.indexOf('nytimes')
+//     if (isNYT !== -1) base = 'nytimes'
+
+//     //because sallysbakingaddiction url is composed differently
+//     let isSBA = url.indexOf('sallysbakingaddiction')
+//     if (isSBA !== -1) base = 'sallysbakingaddiction'
+
+//     let data = await scrapers[base](url)
+//     let {title, author, ingredients, instructions, imageUrl, misc, site} = data
+//     if (title && ingredients && instructions) {
+//       let recipe = await Recipe.findOne({
+//         where: {
+//           url
+//         },
+//         include: [{model: Ingredient}]
+//       })
+//       await ingredients.forEach(async el => {
+//         let ingredient = await Ingredient.findOne({
+//           where: {
+//             title: el
+//           }
+//         })
+//         if (!recipe.ingredients.includes(ingredient)) {
+//           await ingredient.addRecipe(recipe)
+//         }
+//       })
+//       res.sendStatus(200)
+//     } else {
+//       res.send(500)
+//     }
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
 //Examples below
 
