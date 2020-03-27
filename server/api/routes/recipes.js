@@ -218,7 +218,6 @@ router.get('/:id', async (req, res, next) => {
         }
       ]
     })
-    // console.log(recipe)
     if (recipe) res.send(recipe)
     else res.send(404)
   } catch (err) {
