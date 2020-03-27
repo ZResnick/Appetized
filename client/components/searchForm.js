@@ -40,7 +40,20 @@ class SearchForm extends Component {
       // const isMatch = result => re.test(result.title)
 
       this.props.getSearchedByTitle(this.state.value)
-      let recipes = this.props.searchedByTitle.slice(0, 5)
+
+      let allRecipes = this.props.searchedByTitle
+      let mostRelevant = allRecipes.filter(recipe =>
+        recipe.title.toLowerCase().includes(this.state.value.toLowerCase())
+      )
+      let withoutMostRelevant = allRecipes.filter(recipe => {
+        for (let i = 0; i < mostRelevant.length; i++) {
+          let curr = mostRelevant[i]
+          if (curr.id === recipe.id) return false
+        }
+        return true
+      })
+      console.log(withoutMostRelevant)
+      let recipes = [...mostRelevant, ...withoutMostRelevant].slice(0, 5)
 
       //apparently the search function overrides the id with 0,1,2,3 so the below adds a new key:value to persist the realID
       recipes.forEach(recipe => {
