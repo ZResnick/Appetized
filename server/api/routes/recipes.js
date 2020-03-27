@@ -172,7 +172,7 @@ router.post('/', async (req, res, next) => {
         include: [{model: Ingredient}]
       })
       if (!newRecipe) {
-        await Recipe.create({
+        newRecipe = await Recipe.create({
           url,
           title,
           author,
@@ -192,7 +192,7 @@ router.post('/', async (req, res, next) => {
               title: el
             })
           }
-          ingredient.addRecipe(newRecipe)
+          await ingredient.addRecipe(newRecipe)
         })
         newRecipe = await Recipe.findOne({
           where: {url}
