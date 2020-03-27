@@ -60,7 +60,6 @@ class SearchForm extends Component {
         }
         return true
       })
-      console.log(withoutMostRelevant)
       let recipes = [...mostRelevant, ...withoutMostRelevant].slice(0, 5)
 
       //apparently the search function overrides the id with 0,1,2,3 so the below adds a new key:value to persist the realID
