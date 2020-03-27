@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import {Search, Grid} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {getSearchedByTitle} from '../store/recipes'
+import history from '../history'
 
 class SearchForm extends Component {
   constructor(props) {
@@ -28,6 +29,13 @@ class SearchForm extends Component {
   handleResultSelect = (e, {result}) => {
     this.setState({value: result.title})
     this.resetComponent()
+  }
+
+  handleType = e => {
+    if (e.keyCode === 13) {
+      this.resetComponent()
+      history.push(`/searchResults/page/1?${this.state.value}`)
+    }
   }
 
   handleSearchChange = (e, {value}) => {
@@ -84,6 +92,7 @@ class SearchForm extends Component {
               onSearchChange={_.debounce(this.handleSearchChange, 500, {
                 leading: true
               })}
+              onKeyDown={this.handleType}
               results={results}
               value={value}
               {...this.props} //Note that this corresponds to the content in client/navbar.js line 12
