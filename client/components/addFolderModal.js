@@ -28,6 +28,15 @@ class AddFolderModal extends React.Component {
     this.props.addAFolder(temp)
   }
 
+  detectSpacePresent = e => {
+    if (e.keyCode === 32) {
+      let prevTitle = this.state.title
+      this.setState({
+        title: `${prevTitle} `
+      })
+    }
+  }
+
   render() {
     const {open} = this.state
 
@@ -37,7 +46,7 @@ class AddFolderModal extends React.Component {
         size="small"
         closeIcon
         onClose={() => {
-          this.setState({open: false})
+          this.setState({title: '', open: false})
         }}
         trigger={
           <button
@@ -67,6 +76,7 @@ class AddFolderModal extends React.Component {
                     name="title"
                     value={this.state.title}
                     onChange={this.handleChange}
+                    onKeyDown={this.detectSpacePresent}
                   />
                 </Form.Field>
               </Form>
