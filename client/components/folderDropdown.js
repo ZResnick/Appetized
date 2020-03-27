@@ -35,8 +35,14 @@ export class FolderDropdown extends Component {
       <Dropdown
         className="button icon"
         floating
+        scrolling={true}
         icon="justify align"
         trigger={<React.Fragment />}
+        onKeyDown={e => {
+          if (e.keyCode === 32) {
+            e.preventDefault()
+          }
+        }}
       >
         <Dropdown.Menu>
           <Dropdown.Header icon="folder" content="Add to a folder" />
