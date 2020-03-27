@@ -30,7 +30,6 @@ export class FolderDropdown extends Component {
 
   render() {
     const {recipe} = this.props
-    console.log('HELLO')
     return (
       <Dropdown
         className="button icon"
